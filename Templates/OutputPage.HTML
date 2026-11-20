@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/CSS/style.css?v=2">
+    <title>{{ translations['page_title_output'] }}</title>
+</head>
+<ul>
+    <li><b>{{ translations['nav_brand'] }}</b></li>
+<!--Language switch button-->
+    <li class="left"><a href="{{ url_for('run_calculation', lang='cy' if lang == 'en' else 'en', service=scan_choice, postcode=postcode, location=hospital_choice, adult=adult) }}" class="language-button">{{ translations['language_switch_to'] }}</a></li>
+<!--links to other pages - have not included an active page for the output... it just feels wrong-->
+    <li><a href="{{ url_for('home', lang=lang) }}">{{ translations['nav_home'] }}</a></li>
+    <li><a href="{{ url_for('input_page', lang=lang) }}">{{ translations['nav_input'] }}</a></li>
+    <li><a href="{{ url_for('visualisations_page', lang=lang) }}">{{ translations['nav_visualisations'] }}</a></li>
+    <li><a href="{{ url_for('information_page', lang=lang) }}">{{ translations['nav_information'] }}</a></li>
+</ul>
+
+<body>
+    <section class="results-section">
+        <p>
+            {{ translations['output_wait_prefix'] | safe }}<br>
+            <b>{{ scan_choice }}</b> {{ translations['output_wait_at'] }}<br>
+            <b>{{ hospital_display_name }}</b> {{ translations['output_wait_is'] }}<br>
+        </p>
+
+        <div class="gauge-value {{ colour_zone }}">
+            {% if typical_wait is not none %}
+                {{ typical_wait }}
+            {% else %}
+                &lt;1
+            {% endif %}
+            <p class="gauge-unit">{{ translations['gauge_unit'] }}</p>
+        </div>
+
+        <div class="speedometer">
+            <div class="gauge-body"></div>
+            <div class="needle" style="transform: rotate({{ needle_angle }}deg);"></div>
+            <div class="centre-dot"></div>
+        </div>
+
+        <div class="status-banner {{ colour_zone }}">
+            {% if colour_zone == "green" %}
+                {{ translations['status_green'] }}
+            {% elif colour_zone == "orange" %}
+                {{ translations['status_orange'] }}
+            {% else %}
+                {{ translations['status_red'] }}
+            {% endif %}
+        </div>
+
+        <p style="font-size: 14px;">
+            <strong>{{ translations['output_age_group_label'] }}</strong>
+            {{ translations['age_group_child'] if adult|string == '0' else translations['age_group_adult'] }}
+            {% if predicted_wait is not none %}
+                &nbsp;|&nbsp;
+                <strong>{{ translations['output_predicted_wait_label'] }}</strong> {{ predicted_wait }} {{ translations['output_weeks'] }}
+                ({{ translations['output_trend_' + wait_trend] if ('output_trend_' + wait_trend) in translations else wait_trend }})
+            {% endif %}
+        </p>
+        
+        {% if driving_distance %}
+        <div class="travel_info">
+            <strong>{{ translations['drive_label'] }}</strong> {{ driving_distance }}, {{ driving_duration }}
+            <span class="travel_divider">|</span>
+            <strong>{{ translations['walk_label'] }}</strong> {{ walking_distance }}, {{ walking_duration }}
+         </div>
+        {% endif %}
+
+        {% if other_hospitals %}
+         <h2>{{ translations['nearby_alternatives_heading'] }}</h2>
+
+         <div class="other_hospitals">
+            {% for hospital in other_hospitals %}
+                <div class="hospital_option">
+                    <h4>{{ hospital.get("Hospital Name (Welsh)", hospital["Hospital Name"]) if lang == "cy" else hospital["Hospital Name"] }}</h4>
+                <p>
+                    <strong>{{translations['drive_label'] }}</strong>
+                    {{ hospital["driving_duration"] }}
+                    ({{ hospital["driving_distance"] }})
+                </p>
+
+                <p>
+                    <strong>{{ translations['walk_label'] }}</strong>
+                    {{ hospital["walking_duration"] }}
+                    ({{ hospital["walking_distance"] }})
+                </p>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <div style="text-align: center; margin-top: 20px;">
+            <a href="{{ url_for('input_page', lang=lang, service=scan_choice, show_all='true', adult=adult) }}" class="calculate-button">
+                {{ translations['view_all_hospitals_button'] }}
+            </a>
+        </div>
+
+        <p style="font-size: 14px;">
+            {{ translations['output_source_prefix'] }} <b>{{ latest_date }}</b> {{ translations['output_source_suffix'] }}
+            {{ translations['output_more_info'] }}
+            <a href="{{ url_for('information_page', lang=lang) }}">{{ translations['output_more_info_link'] }}</a>.
+        </p>
+    </section>
+</body>
+</html>

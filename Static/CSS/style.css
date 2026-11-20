@@ -1,0 +1,594 @@
+/*Welsh flag colours: 
+White - #FFFFFF scaled to #F1F5F0
+Red - #D30731 scaled to #A70626
+Green - #00B140 scaled to #005C22
+
+Proposed colour scheme
+Red -- #A70626 |  | 
+Green -- #005C22 | 477B28 | 3C5A3A
+Blue -- #1C2F8D |  
+Brownish orange -- #B1481B
+off-white -- F1F5F0
+*/
+
+/* 
+==============================================
+    Font Download for Open Dyslexic
+==============================================
+    */
+@font-face {
+    font-family: 'Open-Dyslexic';
+    src: url('/fonts/OpenDyslexic-Regular.otf')format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Open-Dyslexic';
+    src: url('/fonts/OpenDyslexic-Bold.otf')format('opentype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+/* 
+==============================================
+    Background / general
+==============================================
+*/
+body{
+    background-color: #F1F5F0;
+    margin: 0;
+}
+section{
+    padding: 15px;
+}
+.left{
+    margin-right:auto;
+}
+
+/*
+==============================================
+    Grid layout - visualisations page!!!
+==============================================
+*/
+
+ .visualisation-list {
+     display: grid;
+     grid-template-columns: repeat(
+         2,1fr
+     );
+     gap: 30px;
+     max-width: 100%;
+     margin-top: 0 auto;
+ }
+ /*
+    This is one clickable visualisation card.
+ */
+ .visualisation-card {
+     display: block;
+     max-width: 100%;
+     padding: 20px;
+     border: 2px solid #dddddd;
+     border-radius: 15px;
+     background-color: white;
+     color: #222222;
+     text-decoration: none;
+     text-align: center;
+     transition:
+         transform 0.2s,
+         box-shadow 0.2s;
+ }
+ /*
+    This makes the card move a little when we point at it.
+ */
+ .visualisation-card:hover {
+     transform: translateY(-5px);
+     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+ }
+ /*
+    This makes the picture fill the card nicely.
+ */
+ .visualisation-card img {
+     display: block;
+     width: 100%;
+     height:200px;
+     object-fit: contain;
+     border-radius: 10px;
+ }
+ /*
+    This gives the title some breathing room.
+ */
+ .visualisation-card h3 {
+     margin-top: 18px;
+     margin-bottom: 8px;
+ }
+
+ /* 
+==============================================
+    Visualisations - Heatmap stuff
+==============================================
+*/
+ #wales-map {
+    width: 100%;
+    height: 700px;
+    margin: 20px, auto;
+    border: 1px solid #cccccc;
+    border-radius: 10px;
+    overflow: hidden;
+}
+#map-message {
+    margin-top: 15px;
+    font-weight: bold;
+}
+/* 
+==============================================
+    Text
+==============================================
+    */
+h1 {
+    color: #F1F5F0;
+    font-family:Verdana;
+    font-size: 24px;
+    font-weight: normal;
+}
+h2 {
+    color: #005C22;
+    font-family:Verdana;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+p {
+    color: #003816;
+    font-family: Verdana;
+    font-size: 19px;
+}
+
+/* 
+==============================================
+    Navigation Bar
+==============================================
+*/
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    background-color:#005C22;
+    display: flex;
+    flex-wrap: nowrap;
+    position: sticky;
+    top:0;
+    width: auto;
+    z-index:1000;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: #F1F5F0 #005C22;
+}
+
+li {
+    display: flex;
+    flex-shrink: 0;
+}
+
+ul::-webkit-scrollbar {
+    height: 4px;
+}
+ul::-webkit-scrollbar-track {
+    background: #005C22;
+}
+ul::-webkit-scrollbar-thumb {
+    background: #F1F5F0;
+    border-radius: 2px;
+}
+
+li a{
+    display: block;
+    color:#F1F5F0;
+    padding: 8px 20px;
+    text-decoration: none;
+    font-family: Verdana;
+    font-size: 19px;
+    font-weight: normal;
+    height: 100%;
+    white-space: nowrap;
+}
+/*  to change link & background colour on hover*/
+li a:hover {
+    background-color:#F1F5F0;
+    color:#005C22;
+    font-weight: bold;
+}
+/*  to change link & background when active*/
+ul li a.active{
+    background-color: #F1F5F0;
+    color:#A70626;
+    font-weight: bold;
+}
+/* For the ScanWait Wales text in the navigation bar*/
+li b{
+    display: block;
+    color:#F1F5F0;
+    padding: 8px 16px;
+    text-decoration: none;
+    font-family: Verdana;
+    font-size: 19px;
+    font-weight: bold;
+}
+/* 
+==============================================
+    Buttons 
+==============================================
+*/
+.calculate-button{
+    border: 2px solid #F1F5F0;
+    background-color: #A70626;
+    color: #F1F5F0;
+    font-size: 19px;
+    font-family: Verdana;
+    font-style: italic;
+    font-weight: bold;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+
+    display: inline-block;
+    width: auto;
+}
+
+.language-button{ 
+    border: 2px solid #F1F5F0; 
+    background-color: #A70626;
+    color:#F1F5F0;
+    font-size: 15px;
+    font-family: Verdana;
+    font-style: italic;
+    font-weight: bold;
+    border-radius: 0px;
+    cursor: pointer;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 16px;
+}
+
+.back-viz-button{
+    border: 2px solid #F1F5F0;
+    background-color: #A70626;
+    color: #F1F5F0;
+    font-size: 19px;
+    font-family: Verdana;
+    font-style: italic;
+    font-weight: bold;
+    padding: 6px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-top: 20px;
+    display: inline-block;
+}
+
+/*
+==============================================
+    Hospital Cards
+==============================================
+*/
+.hospital-card {
+    max-width: 500px;
+    width: 100%;
+    margin: 0 auto 20px auto;
+
+    border: 2px solid #005C22;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #F1F5F0;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+
+    text-align: center;
+    
+}
+
+.hospital-card:hover {
+    background-color: #FFFFFF;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+.hospital-card .calculate-button {
+    margin-top: 15px;
+    width: auto;
+}
+
+/* 
+==============================================
+    Drop-downs
+==============================================
+*/
+#service,#postcode,#location{
+    box-sizing: border-box;
+    width: min(100%, 400px);
+    min-height: 40px;
+    padding: 12px;
+    font-size: 150%;
+    line-height: 1.2;
+}
+
+#hospital-search .calculate-button{
+    display: block;
+    width: 100%;
+    margin:5px;
+}
+
+@media (max-width: 400px) {
+    #service,#postcode,#location{
+        width: 100%;
+        min-height: 40px;
+        padding: 8px;
+        font-size: 150%;
+    }
+}
+
+/* 
+==============================================
+    Speedometer
+==============================================
+*/
+.speedometer-section {
+    text-align: center;
+    padding: 20px;
+}
+
+.speedometer {
+    position: relative;
+    width: 300px;
+    height: 170px;
+    margin: 20px auto;
+    overflow: hidden;
+}
+
+.gauge-body {
+    position: relative;
+    width: 300px;
+    height: 150px;
+    background: conic-gradient(
+        from 270deg,
+        #005C22 0deg,      /* 0 wk — green */
+        #477B28 45deg,     /* ~3.8 wk — lighter green */
+        #D4A017 75deg,     /* ~6.3 wk — amber */
+        #B1481B 96deg,     /* 8 wk — orange (target threshold) */
+        #B1481B 130deg,    /* ~10.8 wk — still orange */
+        #A70626 160deg,    /* ~13.3 wk — red */
+        #A70626 180deg,    /* 15 wk — red */
+        #005C22 360deg     /* wrap back to green to match 0deg start */
+    );
+    border-radius: 150px 150px 0 0;
+    margin: 0 auto;
+}
+
+.gauge-body::before {
+    content: "";
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 260px;
+    height: 130px;
+    background: #F1F5F0;
+    border-radius: 130px 130px 0 0;
+}
+
+.needle {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 4px;
+    height: 120px;
+    background: #212b32;
+    border-radius: 2px;
+    transform-origin: bottom center;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 5;
+    margin-left: -2px;
+}
+
+.centre-dot {
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    width: 16px;
+    height: 16px;
+    background: #212b32;
+    border: 3px solid #F1F5F0;
+    border-radius: 50%;
+    transform: translateX(-50%);
+    z-index: 6;
+}
+
+.gauge-labels {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 15px;
+    margin-top: 15px;
+    font-family: Verdana;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.label-start {
+    background-color: #005C22;
+    color: #FFFFFF;
+    padding: 8px 16px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    border-left: 5px solid #00FF66;
+    min-width: 100px;
+}
+
+.label-middle {
+    background-color: #8B3010;
+    color: #FFFFFF;
+    padding: 8px 16px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    border-left: 5px solid #FFD700;
+    min-width: 100px;
+}
+
+.label-end {
+    background-color: #A70626;
+    color: #FFFFFF;
+    padding: 8px 16px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    border-left: 5px solid #FF4444;
+    min-width: 100px;
+}
+
+.label-text {
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 1.2;
+}
+
+.label-desc {
+    font-size: 11px;
+    font-weight: normal;
+    opacity: 0.9;
+    line-height: 1.2;
+}
+
+.gauge-value {
+    font-family: Verdana;
+    font-size: 48px;
+    font-weight: bold;
+    margin-top: 5px;
+    display: inline-block;
+    padding: 8px 20px;
+    border-radius: 8px;
+}
+
+.gauge-value.green {
+    background: #005C22;
+    color: #FFFFFF;
+}
+
+.gauge-value.orange {
+    background: #B1481B;
+    color: #FFFFFF;
+}
+
+.gauge-value.red {
+    background: #A70626;
+    color: #FFFFFF;
+}
+
+.gauge-unit {
+    font-family: Verdana;
+    font-size: 18px;
+    color: #F1F5F0;
+}
+
+.status-banner {
+    font-family: Verdana;
+    font-size: 19px;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 8px;
+    margin-top: 15px;
+    display: inline-block;
+}
+
+.status-banner.green {
+    background-color: #005C22;
+    color: #FFFFFF;
+}
+
+.status-banner.orange {
+    background-color: #B1481B;
+    color: #FFFFFF;
+}
+
+.status-banner.red {
+    background-color: #A70626;
+    color: #FFFFFF;
+}
+
+.input-section {
+    padding-top: 50px;
+}
+
+/* ===========================
+OUTPUT PAGE
+============================*/
+.results-section {
+    width: auto;
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+    text-align: center;
+}
+
+/* ===============================
+Travel Time and Distance Cards
+================================*/
+
+.travel_info {
+    margin-top: 15px;
+    text-align: center;
+    font-family: Verdana;
+    font-size: 19px;
+    color: #003816;
+}
+
+.travel_divider {
+    margin: 0 12px;
+    color: #003816
+}
+
+.other_hospitals {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.hospital_option {
+    flex: 1;
+    max-width: 320px;
+    min-width: 260px;
+
+    padding: 10px;
+
+    border: 5px solid #A70626;
+    border-radius: 14px;
+
+    background: #F1F5F0;
+    text-align: center;
+}
+
+.hospital_option h4 {
+    margin-bottom: 18px;
+    color: #005C22;
+    font-family: Verdana;
+    font-size: 19px;
+}
+
+.hospital_option p {
+    margin: 8px 0;
+    color: #005C22;
+    font-family: Verdana;
+    font-size: 19px;
+}

@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='CSS/style.css') }}"
+    >
+
+    <title>{{ translations['page_title_input'] }}</title>
+
+    <style>
+        /* Keep the form controls large and easy to use. */
+        #age_group,
+        #service,
+        #postcode,
+        #location {
+            box-sizing: border-box;
+            width: min(100%, 400px);
+            min-height: 40px;
+            padding: 12px;
+            font-size: 150%;
+            line-height: 1.2;
+        }
+
+        #hospital-search {
+            margin-top: 25px;
+        }
+
+        #hospital-search .calculate-button {
+            margin: 5px;
+        }
+
+        @media (max-width: 400px) {
+            #service,
+            #postcode,
+            #location {
+                width: 100%;
+                min-height: 40px;
+                padding: 8px;
+                font-size: 150%;
+            }
+
+            #hospital-search .calculate-button {
+                display: block;
+                width: 100%;
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation bar -->
+    <ul>
+        <li><b>{{ translations['nav_brand'] }}</b></li>
+        <li class="left"><a href="{{ url_for('input_page', lang='cy' if lang == 'en' else 'en', service=selected_service, postcode=postcode, adult=adult) }}" class="language-button">{{ translations['language_switch_to'] }}</a></li>
+        <li><a href="{{ url_for('home', lang=lang) }}">{{ translations['nav_home'] }}</a></li>
+        <li><a href="#input" class="active">{{ translations['nav_input'] }}</a></li>
+        <li><a href="{{ url_for('visualisations_page', lang=lang) }}">{{ translations['nav_visualisations'] }}</a></li>
+        <li><a href="{{ url_for('information_page', lang=lang) }}">{{ translations['nav_information'] }}</a></li>
+    </ul>
+
+    <section id="input">
+        <header>
+            <h2>{{ translations['heading_postcode'] }}</h2>
+        </header>
+        <p>
+            {{ translations['info_disclaimer'] }}
+        </p>
+        <p>
+            {{ translations['selection_process'] }}
+        </p>
+
+        <!-- First form: find matching hospitals -->
+        <form
+            action="{{ url_for('choose_hospital_search') }}"
+            method="POST"
+        >
+            <input
+                type="hidden"
+                name="lang"
+                value="{{ lang }}"
+            >
+
+            <label for="age_group">
+                <p>{{ translations['input_label_age_group'] }}</p>
+            </label>
+
+            <select
+                id="age_group"
+                name="adult"
+                required
+            >
+                <option value="1" {% if adult|string != '0' %}selected{% endif %}>
+                    {{ translations['age_group_adult'] }}
+                </option>
+                <option value="0" {% if adult|string == '0' %}selected{% endif %}>
+                    {{ translations['age_group_child'] }}
+                </option>
+            </select>
+
+            <label for="service">
+                <p>{{ translations['input_label_service'] }}</p>
+            </label>
+
+            <select
+                id="service"
+                name="service"
+                required
+            >
+                <option
+                    value=""
+                    disabled
+                    {% if not selected_service %}selected{% endif %}
+                >
+                    {{ translations['input_label_service'] }}
+                </option>
+
+                {% for service_value, service_name in services %}
+                    <option
+                        value="{{ service_value }}"
+                        {% if service_value == selected_service %}selected{% endif %}
+                    >
+                        {{ service_name }}
+                    </option>
+                {% endfor %}
+            </select>
+
+            <!-- This area appears after a scan is selected. -->
+            <div
+                id="hospital-search"
+                {% if not selected_service %}hidden{% endif %}
+            >
+                <label for="postcode">
+                    <p>{{ translations['input_postcode'] }}</p>
+                </label>
+
+                <input
+                    id="postcode"
+                    name="postcode"
+                    type="text"
+                    value="{{ postcode or '' }}"
+                    autocomplete="postal-code"
+                    placeholder="{{ translations['input_placeholder'] }}"
+                >
+
+                <br><br>
+
+                <button
+                    id="nearest-button"
+                    type="submit"
+                    name="search_method"
+                    value="nearest"
+                    class="calculate-button"
+                >
+                    {{ translations['input_nearest'] }}
+                </button>
+
+                <button
+                    type="submit"
+                    name="search_method"
+                    value="all"
+                    class="calculate-button"
+                >
+                    {{ translations['input_all_hospitals'] }}
+                </button>
+            </div>
+        </form>
+
+        <!-- Show the filtered hospital dropdown after a search. -->
+        {% if locations %}
+            <hr>
+
+            {% if result_mode == "nearest" %}
+                <h2>{{ translations['input_three_hospitals'] }}</h2>
+
+                <p>
+                    {{ translations['ranked_postcode'] }}
+                    <strong>{{ postcode }}</strong>.
+                </p>
+
+                {% if health_board %}
+                    <p>
+                        {{ translations['input_health_board'] }}
+                        <strong>{{ health_board }}</strong>
+                    </p>
+                {% endif %}
+
+            {% elif result_mode == "all" %}
+                <h2>
+                    {{ translations['all_hospitals'] }} {{ selected_service }}
+                </h2>
+            {% endif %}
+
+            <!-- Second form: choose a hospital and calculate waiting time. -->
+                <label for="location">
+                    <p>{{ translations['label_select_hospital'] }}</p>
+                </label>
+
+                    {% for hospital in locations %}
+                    <form 
+                        action="{{ url_for('run_calculation') }}" 
+                        method="POST"
+                    >
+                        <input
+                        type="hidden"
+                        name="location"
+                        value="{{ hospital['Hospital Name'] }}"
+                    >
+                        <input
+                        type="hidden"
+                        name="lang"
+                        value="{{ lang }}"
+                    >
+                        <input
+                        type="hidden"
+                        name="service"
+                        value="{{ selected_service }}"
+                    >
+                        <input
+                        type="hidden"
+                        name="adult"
+                        value="{{ adult if adult is defined else '1' }}"
+                    >
+                        <input
+                        type="hidden"
+                        name="postcode"
+                        value="{{ postcode }}"
+                    >
+                        <input
+                        type="hidden"
+                        name="driving_distance"
+                        value="{{ hospital.get('driving_distance', '') }}"
+                    >
+                        <input 
+                        type="hidden"
+                        name="driving_duration"
+                        value="{{ hospital.get('driving_duration', '') }}"
+                    >
+                        <input
+                        type="hidden"
+                        name="walking_distance"
+                        value="{{ hospital.get('walking_distance', '') }}"
+                    >
+                        <input
+                        type="hidden"
+                        name="walking_duration"
+                        value="{{ hospital.get('walking_duration', '') }}"
+                    >
+
+                    <div 
+                        class="hospital-card"
+                        onclick="this.closest('form').requestSubmit()"
+                    >
+                        <p><strong>{{ translations['label_hospital'] }} </strong>{{ hospital.get("display_name", hospital["Hospital Name"]) }}</p>
+                        {% if hospital.get("_distance_miles") is not none %}
+                        <p><strong>{{ translations['label_distance'] }} </strong> {{hospital.get("_distance_miles")|round(1)}} {{ translations['miles_away'] }}</p>
+                        {% endif %}
+                        <p><strong>{{ translations['label_healthboard'] }} </strong> {{ hospital["Health board"] }}</p>
+                        <button
+                            type="submit"
+                            class="calculate-button"
+                        >
+                            {{ translations['view_wait_time_button'] }}
+                        </button>
+                    </div>
+                </form>
+                {% endfor %}
+                <br>
+            </form>
+        {% endif %}
+    </section>
+
+    <script>
+        const serviceSelect = document.getElementById("service");
+        const hospitalSearch = document.getElementById("hospital-search");
+        const postcodeInput = document.getElementById("postcode");
+        const nearestButton = document.getElementById("nearest-button");
+
+        function updateSearchArea() {
+            const scanSelected = serviceSelect.value !== "";
+
+            // Show the postcode and search buttons after choosing a scan.
+            hospitalSearch.hidden = !scanSelected;
+        }
+
+        function updateNearestButton() {
+            const postcodeEntered =
+                postcodeInput.value.trim() !== "";
+
+            // The nearest-hospital button needs a postcode.
+            nearestButton.disabled = !postcodeEntered;
+        }
+
+        serviceSelect.addEventListener(
+            "change",
+            updateSearchArea
+        );
+
+        postcodeInput.addEventListener(
+            "input",
+            updateNearestButton
+        );
+
+        updateSearchArea();
+        updateNearestButton();
+    </script>
+</body>
+</html>

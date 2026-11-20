@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+
+<head>
+    <!-- This tells the browser which letters we are using -->
+    <meta charset="UTF-8">
+
+    <!-- This helps the page fit on phones -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- This puts our normal website clothes on the page -->
+    <link rel="stylesheet" href="/static/CSS/style.css">
+
+    <!-- This is the name shown on the browser tab -->
+    <title>{{ translations['vis_page_title'] }}</title>
+
+    <!--note - style code was moved to style.css-->
+</head>
+
+<body>
+
+    <!-- This is the navigation bar -->
+    <ul>
+        <!-- This shows the website name -->
+        <li>
+            <b>{{ translations['nav_brand'] }}</b>
+        </li>
+
+        <!-- This swaps between English and Welsh -->
+        <li class="left">
+            <a
+                href="{{ url_for(
+                    'visualisations_page',
+                    lang='cy' if lang == 'en' else 'en'
+                ) }}"
+                class="language-button"
+            >
+                {{ translations['language_switch_to'] }}
+            </a>
+        </li>
+
+        <!-- This goes to the home page -->
+        <li>
+            <a href="{{ url_for('home', lang=lang) }}">
+                {{ translations['nav_home'] }}
+            </a>
+        </li>
+
+        <!-- This goes to the input page -->
+        <li>
+            <a href="{{ url_for('input_page', lang=lang) }}">
+                {{ translations['nav_input'] }}
+            </a>
+        </li>
+
+        <!-- We are on this page, so this button is active -->
+        <li>
+            <a href="#visualisations" class="active">
+                {{ translations['nav_visualisations'] }}
+            </a>
+        </li>
+
+        <!-- This goes to the information page -->
+        <li>
+            <a href="{{ url_for('information_page', lang=lang) }}">
+                {{ translations['nav_information'] }}
+            </a>
+        </li>
+    </ul>
+
+    <!-- This is the main part of the page -->
+    <main id="visualisations">
+
+        <section>
+            <!-- This is the big page title -->
+            <header>
+                <h2>{{ translations['vis_welcome_heading'] }}</h2>
+            </header>
+
+            <!-- This tells the user what to do -->
+            <p>
+                {{ translations['vis_instruction'] }}
+            </p>
+
+            <!-- This box holds our clickable pictures -->
+            <div class="visualisation-list">
+
+                <!-- The whole card is a link -->
+                <a href="{{ url_for('heatmap_page', lang=lang) }}" class="visualisation-card">
+                    <!-- This is the picture the user clicks (includes alt text)-->
+                    <img src="{{ url_for('static',filename='Images/Wales.png') }}"
+                        alt="{{ translations['vis_card_heatmap_alt'] }}">
+                    <!-- This is the name of the visualisation -->
+                    <h2>{{ translations['vis_card_heatmap_title'] }}</h2>
+                    <!-- This explains what the visualisation does -->
+                    <p>
+                        {{ translations['vis_card_heatmap_desc'] }}
+                    </p>
+                </a>
+                <!-- The whole card is a link -->
+                <a href="{{ url_for('stacked_chart_page', lang=lang) }}" class="visualisation-card">
+                    <!-- This is the picture the user clicks (includes alt text)-->
+                    <img src="{{ url_for('static',filename='Images/Bar Graph.png') }}"
+                        alt="{{ translations['vis_card_barchart_alt'] }}">
+                    <!-- This is the name of the visualisation -->
+                    <h2>{{ translations['vis_card_barchart_title'] }}</h2>
+                    <!-- This explains what the visualisation does -->
+                    <p>
+                        {{ translations['vis_card_barchart_desc'] }}
+                    </p>
+                </a>
+                <a href="{{ url_for('line_graph_page', lang=lang) }}" class="visualisation-card">
+                    <!-- This is the picture the user clicks (includes alt text)-->
+                    <img src="{{ url_for('static',filename='Images/Line Graph.png') }}"
+                        alt="{{ translations['vis_card_linechart_alt'] }}">
+                    <!-- This is the name of the visualisation -->
+                    <h2>{{ translations['vis_card_linechart_title'] }}</h2>
+                    <!-- This explains what the visualisation does -->
+                    <p>
+                        {{ translations['vis_card_linechart_desc'] }}
+                    </p>
+                </a>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

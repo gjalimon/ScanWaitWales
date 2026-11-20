@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+
+<head>
+    <!-- This tells the browser which letters we are using -->
+    <meta charset="UTF-8">
+    <!-- This helps the page fit on phones and tablets -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- This puts our normal website clothes on the page -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/style.css') }}">
+    <!-- This gives Plotly the tools it needs to draw our chart -->
+    <script src="https://cdn.plot.ly/plotly-3.6.0.min.js"></script>
+    <!-- This is the name shown on the browser tab -->
+    <title>{{ translations['line_page_title'] }}</title>
+</head>
+
+<body>
+    <!-- Navigation bar (styled by style.css) -->
+    <ul>
+        <li><b>{{ translations['nav_brand'] }}</b></li>
+        <li class="left"><a href="{{ url_for('visualisations_page',lang='cy' if lang == 'en' else 'en') }}"class="language-button">{{ translations['language_switch_to'] }}</a></li>
+        <li><a href="{{ url_for('home', lang=lang) }}">{{ translations['nav_home'] }}</a></li>
+        <li><a href="{{ url_for('input_page', lang=lang) }}">{{ translations['nav_input'] }}</a></li>
+        <li><a href="{{ url_for('visualisations_page', lang=lang) }}"class="active">{{ translations['nav_visualisations'] }}</a></li>
+        <li><a href="{{ url_for('information_page', lang=lang) }}">{{ translations['nav_information'] }}</a></li>
+    </ul>
+
+    <!-- This is the main part of the line graph page -->
+    <main class="line_graph">
+        <section>
+            <!-- This button takes us back to the visualisations menu -->
+            <a href="{{ url_for('visualisations_page', lang=lang) }}"class="back-viz-button">
+                {{ translations['line_back_button'] }}</a>
+            <!-- This is the big page heading -->
+            <header>
+                <h2>{{ translations['line_heading'] }}</h2>
+            </header>
+
+            <!-- This explains what the chart does -->
+            <p>
+                {{ translations['line_nhs_target'] }}
+            </p>
+            
+            <form method="GET">
+                <input type="hidden" name="lang" value="{{ lang }}">
+                <p>
+                    <label for="service"><b>{{ translations['line_filter_label'] }} </b></label>
+                    <select name="service" id="service">
+                        {% for value, display_text in services %}
+                            <option value="{{ value }}" {% if value == scan_type %}selected{% endif %}>
+                                {{ display_text }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                    <button type="submit" class="calculate-button">{{ translations['line_visualise_button'] }}</button>
+                </p>
+            </form>
+            
+            <!-- LINE CHART GOES HERE -->
+            <p>{{ graph2 | safe }}</p>
+        </section>
+        <!-- END OF NEW LINE CHART SECTION -->
+
+    </main>
+
+</body>
+</html>

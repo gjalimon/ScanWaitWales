@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+
+<head>
+    <!-- This tells the browser which letters we are using -->
+    <meta charset="UTF-8">
+
+    <!-- This helps the page fit on phones and tablets -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- This puts our normal website clothes on the page -->
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='CSS/style.css') }}"
+    >
+
+    <!-- This gives Plotly the tools it needs to draw our map -->
+    <script src="https://cdn.plot.ly/plotly-3.6.0.min.js"></script>
+
+    <!-- This is the name shown on the browser tab -->
+    <title>{{ translations['heat_page_title'] }}</title>
+    
+    <style>
+        /* Make the scan dropdown large and easy to use, matching the input page style. */
+        #scan-select {
+            box-sizing: border-box;
+            width: min(100%, 400px);
+            min-height: 40px;
+            padding: 12px;
+            font-size: 150%;
+            line-height: 1.2;
+        }
+    </style>
+    
+</head>
+
+<body>
+
+    <!-- This is the navigation bar at the top -->
+    <ul>
+        <!-- This shows the website name -->
+        <li>
+            <b>{{ translations['nav_brand'] }}</b>
+        </li>
+
+        <!-- This button swaps between English and Welsh -->
+        <li class="left">
+            <a
+                href="{{ url_for(
+                    'heatmap_page',
+                    lang='cy' if lang == 'en' else 'en'
+                ) }}"
+                class="language-button"
+            >
+                {{ translations['language_switch_to'] }}
+            </a>
+        </li>
+
+        <!-- This takes us to the home page -->
+        <li>
+            <a href="{{ url_for('home', lang=lang) }}">
+                {{ translations['nav_home'] }}
+            </a>
+        </li>
+
+        <!-- This takes us to the scan input page -->
+        <li>
+            <a href="{{ url_for('input_page', lang=lang) }}">
+                {{ translations['nav_input'] }}
+            </a>
+        </li>
+
+        <!-- This takes us back to the visualisations menu -->
+        <li>
+            <a
+                href="{{ url_for('visualisations_page', lang=lang) }}"
+                class="active"
+            >
+                {{ translations['nav_visualisations'] }}
+            </a>
+        </li>
+
+        <!-- This takes us to the information page -->
+        <li>
+            <a href="{{ url_for('information_page', lang=lang) }}">
+                {{ translations['nav_information'] }}
+            </a>
+        </li>
+    </ul>
+
+    <!-- This is the main part of the heatmap page -->
+    <main class="heatmap-page">
+        <section>
+            <!-- This button takes us back to the visualisations menu -->
+            <a href="{{ url_for('visualisations_page', lang=lang) }}" class="back-viz-button">
+                {{ translations['heat_back_button'] }}
+            </a>
+
+            <!-- This is the big page heading -->
+            <header>
+                <h2>{{ translations['heat_heading'] }}</h2>
+            </header>
+
+            <!-- This explains what the map does -->
+            <p>
+                {{ translations['heat_instruction'] }}
+                <br><br>
+                {{ translations['heat_colour_explain'] }}
+                {{ translations['heat_nhs_target'] | safe }}
+            </p>
+
+            <!-- This box holds our very big dropdown -->
+            <div class="scan-picker">
+            <p>
+                <!-- This tells people what the dropdown is for -->
+                <label for="scan-select">
+                    {{ translations['heat_label_scan'] }}
+                </label>
+
+                <!-- JavaScript puts all the scan choices inside here -->
+                <select id="scan-select">
+                    <option value="">{{ translations['heat_dropdown_placeholder'] }}</option>
+                </select>
+            </p>
+            </div>
+
+            <!-- This shows little messages to the user -->
+            <p id="map-message">
+                {{ translations['heat_map_message_placeholder'] }}
+            </p>
+
+            <!-- Plotly draws the finished map inside this empty box -->
+            <div id="wales-map"></div>
+        </section>
+    </main>
+
+    <script>
+        /*
+            This maps English scan names to their translated versions
+            (e.g. "Ultrasound [Not pregnancy related]" -> "Ultrawstŷn").
+            Flask builds this from the translations file when the page loads.
+        */
+        const scanNameTranslations = {{ scan_name_translations | tojson }};
+
+        /*
+            These are the translated words for the current language.
+            Flask fills them in when it builds the page, so JavaScript
+            can use the correct language for dynamic messages.
+        */
+        const heatTranslations = {
+            colourbarTitle: "{{ translations['heat_colourbar_title'] }}",
+            weekSingular: "{{ translations['chart_week_singular'] }}",
+            weekPlural: "{{ translations['chart_week_plural'] }}",
+            weekAbbreviation: "{{ translations['heat_weeks_abbreviation'] }}",
+            hoverWait: "{{ translations['heat_hover_wait'] }}",
+            weeks: "{{ translations['chart_weeks'] }}",
+            noCoordinatesFound: "{{ translations['heat_map_message_no_coords'] }}",
+            hospitalSingular: "{{ translations['heat_hospital_singular'] }}",
+            hospitalPlural: "{{ translations['heat_hospital_plural'] }}",
+            shownFor: "{{ translations['heat_shown_for'] }}",
+            mapMessagePlaceholder: "{{ translations['heat_map_message_placeholder'] }}",
+            mapTitlePrefix: "{{ translations['heat_map_title_prefix'] }}",
+        };
+
+        /*
+            Flask gives JavaScript the waiting times.
+
+            It looks like this:
+
+            Hospital
+                Scan
+                    Number of weeks
+        */
+        const waitingTimeMap = {{ waiting_time_map | tojson }};
+
+
+        /*
+            Flask also gives JavaScript the hospital locations.
+
+            These locations came from:
+
+            selected_hospitals_services_coordinates.csv
+
+            It should look like this:
+
+            Hospital name
+                lat
+                lon
+        */
+        const hospitalCoordinates =
+            {{ hospital_coordinates | tojson }};
+
+
+        /*
+            This is our colour ruler.
+
+            The first colour is very light.
+
+            The final colour is very red.
+        */
+        const waitColourScale = [
+            [0.00, "#fff5f0"],
+            [0.11, "#fee5d9"],
+            [0.22, "#fcbba1"],
+            [0.33, "#fc9272"],
+            [0.44, "#fb6a4a"],
+            [0.55, "#ef3b2c"],
+            [0.66, "#df2020"],
+            [0.77, "#cb1010"],
+            [0.88, "#ad0000"],
+            [1.00, "#800000"]
+        ];
+
+
+        // Find the dropdown on the page.
+        const scanSelect =
+            document.getElementById("scan-select");
+
+        // Find the little message above the map.
+        const mapMessage =
+            document.getElementById("map-message");
+
+        /*
+            Make an empty special box for scan names.
+
+            A Set does not keep the same thing twice.
+        */
+        const scanTypes = new Set();
+
+
+        /*
+            Look inside every hospital.
+
+            Then put every scan name into our special box.
+        */
+        Object.values(waitingTimeMap).forEach(
+            function (hospitalServices) {
+
+                Object.keys(hospitalServices).forEach(
+                    function (scanName) {
+                        scanTypes.add(scanName);
+                    }
+                );
+            }
+        );
+
+
+        /*
+            Turn the special box into a normal list.
+
+            Then put the scan names in alphabetical order.
+        */
+        const sortedScanTypes =
+            Array.from(scanTypes).sort();
+
+
+        /*
+            Put every scan name inside the dropdown.
+        */
+        sortedScanTypes.forEach(function (scanName) {
+
+            // Make one new dropdown choice.
+            const option =
+                document.createElement("option");
+
+            // This is the value JavaScript uses.
+            option.value = scanName;
+
+            // This is the translated writing the user sees.
+            // If no translation exists, it falls back to the English name.
+            option.textContent =
+                scanNameTranslations[scanName] || scanName;
+
+            // Put the choice inside the dropdown.
+            scanSelect.appendChild(option);
+        });
+
+
+        /*
+            This keeps the colour number between 1 and 15.
+
+            A wait bigger than 15 still gets the reddest colour.
+
+            The real waiting time is still shown on the map.
+        */
+        function limitWaitForColour(waitWeeks) {
+
+            // Do not let the colour number go below 1.
+            if (waitWeeks < 1) {
+                return 1;
+            }
+
+            // Do not let the colour number go above 15.
+            if (waitWeeks > 15) {
+                return 15;
+            }
+
+            // The number is already okay.
+            return waitWeeks;
+        }
+
+
+        /*
+            This looks for a latitude value.
+
+            Some Python code may call it "lat".
+
+            Some Python code may call it "latitude".
+        */
+        function getLatitude(coordinates) {
+
+            // Use "lat" when it exists.
+            if (coordinates.lat !== undefined) {
+                return Number(coordinates.lat);
+            }
+
+            // Otherwise try "latitude".
+            return Number(coordinates.latitude);
+        }
+
+
+        /*
+            This looks for a longitude value.
+
+            The CSV column may be called "long".
+
+            Some Python code may change it to "lon" or "longitude".
+        */
+        function getLongitude(coordinates) {
+
+            // Use "lon" when it exists.
+            if (coordinates.lon !== undefined) {
+                return Number(coordinates.lon);
+            }
+
+            // Use "long" when it exists.
+            if (coordinates.long !== undefined) {
+                return Number(coordinates.long);
+            }
+
+            // Otherwise try "longitude".
+            return Number(coordinates.longitude);
+        }
+
+
+        /*
+            This draws the map.
+
+            It runs again when the user chooses another scan.
+        */
+        function drawMap(scanName) {
+
+            // Make empty boxes for Plotly's map information.
+            const hospitalNames = [];
+            const latitudes = [];
+            const longitudes = [];
+            const realWaitingTimes = [];
+            const colourWaitingTimes = [];
+            const hospitalLabels = [];
+
+            // Keep a list of hospitals that had no location.
+            const hospitalsWithoutCoordinates = [];
+
+
+            /*
+                Look at every hospital and its services.
+            */
+            Object.entries(waitingTimeMap).forEach(
+                function ([hospitalName, services]) {
+
+                    // Get the waiting time for the chosen scan.
+                    const waitWeeks = services[scanName];
+
+                    /*
+                        Find the hospital's location.
+
+                        The hospital name must match the name used
+                        in the coordinates CSV.
+                    */
+                    const coordinates =
+                        hospitalCoordinates[hospitalName];
+
+
+                    /*
+                        Only continue when this hospital has
+                        the chosen scan.
+                    */
+                    if (waitWeeks !== undefined) {
+
+                        /*
+                            Remember the hospital when its coordinates
+                            were not found.
+                        */
+                        if (coordinates === undefined) {
+                            hospitalsWithoutCoordinates.push(
+                                hospitalName
+                            );
+
+                            return;
+                        }
+
+                        // Get the latitude number.
+                        const latitude =
+                            getLatitude(coordinates);
+
+                        // Get the longitude number.
+                        const longitude =
+                            getLongitude(coordinates);
+
+
+                        /*
+                            Check that the location values are
+                            real numbers.
+                        */
+                        if (
+                            Number.isNaN(latitude) ||
+                            Number.isNaN(longitude)
+                        ) {
+                            hospitalsWithoutCoordinates.push(
+                                hospitalName
+                            );
+
+                            return;
+                        }
+
+                        // Save the hospital name.
+                        hospitalNames.push(hospitalName);
+
+                        // Save where the hospital lives.
+                        latitudes.push(latitude);
+                        longitudes.push(longitude);
+
+                        // Save the real number of weeks.
+                        realWaitingTimes.push(waitWeeks);
+
+                        // Save the number used by the colour ruler.
+                        colourWaitingTimes.push(
+                            limitWaitForColour(waitWeeks)
+                        );
+
+                        /*
+                            Choose the correct translated word.
+
+                            English: one uses "week", everything else uses "weeks".
+                            Welsh: one uses "wythnos", everything else uses "wythnosau".
+                        */
+                        const weekWord =
+                            waitWeeks === 1
+                                ? heatTranslations.weekSingular
+                                : heatTranslations.weekPlural;
+
+                        /*
+                            Make the writing that is always shown.
+
+                            The <br> starts a new line.
+                        */
+                        hospitalLabels.push(
+                            hospitalName +
+                            "<br><b>" +
+                            waitWeeks +
+                            " " +
+                            weekWord +
+                            "</b>"
+                        );
+                    }
+                }
+            );
+
+
+            /*
+                Print missing coordinate names in the browser console.
+
+                This helps us find hospital-name spelling problems.
+            */
+            if (hospitalsWithoutCoordinates.length > 0) {
+                console.warn(
+                    "These hospitals have no matching coordinates:",
+                    hospitalsWithoutCoordinates
+                );
+            }
+
+
+            /*
+                Show a friendly message when no hospitals can be drawn.
+            */
+            if (hospitalNames.length === 0) {
+
+                mapMessage.textContent =
+                    heatTranslations.noCoordinatesFound;
+
+                // Remove the old map.
+                Plotly.purge("wales-map");
+
+                return;
+            }
+
+
+            /*
+                Tell the user how many hospitals are on the map.
+            */
+            const hospitalWord = hospitalNames.length === 1
+                ? heatTranslations.hospitalSingular
+                : heatTranslations.hospitalPlural;
+            mapMessage.textContent =
+                hospitalNames.length + " " +
+                hospitalWord + " " +
+                heatTranslations.shownFor + " " +
+                scanName +
+                ".";
+
+
+            /*
+                This makes the soft cloudy heat part of the map.
+            */
+            const heatLayer = {
+                type: "densitymap",
+
+                // These tell Plotly where the hospitals are.
+                lat: latitudes,
+                lon: longitudes,
+
+                // These numbers choose the heat colours.
+                z: colourWaitingTimes,
+
+                // This controls how big each heat cloud is.
+                radius: 45,
+
+                // One week starts at the lightest colour.
+                zmin: 1,
+
+                // 15 weeks ends at the reddest colour.
+                zmax: 15,
+
+                // Use our light-to-red colour ruler.
+                colorscale: waitColourScale,
+
+                // Make the heat clouds a little see-through.
+                opacity: 0.65,
+
+                // Show the colour ruler on the right.
+                colorbar: {
+                    // This is the little title above the colour bar
+                    title: {
+                        text: heatTranslations.colourbarTitle
+                    },
+
+                    // These are the only numbers shown on the colour bar
+                    tickvals: [1, 4, 8, 12, 15],
+
+                    // These are the words the user sees
+                    ticktext: ["1", "4", "8", "12", "15+"],
+
+                    // This controls how wide the colour bar is
+                    thickness: 20,
+
+                    // This controls how tall the colour bar is
+                    len: 0.75
+                },
+
+                // Do not show anything when the mouse hovers.
+                hoverinfo: "skip",
+
+                // We do not need a legend box.
+                showlegend: false
+            };
+
+
+            /*
+                This puts a dot and waiting-time label on every hospital.
+
+                The waiting time is always visible.
+
+                Hovering also shows the hospital name and waiting time.
+            */
+            const hospitalDots = {
+                type: "scattermap",
+
+                // Draw the hospital dots and their labels
+                mode: "markers+text",
+
+                // Tell Plotly where each hospital lives
+                lat: latitudes,
+                lon: longitudes,
+
+                /*
+                    Always show the waiting time above the dot.
+
+                    The abbreviation (e.g. "w") means weeks.
+                */
+                text: realWaitingTimes.map(
+                    function (waitWeeks) {
+                        return waitWeeks + heatTranslations.weekAbbreviation;
+                    }
+                ),
+
+                // Put the waiting-time label above each dot
+                textposition: "top center",
+
+                // Make the label easy to read
+                textfont: {
+                    size: 16,
+                    color: "#111111",
+                    family: "Arial, sans-serif",
+                    weight: 700
+                },
+
+                /*
+                    Save the hospital name and waiting time.
+
+                    Plotly uses these when the user hovers.
+                */
+                customdata: hospitalNames.map(
+                    function (hospitalName, index) {
+                        return [
+                            hospitalName,
+                            realWaitingTimes[index]
+                        ];
+                    }
+                ),
+
+                marker: {
+                    // Make the hospital dots easy to see
+                    size: 20,
+
+                    // Colour each dot using its waiting time
+                    color: colourWaitingTimes,
+
+                    // Use the light-to-red colour ruler
+                    colorscale: waitColourScale,
+
+                    // One week is the lightest colour
+                    cmin: 1,
+
+                    // Ten weeks is the reddest colour
+                    cmax: 15,
+
+                    // Make the dots solid
+                    opacity: 1,
+
+                    // Add a dark edge so pale dots are still visible
+                    line: {
+                        width: 2,
+                        color: "#333333"
+                    },
+
+                    // The heat layer already has a colour ruler
+                    showscale: false
+                },
+
+                /*
+                    Show the full information when the mouse hovers.
+
+                    customdata[0] is the hospital name.
+
+                    customdata[1] is the waiting time.
+                */
+                hovertemplate:
+                    "<b>%{customdata[0]}</b>" +
+                    "<br>" + heatTranslations.hoverWait + ": %{customdata[1]} " + heatTranslations.weeks +
+                    "<extra></extra>",
+
+                // We do not need a legend box
+                showlegend: false
+            };
+
+            const mapLayout = {
+                title: {
+                    text: heatTranslations.mapTitlePrefix +
+                        (scanNameTranslations[scanName] || scanName),
+                    x: 0.5
+                },
+
+                map: {
+                    // This gives us roads, towns and the shape of Wales.
+                    style: "open-street-map",
+
+                    // Put Wales in the middle of the screen.
+                    center: {
+                        lat: 52.30,
+                        lon: -3.75
+                    },
+
+                    // This controls how close the camera is.
+                    zoom: 6.4
+                },
+
+                // Remove extra empty space around the map.
+                margin: {
+                    top: 60,
+                    right: 0,
+                    bottom: 0,
+                    left: 0
+                },
+
+                // Make the map nice and tall. -- commented out so style.CSS can control sizing height: 800,
+                // Make the map nice and tall. -- commented out so style.CSS can control sizing height: 800,
+
+                /*
+                    Keep the user's zoom and map position when they
+                    choose another scan.
+                */
+                uirevision: "keep-wales-map-position"
+            };
+
+
+            /*
+                These are small Plotly settings.
+            */
+            const mapSettings = {
+                // Let the map resize with the browser.
+                responsive: true,
+
+                // Hide the small Plotly logo.
+                displaylogo: false
+            };
+
+
+            /*
+                Draw the finished map.
+
+                Plotly.react replaces the old map with the new one.
+            */
+            Plotly.react(
+                "wales-map",
+                [heatLayer, hospitalDots],
+                mapLayout,
+                mapSettings
+            );
+        }
+
+
+        /*
+            Listen for the user choosing another scan.
+        */
+        scanSelect.addEventListener("change", function () {
+
+            // Find out which scan the user chose.
+            const chosenScan = scanSelect.value;
+
+            // Draw the map when a real scan was chosen.
+            if (chosenScan) {
+                drawMap(chosenScan);
+            } else {
+                // Show the starting message again.
+                mapMessage.textContent =
+                    heatTranslations.mapMessagePlaceholder;
+
+                // Remove the old map.
+                Plotly.purge("wales-map");
+            }
+        });
+
+
+        /*
+            Choose CT when the page first opens.
+
+            If CT does not exist, choose the first scan instead.
+        */
+        if (sortedScanTypes.length > 0) {
+
+            // Choose CT when it exists.
+            if (sortedScanTypes.includes("CT")) {
+                scanSelect.value = "CT";
+            } else {
+                // Otherwise choose the first scan.
+                scanSelect.value = sortedScanTypes[0];
+            }
+
+            // Draw the first map.
+            drawMap(scanSelect.value);
+        }
+    </script>
+
+</body>
+
+</html>

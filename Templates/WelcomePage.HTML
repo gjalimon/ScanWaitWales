@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<!--
+    The lang attribute tells browsers and screen readers what language the page
+    is in. It changes dynamically: lang="en" for English, lang="cy" for Welsh.
+-->
+<html lang="{{ lang }}">
+<!--this is how you add comments in HTML-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/CSS/style.css">
+    <title> {{ translations['page_title'] }} </title>
+</head>
+    <ul>
+        <li><b>{{ translations['nav_brand'] }}</b></li>
+    <!--
+        Language switch button.
+        - When lang is "en", this links to ?lang=cy and shows "Cymraeg"
+        - When lang is "cy", this links to ?lang=en and shows "English"
+        The ternary expression (A if CONDITION else B) switches between the two.
+    -->
+        <li class="left"><a href="{{ url_for('home', lang='cy' if lang == 'en' else 'en') }}" class="language-button">{{ translations['language_switch_to'] }}</a></li>
+    <!--Update # to link to the current page-->
+        <li><a href ="{{ url_for('home', lang=lang) }}" class="active">{{ translations['nav_home'] }}</a></li>
+    <!--These are all relative URLs linking to other pages of the website-->
+    <!--The ?lang= parameter keeps the user's language choice as they click between pages-->
+        <li><a href ="{{ url_for('input_page', lang=lang) }}">{{ translations['nav_input'] }}</a></li>
+        <li><a href ="{{ url_for('visualisations_page', lang=lang) }}">{{ translations['nav_visualisations'] }}</a></li>
+        <li><a href ="{{ url_for('information_page', lang=lang) }}">{{ translations['nav_information'] }}</a></li>
+    </ul>
+
+<body>
+<!--This changes depending on the page - go nuts-->
+    <section>
+        <h2 style="text-align:center;">
+            {{ translations['welcome_subtitle'] | safe }}
+        </h2> 
+        <p>
+            {{ translations['welcome_description'] }}
+        </p>
+    </section>
+    <section>
+        <p>
+            {{ translations['welcome_text'] }}
+        </p>
+    </section>
+</body>
+</html>

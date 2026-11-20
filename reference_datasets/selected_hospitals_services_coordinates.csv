@@ -1,0 +1,21 @@
+Hospital Name,Hospital Name (Welsh),Postcode,lat,long,Health board,Type,Non Cardiac Computed Tomography,Cardiac Computed Tomography (Cardiac CT),Non Cardiac Magnetic Resonance Imaging (MRI),Cardiac Magnetic Resonance Imaging (Cardiac MRI),Myocardial Perfusion Scanning,Non Cardiac Nuclear Medicine,Fluoroscopy,Diagnostic Angiography,Non-Obstetric Ultrasound
+Bridgend,Ysbyty Pen-y-bont,CF31 1RQ,51.51783,-3.571703,Cwm Taf Morgannwg,Major A&E,1,1,1,0,0,1,1,0,1
+Bronglais General Hospital,Ysbyty Cyffredinol Bronglais,SY23 1ER,52.416083,-4.071603,Hywel Dda,Major A&E,1,0,1,0,0,0,1,0,1
+Glangwili General Hospital,Ysbyty Cyffredinol Glangwili,SA31 2AF,51.867533,-4.28476,Hywel Dda,Major A&E,1,0,1,0,0,0,1,0,1
+Grange University,Ysbyty Prifysgol Grange,NP44 8XF,51.646291,-2.996339,Aneurin Bevan,Major A&E,1,1,1,0,0,0,0,1,1
+Llandough,Ysbyty Llandochau,CF64 2XX,51.449629,-3.202635,Cardiff and Vale,General,1,1,1,1,0,1,1,0,1
+Morriston,Ysbyty Treforys,SA6 6NL,51.684657,-3.935273,Swansea Bay,Major A&E,1,0,1,0,0,1,1,1,1
+Neath/Port Talbot,Castell-nedd/Port Talbot,SA12 7BX,51.599217,-3.800367,Swansea Bay,Minor Injury Unit,1,1,1,1,0,0,0,0,1
+Nevill Hall,Ysbyty Neuadd Nevill,NP7 7EG,51.824716,-3.034151,Aneurin Bevan,Minor Injury Unit,1,1,1,0,1,1,0,0,1
+NW Cancer Treament Centre,Canolfan Ganser Gogledd Orllewin,LL18 5UJ,53.271772,-3.496347,Betsi Cadwaladr,General,1,0,0,0,0,0,0,0,0
+Prince Charles Hospital,Ysbyty Tywysog Siarl,CF47 9DT,51.76418,-3.385754,Cwm Taf Morgannwg,Major A&E,1,1,1,1,0,0,1,0,1
+Prince Philip Hospital,Ysbyty Tywysog Philip,SA14 8QF,51.691901,-4.13478,Hywel Dda,Minor Injury Unit,1,0,1,0,0,0,1,0,1
+Royal Glamorgan,Ysbyty Brenhinol Morgannwg,CF72 8XR,51.547887,-3.391244,Cwm Taf Morgannwg,Major A&E,1,1,1,1,0,1,1,1,1
+Royal Gwent,Ysbyty Brenhinol Gwent,CF72 8XR,51.579754,-2.99823,Cwm Taf Morgannwg,Major A&E,1,1,1,0,0,1,1,0,1
+Singleton,Ysbyty Singleton,SA2 8QA,51.609039,-3.984797,Swansea Bay,General,1,0,1,0,1,1,1,0,1
+University Hospital Wales,Ysbyty Athrofaol Cymru,CF14 4XW,51.507156,-3.189855,Cardiff and Vale,Major A&E,1,1,1,1,1,1,1,1,1
+Withybush General Hospital,Ysbyty Cyffredinol Withybush,SA61 2PZ,51.812733,-4.965279,Hywel Dda,Major A&E,1,0,1,0,1,1,1,0,1
+Ysbyty Glan Clwyd,Ysbyty Glan Clwyd,LL57 2PW,53.209036,-4.159831,Betsi Cadwaladr,Major A&E,1,1,1,1,1,1,1,1,1
+Ysbyty Gwynedd,Ysbyty Gwynedd,LL18 5UJ,53.271772,-3.496347,Betsi Cadwaladr,Major A&E,1,1,1,1,0,1,1,0,1
+Ysbyty Maelor,Ysbyty Maelor,LL13 7TD,53.045974,-3.007998,Betsi Cadwaladr,General,1,1,1,1,1,1,1,0,1
+Ysbyty Ystrad Fawr,Ysbyty Ystrad Fawr,CF82 7GP,51.635158,-3.23411,Aneurin Bevan,Minor Injury Unit,1,1,1,0,0,0,0,0,1
