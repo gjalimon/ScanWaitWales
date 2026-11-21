@@ -28,10 +28,13 @@
         <div class="gauge-value {{ colour_zone }}">
             {% if typical_wait is not none %}
                 {{ typical_wait }}
+                <span class="gauge-unit">
+                    {{ translations['gauge_unit_singular'] if typical_wait == 1 else translations['gauge_unit'] }}
+                </span>
             {% else %}
                 &lt;1
+                <span class="gauge-unit">{{ translations['gauge_unit_singular'] }}</span>
             {% endif %}
-            <p class="gauge-unit">{{ translations['gauge_unit'] }}</p>
         </div>
 
         <div class="speedometer">

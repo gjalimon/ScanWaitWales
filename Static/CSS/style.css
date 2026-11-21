@@ -345,16 +345,17 @@ li a.brand-link b {
 
 .speedometer {
     position: relative;
-    width: 300px;
-    height: 170px;
-    margin: 20px auto;
+    display: block;
+    width: 240px;
+    height: 136px;
+    margin: 16px auto;
     overflow: hidden;
 }
 
 .gauge-body {
     position: relative;
-    width: 300px;
-    height: 150px;
+    width: 240px;
+    height: 120px;
     background: conic-gradient(
         from 270deg,
         #005C22 0deg,      /* 0 wk — green */
@@ -366,27 +367,27 @@ li a.brand-link b {
         #A70626 180deg,    /* 15 wk — red */
         #005C22 360deg     /* wrap back to green to match 0deg start */
     );
-    border-radius: 150px 150px 0 0;
+    border-radius: 120px 120px 0 0;
     margin: 0 auto;
 }
 
 .gauge-body::before {
     content: "";
     position: absolute;
-    top: 20px;
-    left: 20px;
-    width: 260px;
-    height: 130px;
+    top: 16px;
+    left: 16px;
+    width: 200px;
+    height: 100px;
     background: #F1F5F0;
-    border-radius: 130px 130px 0 0;
+    border-radius: 100px 100px 0 0;
 }
 
 .needle {
     position: absolute;
-    bottom: 0;
+    bottom: 16px;
     left: 50%;
     width: 4px;
-    height: 120px;
+    height: 96px;
     background: #212b32;
     border-radius: 2px;
     transform-origin: bottom center;
@@ -397,12 +398,12 @@ li a.brand-link b {
 
 .centre-dot {
     position: absolute;
-    bottom: -8px;
+    bottom: 9px;
     left: 50%;
-    width: 16px;
-    height: 16px;
+    width: 14px;
+    height: 14px;
     background: #212b32;
-    border: 3px solid #F1F5F0;
+    border: 2px solid #F1F5F0;
     border-radius: 50%;
     transform: translateX(-50%);
     z-index: 6;
@@ -473,11 +474,11 @@ li a.brand-link b {
 
 .gauge-value {
     font-family: Verdana;
-    font-size: 48px;
+    font-size: 35px;
     font-weight: bold;
     margin-top: 5px;
     display: inline-block;
-    padding: 8px 20px;
+    padding: 6px 18px;
     border-radius: 8px;
 }
 
@@ -497,9 +498,11 @@ li a.brand-link b {
 }
 
 .gauge-unit {
-    font-family: Verdana;
-    font-size: 18px;
-    color: #F1F5F0;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    color: inherit;
+    display: inline;
 }
 
 .status-banner {

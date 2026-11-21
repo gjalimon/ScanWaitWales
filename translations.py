@@ -89,7 +89,7 @@ TRANSLATIONS = {
         #   chunk 3  = "is"
         #   variable = typical_wait
         #   chunk 4  = "weeks"
-        "output_wait_prefix": "The current calculated wait time for",
+        "output_wait_prefix": "The current estimated wait time for",
         "output_wait_at": "at",
         "output_wait_is": "is",
         "output_wait_around": "around",
@@ -134,6 +134,7 @@ TRANSLATIONS = {
         "gauge_label_15": "15+ Weeks",
         "gauge_desc_15": "Exceeded target",
         "gauge_unit": "Weeks",
+        "gauge_unit_singular": "Week",
         "status_green": "On track — within the 8-week target",
         "status_orange": "Over target — 8 weeks or longer",
         "status_red": "Significantly delayed — longer than 8 weeks",
@@ -355,7 +356,7 @@ TRANSLATIONS = {
 
         # ---------- Output Page ----------
         "page_title_output": "Amser Aros Cyfrifedig - ScanWait Cymru",
-        "output_wait_prefix": "Yr amser aros cyfrifedig cyfredol ar gyfer",
+        "output_wait_prefix": "Yr amser aros amcangyfrifedig cyfredol ar gyfer",
         "output_wait_at": "yn",
         "output_wait_is": "yw",
         "output_wait_around": "o gwmpas",
@@ -400,6 +401,7 @@ TRANSLATIONS = {
         "gauge_label_15": "15+ Wythnos",
         "gauge_desc_15": "Wedi rhagori ar y targed",
         "gauge_unit": "Wythnos",
+        "gauge_unit_singular": "Wythnos",
         "status_green": "Ar y trywydd cywir — o fewn y targed 8 wythnos",
         "status_orange": "Dros y targed — 8 wythnos neu fwy",
         "status_red": "Oedi sylweddol — mwy nag 8 wythnos",
