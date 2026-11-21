@@ -43,7 +43,7 @@ section{
     padding: 15px;
 }
 .left{
-    margin-right:auto;
+    margin-right: auto;
 }
 
 /*
@@ -155,12 +155,12 @@ ul {
     padding: 0;
     background-color:#005C22;
     display: flex;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
+    align-items: stretch;
     position: sticky;
     top:0;
     width: auto;
     z-index:1000;
-    overflow-x: auto;
     overflow-y: hidden;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: thin;
@@ -184,14 +184,16 @@ ul::-webkit-scrollbar-thumb {
 }
 
 li a{
-    display: block;
-    color:#F1F5F0;
-    padding: 8px 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #F1F5F0;
+    padding: 8px 16px;
     text-decoration: none;
     font-family: Verdana;
-    font-size: 19px;
+    font-size: 23px;
     font-weight: normal;
-    height: 100%;
+    line-height: 1.2;
     white-space: nowrap;
 }
 /*  to change link & background colour on hover*/
@@ -203,13 +205,13 @@ li a:hover {
 /*  to change link & background when active*/
 ul li a.active{
     background-color: #F1F5F0;
-    color:#A70626;
+    color:#005C22;
     font-weight: bold;
 }
 /* For the ScanWait Wales text in the navigation bar*/
 /* For the ScanWait Wales text in the navigation bar*/
 li a.brand-link {
-    padding: 8px 16px;
+    padding: 10px 19px;
     font-weight: bold;
 }
 
@@ -242,7 +244,7 @@ li a.brand-link b {
     border: 2px solid #F1F5F0; 
     background-color: #A70626;
     color:#F1F5F0;
-    font-size: 15px;
+    font-size: 18px;
     font-family: Verdana;
     font-style: italic;
     font-weight: bold;
@@ -252,7 +254,7 @@ li a.brand-link b {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0 16px;
+    padding: 0 19px;
 }
 
 .back-viz-button{
