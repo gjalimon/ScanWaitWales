@@ -662,7 +662,22 @@
                 // We do not need a legend box
                 showlegend: false
             };
-
+    // Draw a slightly larger ring behind each hospital dot to create a crisp border
+            const hospitalBorders = {
+                type: "scattermap",
+                mode: "markers",
+                lat: latitudes,
+                lon: longitudes,
+                hoverinfo: "skip",
+                showlegend: false,
+                marker: {
+                    size: Array.isArray(hospitalDots.marker.size)
+                        ? hospitalDots.marker.size.map(function (s) { return s + 5; })
+                        : (hospitalDots.marker.size || 18) + 5,
+                    color: "#1B1B1B",   // Dark charcoal border (or "#FFFFFF" for a clean white border)
+                    opacity: 1
+                }
+            };
             const mapLayout = {
                 title: {
                     text: heatTranslations.mapTitlePrefix +
@@ -722,7 +737,7 @@
             */
             Plotly.react(
                 "wales-map",
-                [heatLayer, hospitalDots],
+                [heatLayer, hospitalBorders, hospitalDots],
                 mapLayout,
                 mapSettings
             );
