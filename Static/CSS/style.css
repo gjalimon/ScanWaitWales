@@ -540,8 +540,8 @@ OUTPUT PAGE
 .results-section {
     width: auto;
     max-width: 900px;
-    margin: 40px auto;
-    padding: 20px;
+    margin: 0 auto 40px auto;
+    padding: 10px 20px 20px 20px;
     text-align: center;
 }
 
@@ -607,4 +607,28 @@ Travel Time and Distance Cards
     color: #005C22;
     font-family: Verdana;
     font-size: 19px;
+}
+
+/* ===============================
+Queue Trend Line & Mini Graph
+================================*/
+.trend-heading {
+    margin-top: 8px;
+    margin-bottom: 6px;
+}
+
+.trend-heading.trend-falling,
+.trend-heading.trend-stable {
+    color: #005C22;
+}
+
+.trend-heading.trend-rising {
+    color: #A70626;
+}
+
+.trend-graphic-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 6px auto 18px auto;
 }

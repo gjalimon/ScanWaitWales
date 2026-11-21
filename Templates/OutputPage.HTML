@@ -55,12 +55,45 @@
 
         <p style="font-size: 14px;">
             <strong>{{ translations['output_age_group_label'] }}</strong>
-            {{ translations['age_group_child'] if adult|string == '0' else translations['age_group_adult'] }}
             {% if predicted_wait is not none %}
         <h2>
             {{ translations['output_predicted_wait_label'] }} {{ predicted_wait }} {{ translations['output_weeks'] }}
-            ({{ translations['output_trend_' + wait_trend] if ('output_trend_' + wait_trend) in translations else wait_trend }})
         </h2>
+
+        <h2 class="trend-heading trend-{{ wait_trend }}">
+            {{ translations['output_trend_' + wait_trend] if ('output_trend_' + wait_trend) in translations else wait_trend }}
+        </h2>
+
+        <div class="trend-graphic-wrapper" aria-hidden="true">
+            {% if wait_trend == 'falling' %}
+            <!-- Green line graph arrow pointing down -->
+            <svg width="192" height="80" viewBox="0 0 192 80" xmlns="http://www.w3.org/2000/svg">
+                <line x1="12" y1="20" x2="180" y2="20" stroke="#D8E2D8" stroke-width="1.5" stroke-dasharray="4 4"/>
+                <line x1="12" y1="40" x2="180" y2="40" stroke="#D8E2D8" stroke-width="1.5" stroke-dasharray="4 4"/>
+                <line x1="12" y1="60" x2="180" y2="60" stroke="#D8E2D8" stroke-width="1.5" stroke-dasharray="4 4"/>
+                <polyline points="20,18 68,26 112,44 164,62" fill="none" stroke="#005C22" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                <polyline points="146,64 166,63 158,45" fill="none" stroke="#005C22" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            {% elif wait_trend == 'rising' %}
+            <!-- Red line graph arrow pointing up -->
+            <svg width="192" height="80" viewBox="0 0 192 80" xmlns="http://www.w3.org/2000/svg">
+                <line x1="12" y1="20" x2="180" y2="20" stroke="#E8D8DC" stroke-width="1.5" stroke-dasharray="4 4"/>
+                <line x1="12" y1="40" x2="180" y2="40" stroke="#E8D8DC" stroke-width="1.5" stroke-dasharray="4 4"/>
+                <line x1="12" y1="60" x2="180" y2="60" stroke="#E8D8DC" stroke-width="1.5" stroke-dasharray="4 4"/>
+                <polyline points="20,62 68,54 112,36 164,18" fill="none" stroke="#A70626" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                <polyline points="158,35 166,17 146,16" fill="none" stroke="#A70626" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            {% else %}
+            <!-- Green flat line graph arrow for stable -->
+            <svg width="192" height="80" viewBox="0 0 192 80" xmlns="http://www.w3.org/2000/svg">
+                <line x1="12" y1="20" x2="180" y2="20" stroke="#D8E2D8" stroke-width="1.5" stroke-dasharray="4 4"/>
+                <line x1="12" y1="40" x2="180" y2="40" stroke="#D8E2D8" stroke-width="1.5" stroke-dasharray="4 4"/>
+                <line x1="12" y1="60" x2="180" y2="60" stroke="#D8E2D8" stroke-width="1.5" stroke-dasharray="4 4"/>
+                <polyline points="20,40 68,38 112,42 164,40" fill="none" stroke="#005C22" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                <polyline points="150,29 166,40 150,51" fill="none" stroke="#005C22" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            {% endif %}
+        </div>
         {% endif %}
         </p>
         
