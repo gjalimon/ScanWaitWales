@@ -12,6 +12,11 @@
     <title>{{ translations['page_title_input'] }}</title>
 
     <style>
+        #input {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
         /* Keep the form controls large and easy to use. */
         #age_group,
         #service,
@@ -30,7 +35,12 @@
         }
 
         #hospital-search .calculate-button {
-            margin: 5px;
+            display: inline-block;
+            width: 500px;
+            min-height: 100px;       /* Makes the buttons taller */
+            padding: 40px 40px;     /* Adds top/bottom and left/right breathing room */
+            margin: 10px 14px;      /* Adds horizontal space (28px total gap) and vertical spacing */
+            vertical-align: middle;
         }
 
         @media (max-width: 400px) {
@@ -71,7 +81,7 @@
             {{ translations['info_disclaimer'] }}
         </p>
         <p>
-            {{ translations['selection_process'] }}
+            
         </p>
 
         <!-- First form: find matching hospitals -->
