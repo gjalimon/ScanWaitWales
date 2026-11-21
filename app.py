@@ -37,7 +37,12 @@ from scanwait import (
 from Services.visualisations import DISPLAY_TO_SERVICE, get_fig1, get_fig2
 from Services.heatmap_viz import build_waiting_time_map, load_hospital_coordinates
 
-app = Flask(__name__)
+BASE_DIR = Path(__file__).resolve().parent
+app = Flask(
+    __name__,
+    template_folder=str(BASE_DIR / "Templates"),
+    static_folder=str(BASE_DIR / "Static"),
+)
 data = load_waiting_times(CSV_FILE)
 
 

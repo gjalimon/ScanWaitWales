@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- This puts our normal website clothes on the page -->
-    <link rel="stylesheet" href="/static/CSS/style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/style.css') }}">
 
     <!-- This is the name shown on the browser tab -->
     <title>{{ translations['vis_page_title'] }}</title>
