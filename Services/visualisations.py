@@ -106,27 +106,37 @@ def get_fig1(translations, adult: int = 1):
         barmode="group",
         template="my_theme",
     )
+
+    raw_title = translations["chart_title_summary"]
+    words = raw_title.split()
+    mid = len(words) // 2
+    wrapped_title = " ".join(words[:mid]) + "<br>" + " ".join(words[mid:])
+
     fig_1.update_layout(
-        height=750,
+        height=850,
+        font=dict(size=16),
         xaxis_title="<b>" + translations["chart_xaxis_hospital"] + "</b>",
         yaxis_title="<b>" + translations["chart_yaxis_weeks"] + "</b>",
-        title="<b>" + translations["chart_title_summary"] + "</b>",
+        title=dict(
+            text="<b>" + wrapped_title + "</b>",
+            x=0.5,
+            xanchor="center",
+            font=dict(size=18),
+        ),
         legend=dict(
-            orientation="h",
+            orientation="v",
             yanchor="top",
-            y=-0.5,
+            y=-0.90,
             xanchor="center",
             x=0.5,
-            title=dict(
-                text=translations["chart_legend_scan_type"],
-                font=dict(size=26),
-            ),
-            font=dict(size=24),        # Enlarges the button text & clickable area
-            itemsizing="constant",     # Keeps swatch icons large regardless of bar width
-            itemwidth=50,              # Widens the colored swatch box (default is 30)
-            tracegroupgap=16,          # Adds vertical breathing room between rows
+            title_text="",
+            itemsizing="constant",
+            itemwidth=50,
+            tracegroupgap=16,
+            entrywidth=0.33,
+            entrywidthmode="fraction",
         ),
-        margin=dict(b=380),            # Reserves space at the bottom for the larger rows
+        margin=dict(t=95, b=380, l=75, r=25),
     )
     fig_1.update_traces(
         marker_line_color="#F1F5F0",
@@ -159,7 +169,7 @@ def get_fig2(scan_display_name, translations, adult: int = 1):
         template="my_theme",
     )
     fig_2.update_layout(
-        height=850,
+        height=1250,
         xaxis_title="<b>" + translations["chart_xaxis_date"] + "</b>",
         yaxis_title="<b>" + translations["chart_yaxis_waittime"] + "</b>",
         title=dict(
@@ -170,20 +180,20 @@ def get_fig2(scan_display_name, translations, adult: int = 1):
             font=dict(size=16),
         ),
         legend=dict(
-            orientation="h",
+            orientation="v",
             yanchor="top",
-            y=-0.35,               # Gap below "Date" (more negative = more space below chart)
+            y=-0.28,               # Gap below "Date" (more negative = more space below chart)
             xanchor="center",
             x=0.5,
             title_text="",
             font=dict(size=16),    # Larger hospital text
             itemsizing="constant",
             itemwidth=45,          # Space/width for each colored line swatch (min 30)
-            tracegroupgap=14,      # Vertical spacing (in px) between wrapped rows
+            tracegroupgap=6,      # Vertical spacing (in px) between wrapped rows
             entrywidth=0.33,       # Optional: aligns items into neat columns (e.g. 4 per row)
             entrywidthmode="fraction",
         ),
-        margin=dict(t=70, b=350, l=50, r=20),  # b=300 controls bottom padding below the legend
+        margin=dict(t=70, b=620, l=75, r=25),  # b=300 controls bottom padding below the legend
     )
     fig_2.update_traces(
         marker_line_color="#F1F5F0",
