@@ -565,18 +565,28 @@ Travel Time and Distance Cards
     margin-bottom: 15px;
 }
 
-.hospital_option {
+.hospital_option_form {
     flex: 1;
     max-width: 320px;
     min-width: 260px;
+    display: flex;
+}
 
-    padding: 10px;
-
+.hospital_option {
+    width: 100%;
+    padding: 16px;
     border: 5px solid #A70626;
     border-radius: 14px;
-
     background: #F1F5F0;
     text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, background-color 0.2s ease-in-out;
+}
+
+.hospital_option:hover {
+    background-color: #FFFFFF;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.16);
 }
 
 .hospital_option h4 {

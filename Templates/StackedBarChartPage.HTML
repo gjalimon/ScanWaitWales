@@ -19,6 +19,16 @@
 
     <!-- This is the name shown on the browser tab -->
     <title>{{ translations['stacked_page_title'] }}</title>
+    <style>
+    /* Enlarge clickable Plotly legend items */
+    #chart-container .legend .traces {
+        cursor: pointer;
+    }
+    #chart-container .legendtext {
+        font-size: 22px !important;
+        font-weight: bold !important;
+    }
+</style>
 </head>
 
 <body>
@@ -83,6 +93,9 @@
             <!-- This explains what the chart does -->
             <p>
                 {{ translations['stacked_nhs_target'] }}
+            </p>
+            <p>
+                Use the <b>'Scan Type'</b> options at the bottom to focus the data.
             </p>
 
             <!-- PLOTLY GRAPH GOES HERE -->

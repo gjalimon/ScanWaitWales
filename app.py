@@ -273,7 +273,18 @@ def run_calculation():
             for hospital in result["hospitals"]
             if hospital["Hospital Name"] != hospital_choice
         ]
-
+        # Attach current waiting time to each nearby alternative hospital
+        for alt_hospital in other_hospitals:
+            alt_record = get_wait_record(
+                data,
+                scan_choice,
+                alt_hospital["Hospital Name"],
+                adult=adult,
+            )
+            alt_hospital["typical_wait"] = (
+                alt_record["typical_wait_weeks"] if alt_record is not None else None
+            )
+            
     driving_distance = request.form.get("driving_distance")
     driving_duration = request.form.get("driving_duration")
     walking_distance = request.form.get("walking_distance")

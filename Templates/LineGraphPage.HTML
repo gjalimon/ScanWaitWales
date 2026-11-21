@@ -12,6 +12,17 @@
     <script src="https://cdn.plot.ly/plotly-3.6.0.min.js"></script>
     <!-- This is the name shown on the browser tab -->
     <title>{{ translations['line_page_title'] }}</title>
+    <style>
+    /* Enlarge the hospital toggle buttons in the bottom Plotly legend */
+    .legendtext {
+        font-size: 18px !important;
+        font-weight: bold !important;
+    }
+
+    .legend .traces {
+        cursor: pointer;
+    }
+    </style>
 </head>
 
 <body>
@@ -39,6 +50,9 @@
             <!-- This explains what the chart does -->
             <p>
                 {{ translations['line_nhs_target'] }}
+            </p>
+            <p>
+                Select/Unselect a <b>'Hospital'</b> at the bottom to focus the data.
             </p>
             
             <form method="GET">

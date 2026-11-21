@@ -54,10 +54,11 @@
             <strong>{{ translations['output_age_group_label'] }}</strong>
             {{ translations['age_group_child'] if adult|string == '0' else translations['age_group_adult'] }}
             {% if predicted_wait is not none %}
-                &nbsp;|&nbsp;
-                <strong>{{ translations['output_predicted_wait_label'] }}</strong> {{ predicted_wait }} {{ translations['output_weeks'] }}
-                ({{ translations['output_trend_' + wait_trend] if ('output_trend_' + wait_trend) in translations else wait_trend }})
-            {% endif %}
+        <h2>
+            {{ translations['output_predicted_wait_label'] }} {{ predicted_wait }} {{ translations['output_weeks'] }}
+            ({{ translations['output_trend_' + wait_trend] if ('output_trend_' + wait_trend) in translations else wait_trend }})
+        </h2>
+        {% endif %}
         </p>
         
         {% if driving_distance %}
@@ -73,20 +74,46 @@
 
          <div class="other_hospitals">
             {% for hospital in other_hospitals %}
-                <div class="hospital_option">
-                    <h4>{{ hospital.get("Hospital Name (Welsh)", hospital["Hospital Name"]) if lang == "cy" else hospital["Hospital Name"] }}</h4>
-                <p>
-                    <strong>{{translations['drive_label'] }}</strong>
-                    {{ hospital["driving_duration"] }}
-                    ({{ hospital["driving_distance"] }})
-                </p>
+                <form action="{{ url_for('run_calculation') }}" method="POST" class="hospital_option_form">
+                    <input type="hidden" name="location" value="{{ hospital['Hospital Name'] }}">
+                    <input type="hidden" name="lang" value="{{ lang }}">
+                    <input type="hidden" name="service" value="{{ scan_choice }}">
+                    <input type="hidden" name="adult" value="{{ adult if adult is defined else '1' }}">
+                    <input type="hidden" name="postcode" value="{{ postcode or '' }}">
+                    <input type="hidden" name="driving_distance" value="{{ hospital.get('driving_distance', '') }}">
+                    <input type="hidden" name="driving_duration" value="{{ hospital.get('driving_duration', '') }}">
+                    <input type="hidden" name="walking_distance" value="{{ hospital.get('walking_distance', '') }}">
+                    <input type="hidden" name="walking_duration" value="{{ hospital.get('walking_duration', '') }}">
 
-                <p>
-                    <strong>{{ translations['walk_label'] }}</strong>
-                    {{ hospital["walking_duration"] }}
-                    ({{ hospital["walking_distance"] }})
-                </p>
-            </div>
+                    <button type="submit" class="hospital_option">
+                        <h4>{{ hospital.get("Hospital Name (Welsh)", hospital["Hospital Name"]) if lang == "cy" else hospital["Hospital Name"] }}</h4>
+
+                        <p>
+                            <strong>{{ translations['output_wait_label'] if 'output_wait_label' in translations else 'Typical wait:' }}</strong>
+                            {% if hospital.get("typical_wait") is not none %}
+                                {{ hospital["typical_wait"] }} {{ translations['output_weeks'] }}
+                            {% else %}
+                                &lt;1 {{ translations['output_weeks'] }}
+                            {% endif %}
+                        </p>
+
+                        {% if hospital.get("driving_duration") %}
+                        <p>
+                            <strong>{{ translations['drive_label'] }}</strong>
+                            {{ hospital["driving_duration"] }}
+                            ({{ hospital["driving_distance"] }})
+                        </p>
+                        {% endif %}
+
+                        {% if hospital.get("walking_duration") %}
+                        <p>
+                            <strong>{{ translations['walk_label'] }}</strong>
+                            {{ hospital["walking_duration"] }}
+                            ({{ hospital["walking_distance"] }})
+                        </p>
+                        {% endif %}
+                    </button>
+                </form>
             {% endfor %}
         </div>
         {% endif %}
