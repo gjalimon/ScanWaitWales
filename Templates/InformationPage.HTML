@@ -10,7 +10,7 @@
 
 <body>
 <ul>
-    <li><b>{{ translations['nav_brand'] }}</b></li>
+    <li><a href="{{ url_for('home', lang=lang) }}" class="brand-link"><b>{{ translations['nav_brand'] }}</b></a></li>
 <!--Language switch button-->
     <li class="left"><a href="{{ url_for('information_page', lang='cy' if lang == 'en' else 'en') }}" class="language-button">{{ translations['language_switch_to'] }}</a></li>
 <!--Update # to link to the current page-->

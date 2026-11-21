@@ -39,9 +39,7 @@
     <!-- This is the navigation bar at the top -->
     <ul>
         <!-- This shows the website name -->
-        <li>
-            <b>{{ translations['nav_brand'] }}</b>
-        </li>
+        <li><a href="{{ url_for('home', lang=lang) }}" class="brand-link"><b>{{ translations['nav_brand'] }}</b></a></li>
 
         <!-- This button swaps between English and Welsh -->
         <li class="left">

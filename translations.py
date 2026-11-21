@@ -20,8 +20,8 @@ TRANSLATIONS = {
         # --- Navigation Bar ---
         "nav_brand": "ScanWait Wales",
         "nav_home": "Home",
-        "nav_input": "Calculation", # changed from "Input" to "Calculation" for translation convienience.
-        "nav_visualisations": "Visualisations",
+        "nav_input": "Wait Times", # changed from "Calculation" to "Wait Times" 
+        "nav_visualisations": "Explore Data",
         "nav_information": "More Information",
 
         # --- Main Content ---
@@ -33,7 +33,7 @@ TRANSLATIONS = {
         "The application uses publicly available hospital information, postcode reference datasets and aggregated waiting-time statistics. No information is stored when using this service.",
 
         # ---------- Input Page ----------
-        "page_title_input": "Input Page - ScanWait Wales",
+        "page_title_input": "Wait Times - ScanWait Wales",
         "input_heading": "Hospital and Scan Type Selection",
         "input_instruction": "Please select a hospital and scan type from the drop-down menus provided.",
         "input_label_service": "Select a scan type",
@@ -300,8 +300,8 @@ TRANSLATIONS = {
         # --- Navigation Bar ---
         "nav_brand": "ScanWait Cymru",
         "nav_home": "Hafan",
-        "nav_input": "Cyfrifiad", 
-        "nav_visualisations": "Graffiau",
+        "nav_input": "Amseroedd Aros", 
+        "nav_visualisations": "Archwilio Data",
         "nav_information": "Mwy o Wybodaeth",
 
         # --- Main Content ---
@@ -310,7 +310,7 @@ TRANSLATIONS = {
         "welcome_text": "Mae ScanWait Cymru wedi'i gynllunio i helpu cleifion i archwilio amseroedd aros sganio o GIG Cymru a nodi ysbytai a allai gynnig sgan dethol. Nid ydym yn gysylltiedig â GIG Cymru ac nid oes gennym fynediad at gofnodion cleifion y GIG, rhifau'r GIG, nodiadau clinigol na gwybodaeth am apwyntiadau unigol. Nid yw'r canlyniadau amcangyfrifed yn cynrychioli penodiad unigol. Mae'r cais yn defnyddio gwybodaeth ysbyty sydd ar gael i'r cyhoedd, setiau data cyfeirio cod post ac ystadegau amser aros agregedig. Ni chaiff unrhyw wybodaeth ei storio wrth ddefnyddio'r gwasanaeth hwn.",
 
         # ---------- Input Page ----------
-        "page_title_input": "Tudalen Mewnbwn - ScanWait Cymru",
+        "page_title_input": "Amseroedd Aros - ScanWait Cymru",
         "input_heading": "Dewis Ysbyty a Math o Sgan",
         "input_instruction": "Dewiswch ysbyty a math o sgan o'r dewislenni isod.",
         "input_label_service": "Dewiswch fath o sgan",

@@ -7,7 +7,7 @@
     <title>{{ translations['page_title_output'] }}</title>
 </head>
 <ul>
-    <li><b>{{ translations['nav_brand'] }}</b></li>
+    <li><a href="{{ url_for('home', lang=lang) }}" class="brand-link"><b>{{ translations['nav_brand'] }}</b></a></li>
 <!--Language switch button-->
     <li class="left"><a href="{{ url_for('run_calculation', lang='cy' if lang == 'en' else 'en', service=scan_choice, postcode=postcode, location=hospital_choice, adult=adult) }}" class="language-button">{{ translations['language_switch_to'] }}</a></li>
 <!--links to other pages - have not included an active page for the output... it just feels wrong-->

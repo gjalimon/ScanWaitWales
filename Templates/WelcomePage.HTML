@@ -12,7 +12,7 @@
     <title> {{ translations['page_title'] }} </title>
 </head>
     <ul>
-        <li><b>{{ translations['nav_brand'] }}</b></li>
+        <li><a href="{{ url_for('home', lang=lang) }}" class="brand-link"><b>{{ translations['nav_brand'] }}</b></a></li>
     <!--
         Language switch button.
         - When lang is "en", this links to ?lang=cy and shows "Cymraeg"

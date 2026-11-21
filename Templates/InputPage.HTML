@@ -65,7 +65,7 @@
 <body>
     <!-- Navigation bar -->
     <ul>
-        <li><b>{{ translations['nav_brand'] }}</b></li>
+        <li><a href="{{ url_for('home', lang=lang) }}" class="brand-link"><b>{{ translations['nav_brand'] }}</b></a></li>
         <li class="left"><a href="{{ url_for('input_page', lang='cy' if lang == 'en' else 'en', service=selected_service, postcode=postcode, adult=adult) }}" class="language-button">{{ translations['language_switch_to'] }}</a></li>
         <li><a href="{{ url_for('home', lang=lang) }}">{{ translations['nav_home'] }}</a></li>
         <li><a href="#input" class="active">{{ translations['nav_input'] }}</a></li>

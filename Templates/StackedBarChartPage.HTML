@@ -35,9 +35,7 @@
 
     <!-- Navigation bar (styled by style.css) -->
     <ul>
-        <li>
-            <b>{{ translations['nav_brand'] }}</b>
-        </li>
+        <li><a href="{{ url_for('home', lang=lang) }}" class="brand-link"><b>{{ translations['nav_brand'] }}</b></a></li>
         <li class="left">
             <a
                 href="{{ url_for(

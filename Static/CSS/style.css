@@ -207,14 +207,15 @@ ul li a.active{
     font-weight: bold;
 }
 /* For the ScanWait Wales text in the navigation bar*/
-li b{
-    display: block;
-    color:#F1F5F0;
+/* For the ScanWait Wales text in the navigation bar*/
+li a.brand-link {
     padding: 8px 16px;
-    text-decoration: none;
-    font-family: Verdana;
-    font-size: 19px;
     font-weight: bold;
+}
+
+li a.brand-link b {
+    color: inherit;
+    padding: 0;
 }
 /* 
 ==============================================
