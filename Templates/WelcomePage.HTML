@@ -12,7 +12,15 @@
     <title> {{ translations['page_title'] }} </title>
 </head>
     <ul>
-        <li><a href="{{ url_for('home', lang=lang) }}" class="brand-link"><b>{{ translations['nav_brand'] }}</b></a></li>
+        <li>
+        <a href="{{ url_for('home', lang=lang) }}" class="nav-logo-link">
+        <img
+            src="{{ url_for('static', filename='Images/ScanWaitWales_Logo.png') }}"
+            alt="{{ translations['nav_brand'] }}"
+            class="nav-logo"
+        >
+            </a>
+        </li>v
     <!--
         Language switch button.
         - When lang is "en", this links to ?lang=cy and shows "Cymraeg"

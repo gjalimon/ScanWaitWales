@@ -143,7 +143,9 @@ p {
     font-family: Verdana;
     font-size: 19px;
 }
-
+.left {
+    margin-right: 0;
+}
 /* 
 ==============================================
     Navigation Bar
@@ -188,7 +190,7 @@ li a{
     align-items: center;
     justify-content: center;
     color: #F1F5F0;
-    padding: 8px 16px;
+    padding: 12px 20px;
     text-decoration: none;
     font-family: Verdana;
     font-size: 23px;

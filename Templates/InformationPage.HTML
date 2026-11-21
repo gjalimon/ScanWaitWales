@@ -10,7 +10,15 @@
 
 <body>
 <ul>
-    <li><a href="{{ url_for('home', lang=lang) }}" class="brand-link"><b>{{ translations['nav_brand'] }}</b></a></li>
+    <li>
+        <a href="{{ url_for('home', lang=lang) }}" class="nav-logo-link">
+        <img
+            src="{{ url_for('static', filename='Images/ScanWaitWales_Logo.png') }}"
+            alt="{{ translations['nav_brand'] }}"
+            class="nav-logo"
+        >
+            </a>
+        </li>
 <!--Language switch button-->
     <li class="left"><a href="{{ url_for('information_page', lang='cy' if lang == 'en' else 'en') }}" class="language-button">{{ translations['language_switch_to'] }}</a></li>
 <!--Update # to link to the current page-->

@@ -7,7 +7,15 @@
     <title>{{ translations['page_title_output'] }}</title>
 </head>
 <ul>
-    <li><a href="{{ url_for('home', lang=lang) }}" class="brand-link"><b>{{ translations['nav_brand'] }}</b></a></li>
+    <li>
+        <a href="{{ url_for('home', lang=lang) }}" class="nav-logo-link">
+        <img
+            src="{{ url_for('static', filename='Images/ScanWaitWales_Logo.png') }}"
+            alt="{{ translations['nav_brand'] }}"
+            class="nav-logo"
+        >
+            </a>
+        </li>
 <!--Language switch button-->
     <li class="left"><a href="{{ url_for('run_calculation', lang='cy' if lang == 'en' else 'en', service=scan_choice, postcode=postcode, location=hospital_choice, adult=adult) }}" class="language-button">{{ translations['language_switch_to'] }}</a></li>
 <!--links to other pages - have not included an active page for the output... it just feels wrong-->
@@ -54,7 +62,10 @@
         </div>
 
         <p style="font-size: 14px;">
+        <p>
             <strong>{{ translations['output_age_group_label'] }}</strong>
+            {{ translations['age_group_child'] if adult|string == '0' else translations['age_group_adult'] }}
+        </p>
             {% if predicted_wait is not none %}
         <h2>
             {{ translations['output_predicted_wait_label'] }} {{ predicted_wait }} {{ translations['output_weeks'] }}

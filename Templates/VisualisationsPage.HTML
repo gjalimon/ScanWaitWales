@@ -22,8 +22,15 @@
     <!-- This is the navigation bar -->
     <ul>
         <!-- This shows the website name -->
-        <li><a href="{{ url_for('home', lang=lang) }}" class="brand-link"><b>{{ translations['nav_brand'] }}</b></a></li>
-
+        <li>
+        <a href="{{ url_for('home', lang=lang) }}" class="nav-logo-link">
+        <img
+            src="{{ url_for('static', filename='Images/ScanWaitWales_Logo.png') }}"
+            alt="{{ translations['nav_brand'] }}"
+            class="nav-logo"
+        >
+            </a>
+        </li>
         <!-- This swaps between English and Welsh -->
         <li class="left">
             <a
