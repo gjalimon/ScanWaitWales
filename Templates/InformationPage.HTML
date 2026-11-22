@@ -28,6 +28,9 @@
     <li><a href ="#more_information" class="active">{{ translations['nav_information'] }}</a></li>
 </ul>
 
+{% set active_subtab = 'general' %}
+{% include '_more_info_nav.HTML' %}
+
     <section>
         <section style="max-width: 900px; margin: 0 auto; text-align: center;">
         <h2>{{ translations['heading1'] }}</h2> 

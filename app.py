@@ -5,6 +5,8 @@
 
 import sys
 
+import markdown
+
 sys.dont_write_bytecode = True
 
 from pathlib import Path
@@ -455,6 +457,59 @@ def information_page():
     translations = get_translations(lang)
     return render_template(
         "InformationPage.HTML",
+        translations=translations,
+        lang=lang,
+    )
+
+
+# ============================================================
+# Data Quality Page
+# ============================================================
+
+@app.route("/data-quality")
+def data_quality_page():
+    lang = request.args.get("lang", "en")
+    translations = get_translations(lang)
+
+    md_filename = "data_quality_cy.md" if lang == "cy" else "data_quality_en.md"
+    md_path = BASE_DIR / "content" / md_filename
+    raw_md = md_path.read_text(encoding="utf-8")
+
+    content_html = markdown.markdown(
+        raw_md,
+        extensions=["tables", "fenced_code", "sane_lists"],
+    )
+
+    return render_template(
+        "Data_Quality.HTML",
+        translations=translations,
+        lang=lang,
+        content_html=content_html,
+    )
+
+# ============================================================
+# Methodology Page
+# ============================================================
+
+@app.route("/information/methodology")
+def methodology_page():
+    lang = request.args.get("lang", "en")
+    translations = get_translations(lang)
+    return render_template(
+        "MethodologyPage.HTML",
+        translations=translations,
+        lang=lang,
+    )
+
+# ============================================================
+# Future Development
+# ============================================================
+@app.route("/information/future-development")
+def future_development_page():
+    lang = request.args.get("lang", "en")
+    translations = get_translations(lang)
+    return render_template(
+        "FutureDevelopmentPage.HTML",
         translations=translations,
         lang=lang,
     )

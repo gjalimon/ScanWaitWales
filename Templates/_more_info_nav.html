@@ -1,0 +1,35 @@
+<!-- Secondary navigation bar for More Information -->
+<ul class="more_info_nav" aria-label="More Information sections">
+    <li>
+        <a
+            href="{{ url_for('information_page', lang=lang) }}"
+            class="{{ 'active' if active_subtab == 'general' else '' }}"
+        >
+            {{ translations['more_info_general'] }}
+        </a>
+    </li>
+    <li>
+        <a
+            href="{{ url_for('data_quality_page', lang=lang) }}"
+            class="{{ 'active' if active_subtab == 'data_quality' else '' }}"
+        >
+            {{ translations['more_info_data_quality'] }}
+        </a>
+    </li>
+    <li>
+        <a
+            href="{{ url_for('methodology_page', lang=lang) }}"
+            class="{{ 'active' if active_subtab == 'methodology' else '' }}"
+        >
+            {{ translations['more_info_methodology'] }}
+        </a>
+    </li>
+    <li>
+        <a
+            href="{{ url_for('future_development_page', lang=lang) }}"
+            class="{{ 'active' if active_subtab == 'future' else '' }}"
+        >
+            {{ translations['more_info_future'] }}
+        </a>
+    </li>
+</ul>

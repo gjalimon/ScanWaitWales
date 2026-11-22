@@ -24,6 +24,12 @@ TRANSLATIONS = {
         "nav_visualisations": "Explore Data",
         "nav_information": "More Information",
 
+        # --- More Information Navigation Bar ---
+        "more_info_general": "General Info",
+        "more_info_data_quality": "Data Issues",
+        "more_info_methodology": "Methodology",
+        "more_info_future": "Future Development",
+
         # --- Main Content ---
         "welcome_subtitle": "<b>Welcome to ScanWait Wales</b> - <i>the unofficial site for finding out how long you might be waiting for your next scan.</i>",
         "welcome_description": "We take the data published monthly by NHS Wales, run our calculations, and (hopefully) give you an idea of how long you could be waiting until your scan happens. To find out more, please go to More Information.",
@@ -304,6 +310,12 @@ TRANSLATIONS = {
         "nav_input": "Amseroedd Aros", 
         "nav_visualisations": "Archwilio Data",
         "nav_information": "Mwy o Wybodaeth",
+
+        # --- More Information Navigation Bar ---
+        "more_info_general": "Gwybodaeth Gyffredinol",
+        "more_info_data_quality": "Materion Data",
+        "more_info_methodology": "Methodoleg",
+        "more_info_future": "Datblygiadau yn y Dyfodol",
 
         # --- Main Content ---
         "welcome_subtitle": "<b>Croeso i ScanWait Cymru</b> - <i>y safle answyddogol i ganfod pa mor hir y gallai fod yn rhaid i chi aros am eich sgan nesaf.</i>",

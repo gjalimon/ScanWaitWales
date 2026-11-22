@@ -210,7 +210,7 @@ ul li a.active{
     color:#005C22;
     font-weight: bold;
 }
-/* For the ScanWait Wales text in the navigation bar*/
+
 /* For the ScanWait Wales text in the navigation bar*/
 li a.brand-link {
     padding: 10px 19px;
@@ -221,6 +221,16 @@ li a.brand-link b {
     color: inherit;
     padding: 0;
 }
+
+/* ==============================================
+    More Information Sub-Navigation Bar
+============================================== */
+ul.more_info_nav {
+    position: static;
+    border-top: 2px solid rgba(241, 245, 240, 0.35);
+    z-index: 999;
+}
+
 /* 
 ==============================================
     Buttons 

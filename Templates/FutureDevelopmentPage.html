@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/style.css') }}">
+    <title>{{ translations['more_info_future'] }} - ScanWait Wales</title>
+</head>
+
+<body>
+<ul>
+    <li>
+        <a href="{{ url_for('home', lang=lang) }}" class="nav-logo-link">
+            <img
+                src="{{ url_for('static', filename='Images/ScanWaitWales_Logo.png') }}"
+                alt="{{ translations['nav_brand'] }}"
+                class="nav-logo"
+            >
+        </a>
+    </li>
+    <li class="left">
+        <a href="{{ url_for('future_development_page', lang='cy' if lang == 'en' else 'en') }}" class="language-button">
+            {{ translations['language_switch_to'] }}
+        </a>
+    </li>
+    <li><a href="{{ url_for('home', lang=lang) }}">{{ translations['nav_home'] }}</a></li>
+    <li><a href="{{ url_for('input_page', lang=lang) }}">{{ translations['nav_input'] }}</a></li>
+    <li><a href="{{ url_for('visualisations_page', lang=lang) }}">{{ translations['nav_visualisations'] }}</a></li>
+    <li><a href="{{ url_for('information_page', lang=lang) }}" class="active">{{ translations['nav_information'] }}</a></li>
+</ul>
+
+{% set active_subtab = 'future' %}
+{% include '_more_info_nav.HTML' %}
+
+<section style="max-width: 900px; margin: 0 auto; text-align: center;">
+    <h2>{{ translations['more_info_future'] }}</h2>
+    <p>{{ 'Cynnwys datblygiadau yn y dyfodol yn dod yn fuan.' if lang == 'cy' else 'Future development content coming soon.' }}</p>
+</section>
+</body>
+</html>
