@@ -17,6 +17,7 @@ from Services.logger import setup_script_logger
 setup_script_logger("app")
 
 from translations import get_translations
+
 from scan_config import (
     SERVICE_DISPLAY_NAMES,
     SERVICE_DISPLAY_ORDER,
@@ -36,7 +37,15 @@ from scanwait import (
     get_wait_record,
     load_waiting_times,
 )
-from Services.visualisations import DISPLAY_TO_SERVICE, get_fig1, get_fig2
+
+from Services.visualisations import (
+    DISPLAY_TO_SERVICE,
+    get_fig1,
+    get_fig2,
+    get_forecast_filter_options,
+    get_forecast_view_data,
+)
+
 from Services.heatmap_viz import build_waiting_time_map, load_hospital_coordinates
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -359,6 +368,7 @@ def run_calculation():
 # ============================================================
 # Visualisations pages
 # ============================================================
+
 @app.route("/visualisations")
 def visualisations_page():
     lang = request.args.get("lang", "en")
@@ -447,6 +457,91 @@ def line_graph_page():
         graph2=graph2_html,
     )
 
+@app.route("/visualisations/forecast")
+def forecast_page():
+    """Render static adult-only (adult = 1) v0.3 forecast cards."""
+    lang = request.args.get("lang", "en")
+    translations = get_translations(lang)
+
+    category = request.args.get("category", "").strip()
+    selection = request.args.get("selection", "").strip()
+    metric = request.args.get("metric", "percentage_change").strip()
+
+    valid_metrics = {"percentage_change", "total_waiting", "incoming_referrals"}
+    if metric not in valid_metrics:
+        metric = "percentage_change"
+
+    if category not in {"scan_type", "hospital", "health_board"}:
+        category = ""
+        selection = ""
+
+    filter_options = get_forecast_filter_options()
+    view_data = get_forecast_view_data(
+        category=category,
+        selection=selection,
+        metric=metric,
+        lang=lang,
+    )
+
+    # Translate scan display labels and Welsh hospital names for dropdown menus
+    scan_display_lookup = dict(_get_translated_services(translations))
+    scan_choices = [
+        {
+            "value": scan_val,
+            "label": scan_display_lookup.get(scan_val, scan_val),
+        }
+        for scan_val in filter_options["scan_types"]
+    ]
+    hospital_choices = [
+        {
+            "value": hosp_name,
+            "label": get_welsh_hospital_name(hosp_name) if lang == "cy" else hosp_name,
+        }
+        for hosp_name in filter_options["hospitals"]
+    ]
+    health_board_choices = [
+        {
+            "value": hb_name,
+            "label": _translate_health_board(hb_name, translations),
+        }
+        for hb_name in filter_options["health_boards"]
+    ]
+
+    #Filter out empty result Cards
+
+    valid_cards = [
+        card
+        for card in view_data["cards"]
+        if any(isinstance(v, str) and v.endswith(".png") for v in card.values())
+    ]
+
+    return render_template(
+        "Forecasts.html",
+        lang=lang,
+        translations=translations,
+        category=view_data["category"],
+        selection=view_data["selection"],
+        metric=view_data["metric"],
+        is_default=view_data["is_default"],
+        cards=valid_cards,
+        scan_choices=scan_choices,
+        hospital_choices=hospital_choices,
+        health_board_choices=health_board_choices,
+    )
+
+    return render_template(
+        "Forecasts.html",
+        lang=lang,
+        translations=translations,
+        category=view_data["category"],
+        selection=view_data["selection"],
+        metric=view_data["metric"],
+        is_default=view_data["is_default"],
+        cards=view_data["cards"],
+        scan_choices=scan_choices,
+        hospital_choices=hospital_choices,
+        health_board_choices=health_board_choices,
+    )
 
 # ============================================================
 # Information page

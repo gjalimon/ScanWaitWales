@@ -149,6 +149,8 @@ TRANSLATIONS = {
         "vis_page_title": "Visualisations - ScanWait Wales",
         "vis_welcome_heading": "Welcome to the visualisations page",
         "vis_instruction": "Use this page to navigate to the various visualisations on offer. Our goal here is to make the data interactive and accessible to the public. Click an image to open a visualisation.",
+        "viz_forecast_title": "Forecasted trends across health boards and sites",
+        "viz_forecast_desc": "Static visualisations of what future trends might look like",
         "vis_card_heatmap_title": "Heat map of wait times across Wales",
         "vis_card_heatmap_desc": "An interactive heat map of scan wait times across wales.",
         "vis_card_heatmap_alt": "Icon: map of Wales",
@@ -159,7 +161,50 @@ TRANSLATIONS = {
         "vis_card_linechart_desc": "An interactive line graph of wait times since August 2024.",
         "vis_card_linechart_alt": "Icon: line graph",
 
-                        # --- Heatmap Page ---
+        # --- ForeCasts Page ---
+
+        "viz_forecast_title": "Forecasted trends across health boards and sites",
+        "viz_forecast_desc": "Static visualisations of what future trends might look like",
+        "forecast_adult_notice": "Showing adult (18+) pathways across NHS Wales",
+        "forecast_label_category": "Category:",
+        "forecast_cat_placeholder": "Select a category...",
+        "forecast_cat_scan_type": "Scan Type",
+        "forecast_cat_hospital": "Hospital",
+        "forecast_cat_health_board": "Health Board",
+        "forecast_label_health_board": "Health Board:",
+        "forecast_label_site": "Site:",
+        "forecast_label_scan_type": "Scan Type:",
+        "forecast_btn_visualise": "Visualise Forecasts",
+        "forecast_label_metric": "(Optional) Data Metric in:",
+        "forecast_metric_pct": "Percentage change",
+        "forecast_metric_waiting": "Total patients waiting",
+        "forecast_metric_referrals": "Incoming referrals",
+        "forecast_regen_prefix": "Regenerate using",
+        "forecast_empty_state": "No adult forecast records available for this selection.",
+
+        # --- ForeCasts Page --- Selection
+
+        "heat_back_button": "Back to visualisations",
+        "viz_forecast_title": "Forecasted trends across health boards and sites",
+        "viz_forecast_desc": "Static visualisations of what future trends might look like",
+        "forecast_adult_notice": "Showing adult (18+) pathways across NHS Wales",
+        "forecast_label_category": "Category:",
+        "forecast_cat_placeholder": "Select a category...",
+        "forecast_cat_scan_type": "Scan Type",
+        "forecast_cat_hospital": "Hospital",
+        "forecast_cat_health_board": "Health Board",
+        "forecast_label_health_board": "Health Board:",
+        "forecast_label_site": "Site:",
+        "forecast_label_scan_type": "Scan Type:",
+        "forecast_btn_visualise": "Visualise Forecasts",
+        "forecast_label_metric": "(Optional) Data Metric in:",
+        "forecast_metric_pct": "Percentage change",
+        "forecast_metric_waiting": "Total patients waiting",
+        "forecast_metric_referrals": "Incoming referrals",
+        "forecast_regen_prefix": "Regenerate using",
+        "forecast_empty_state": "No adult forecast records available for this selection.",
+
+        # --- Heatmap Page ---
         "heat_page_title": "Waiting-Time Heatmap - ScanWait Wales",
         "heat_back_button": "← Back to visualisations",
         "heat_heading": "Waiting times across Wales",
@@ -422,6 +467,8 @@ TRANSLATIONS = {
         "vis_page_title": "Graffiau - ScanWait Cymru",
         "vis_welcome_heading": "Croeso i'r Tudalen Graffiau",
         "vis_instruction": "Defnyddiwch y dudalen hon i lywio i'r gwahanol raffiau sydd ar gael. Ein nod yma yw gwneud y data yn rhyngweithiol ac yn hygyrch i'r cyhoedd. Cliciwch y ddelwedd i weld graff.",
+        "viz_forecast_title": "Tueddiadau a ragwelir ar draws byrddau iechyd a safleoedd",
+        "viz_forecast_desc": "Delweddiadau statig o sut olwg allai fod ar dueddiadau yn y dyfodol",
         "vis_card_heatmap_title": "Map gwres o amseroedd aros dros Gymru",
         "vis_card_heatmap_desc": "Map gwres rhyngweithiol o amseroedd aros sganio dros Gymru.",
         "vis_card_heatmap_alt": "Eicon: map o Gymru",
@@ -432,7 +479,53 @@ TRANSLATIONS = {
         "vis_card_linechart_desc": "Graff llinell ryngweithiol o amseroedd aros ers Awst 2024.",
         "vis_card_linechart_alt": "Eicon: graff llinell",
 
-                # --- Heatmap Page ---
+        
+        # --- ForeCasts Page ---
+
+        "viz_forecast_title": "Tueddiadau a ragwelir ar draws byrddau iechyd a safleoedd",
+        "viz_forecast_desc": "Delweddiadau statig o sut olwg allai fod ar dueddiadau yn y dyfodol",
+        "forecast_adult_notice": "Yn dangos llwybrau oedolion (18+) ar draws GIG Cymru",
+        "forecast_label_category": "Categori:",
+        "forecast_cat_placeholder": "Dewiswch gategori...",
+        "forecast_cat_scan_type": "Math o Sgan",
+        "forecast_cat_hospital": "Ysbyty",
+        "forecast_cat_health_board": "Bwrdd Iechyd",
+        "forecast_label_health_board": "Bwrdd Iechyd:",
+        "forecast_label_site": "Safle:",
+        "forecast_label_scan_type": "Math o Sgan:",
+        "forecast_btn_visualise": "Delweddu Rhagolygon",
+        "forecast_label_metric": "(Dewisol) Metrig Data yn:",
+        "forecast_metric_pct": "Newid canrannol",
+        "forecast_metric_waiting": "Cyfanswm cleifion yn aros",
+        "forecast_metric_referrals": "Atgyfeiriadau newydd",
+        "forecast_regen_prefix": "Ail-gynhyrchu gan ddefnyddio",
+        "forecast_empty_state": "Dim cofnodion rhagolygon oedolion ar gael ar gyfer y dewis hwn.",
+
+
+        
+
+        # --- ForeCasts Page --- Selections
+        "heat_back_button": "Yn ôl i'r delweddiadau",
+        "viz_forecast_title": "Tueddiadau a ragwelir ar draws byrddau iechyd a safleoedd",
+        "viz_forecast_desc": "Delweddiadau statig o sut olwg allai fod ar dueddiadau yn y dyfodol",
+        "forecast_adult_notice": "Yn dangos llwybrau oedolion (18+) ar draws GIG Cymru",
+        "forecast_label_category": "Categori:",
+        "forecast_cat_placeholder": "Dewiswch gategori...",
+        "forecast_cat_scan_type": "Math o Sgan",
+        "forecast_cat_hospital": "Ysbyty",
+        "forecast_cat_health_board": "Bwrdd Iechyd",
+        "forecast_label_health_board": "Bwrdd Iechyd:",
+        "forecast_label_site": "Safle:",
+        "forecast_label_scan_type": "Math o Sgan:",
+        "forecast_btn_visualise": "Delweddu Rhagolygon",
+        "forecast_label_metric": "(Dewisol) Metrig Data yn:",
+        "forecast_metric_pct": "Newid canrannol",
+        "forecast_metric_waiting": "Cyfanswm cleifion yn aros",
+        "forecast_metric_referrals": "Atgyfeiriadau newydd",
+        "forecast_regen_prefix": "Ail-gynhyrchu gan ddefnyddio",
+        "forecast_empty_state": "Dim cofnodion rhagolygon oedolion ar gael ar gyfer y dewis hwn.",
+
+        # --- Heatmap Page ---
         "heat_page_title": "Map Gwres Amseroedd Aros - ScanWait Cymru",
         "heat_back_button": "← Nôl i graffiau",
         "heat_heading": "Amser aros dros Gymru",

@@ -90,6 +90,21 @@
             <!-- This box holds our clickable pictures -->
             <div class="visualisation-list">
 
+                <!--# ----- Forecasts card ----- # -->
+                
+                <a href="{{ url_for('forecast_page', lang=lang) }}" class="visualisation-card">
+                    <img
+                        src="{{ url_for('static', filename='Images/Future_Trend_Forecast.png') }}"
+                        alt="{{ translations['viz_forecast_title'] }}"
+                    >
+                    <h3>{{ translations['viz_forecast_title'] }}</h3>
+                    <p>{{ translations['viz_forecast_desc'] }}</p>
+                </a>
+
+            <!-- Existing Heatmap, Bar Chart, and Line Graph cards remain below -->
+                
+                <!--# ----- heat Map Card ----- # -->
+
                 <!-- The whole card is a link -->
                 <a href="{{ url_for('heatmap_page', lang=lang) }}" class="visualisation-card">
                     <!-- This is the picture the user clicks (includes alt text)-->
@@ -102,6 +117,9 @@
                         {{ translations['vis_card_heatmap_desc'] }}
                     </p>
                 </a>
+
+                <!--# ----- Bar Chart Card ----- # -->
+
                 <!-- The whole card is a link -->
                 <a href="{{ url_for('stacked_chart_page', lang=lang) }}" class="visualisation-card">
                     <!-- This is the picture the user clicks (includes alt text)-->
@@ -114,6 +132,10 @@
                         {{ translations['vis_card_barchart_desc'] }}
                     </p>
                 </a>
+
+                <!--# ----- Time-Series Card ----- # -->
+
+
                 <a href="{{ url_for('line_graph_page', lang=lang) }}" class="visualisation-card">
                     <!-- This is the picture the user clicks (includes alt text)-->
                     <img src="{{ url_for('static',filename='Images/Line Graph.png') }}"

@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='CSS/style.css') }}"
+    >
+    <title>{{ translations['viz_forecast_title'] }}</title>
+    <style>
+        .forecast-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        .forecast-subtitle {
+            margin-top: 6px;
+            margin-bottom: 10px;
+        }
+
+        .adult-badge {
+            display: inline-block;
+            margin: 6px 0 18px 0;
+            padding: 6px 14px;
+            background-color: #E1E8DF;
+            border-left: 4px solid #005C22;
+            font-family: Verdana;
+            font-size: 16px;
+            font-weight: bold;
+            color: #003816;
+        }
+
+        /* Stacked cascading controls */
+        .forecast-filter-panel {
+            max-width: 540px;
+            margin: 10px 0 26px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            position: relative;
+        }
+
+        .control-group label,
+        .control-group .field-label {
+            display: block;
+            font-family: Verdana;
+            font-size: 19px;
+            font-weight: bold;
+            color: #003816;
+            margin: 0;
+        }
+
+        /* Two-line wrapping accessible dropdown */
+        .wrap-select {
+            position: relative;
+            width: 100%;
+        }
+
+        .wrap-select-trigger {
+            width: 100%;
+            min-height: 52px;
+            padding: 10px 40px 10px 14px;
+            background-color: #FFFFFF;
+            border: 2px solid #005C22;
+            border-radius: 8px;
+            font-family: Verdana;
+            font-size: 18px;
+            line-height: 1.3;
+            color: #003816;
+            text-align: left;
+            cursor: pointer;
+            position: relative;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            word-break: break-word;
+        }
+
+        .wrap-select-trigger::after {
+            content: "▼";
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 14px;
+            color: #005C22;
+            pointer-events: none;
+        }
+
+        .wrap-select-menu {
+            display: none;
+            position: absolute;
+            top: calc(100% + 4px);
+            left: 0;
+            right: 0;
+            max-height: 290px;
+            overflow-y: auto;
+            background-color: #FFFFFF;
+            border: 2px solid #005C22;
+            border-radius: 8px;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.16);
+            z-index: 500;
+        }
+
+        .wrap-select.open .wrap-select-menu {
+            display: block;
+        }
+
+        .wrap-select-option {
+            width: 100%;
+            padding: 10px 14px;
+            border: none;
+            border-bottom: 1px solid #E1E8DF;
+            background-color: #FFFFFF;
+            font-family: Verdana;
+            font-size: 17px;
+            line-height: 1.3;
+            color: #003816;
+            text-align: left;
+            cursor: pointer;
+            white-space: normal;
+            word-break: break-word;
+        }
+
+        .wrap-select-option:last-child {
+            border-bottom: none;
+        }
+
+        .wrap-select-option:hover,
+        .wrap-select-option[aria-selected="true"] {
+            background-color: #E1E8DF;
+            font-weight: bold;
+        }
+
+        .visualise-submit-btn {
+            align-self: flex-start;
+            padding: 12px 24px;
+            background-color: #005C22;
+            color: #F1F5F0;
+            border: 2px solid #003816;
+            border-radius: 8px;
+            font-family: Verdana;
+            font-size: 19px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .visualise-submit-btn:hover {
+            background-color: #003816;
+        }
+
+        .visualise-submit-btn:disabled {
+            opacity: 0.55;
+            cursor: not-allowed;
+        }
+
+        /* Static v0.3 forecast card grid */
+        .forecast-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 22px;
+            margin-top: 12px;
+        }
+
+        .forecast-plot-card {
+            background-color: #F1F5F0;
+            border: 2px solid #C8D4C9;
+            border-radius: 10px;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .forecast-plot-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 6px;
+        }
+
+        /* Bottom 3 two-line regenerate buttons (default page) */
+        .default-regen-bar {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 14px;
+            margin: 30px 0 20px 0;
+        }
+
+        .regen-two-line-btn {
+            width: 100%;
+            padding: 14px 12px;
+            background-color: #F1F5F0;
+            color: #003816;
+            border: 3px solid #005C22;
+            border-radius: 10px;
+            font-family: Verdana;
+            font-size: 17px;
+            line-height: 1.35;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.15s ease-in-out, color 0.15s ease-in-out;
+        }
+
+        .regen-two-line-btn span {
+            display: block;
+        }
+
+        .regen-two-line-btn strong {
+            display: block;
+            font-size: 18px;
+            margin-top: 2px;
+        }
+
+        .regen-two-line-btn:hover,
+        .regen-two-line-btn.active-metric {
+            background-color: #005C22;
+            color: #F1F5F0;
+        }
+
+        @media (max-width: 640px) {
+            .forecast-cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .default-regen-bar {
+                grid-template-columns: 1fr;
+            }
+
+            .visualise-submit-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li>
+            <a href="{{ url_for('home', lang=lang) }}" class="nav-logo-link">
+                <img
+                    src="{{ url_for('static', filename='Images/ScanWaitWales_Logo.png') }}"
+                    alt="{{ translations['nav_brand'] }}"
+                    class="nav-logo"
+                >
+            </a>
+        </li>
+        <li class="left">
+            <a
+                href="{{ url_for('forecast_page', lang='cy' if lang == 'en' else 'en', category=category, selection=selection, metric=metric) }}"
+                class="language-button"
+            >
+                {{ translations['language_switch_to'] }}
+            </a>
+        </li>
+        <li><a href="{{ url_for('home', lang=lang) }}">{{ translations['nav_home'] }}</a></li>
+        <li><a href="{{ url_for('input_page', lang=lang) }}">{{ translations['nav_input'] }}</a></li>
+        <li><a href="{{ url_for('visualisations_page', lang=lang) }}" class="active">{{ translations['nav_visualisations'] }}</a></li>
+        <li><a href="{{ url_for('information_page', lang=lang) }}">{{ translations['nav_information'] }}</a></li>
+    </ul>
+
+    <main class="forecast-container">
+        <section>
+            <a href="{{ url_for('visualisations_page', lang=lang) }}" class="back-viz-button">
+                {{ translations['heat_back_button'] }}
+            </a>
+
+            <header>
+                <h2>{{ translations['viz_forecast_title'] }}</h2>
+            </header>
+
+            <p class="forecast-subtitle">{{ translations['viz_forecast_desc'] }}</p>
+            <div class="adult-badge">{{ translations['forecast_adult_notice'] }}</div>
+
+            <!-- Cascading Dropdown Pipeline -->
+            <form method="GET" action="{{ url_for('forecast_page') }}" id="forecast-form" class="forecast-filter-panel">
+                <input type="hidden" name="lang" value="{{ lang }}">
+                <input type="hidden" name="category" id="input-category" value="{{ category }}">
+                <input type="hidden" name="selection" id="input-selection" value="{{ selection }}">
+                <input type="hidden" name="metric" id="input-metric" value="{{ metric }}">
+
+                <!-- Dropdown 1: Category -->
+                <div class="control-group">
+                    <span class="field-label" id="lbl-category">{{ translations['forecast_label_category'] }}</span>
+                    <div class="wrap-select" data-target="category">
+                        <button type="button" class="wrap-select-trigger" aria-labelledby="lbl-category" aria-expanded="false" id="trigger-category">
+                            {% if category == 'scan_type' %}
+                                {{ translations['forecast_cat_scan_type'] }}
+                            {% elif category == 'hospital' %}
+                                {{ translations['forecast_cat_hospital'] }}
+                            {% elif category == 'health_board' %}
+                                {{ translations['forecast_cat_health_board'] }}
+                            {% else %}
+                                {{ translations['forecast_cat_placeholder'] }}
+                            {% endif %}
+                        </button>
+                        <div class="wrap-select-menu" role="listbox">
+                            <button type="button" class="wrap-select-option" data-value="scan_type" aria-selected="{{ 'true' if category == 'scan_type' else 'false' }}">
+                                {{ translations['forecast_cat_scan_type'] }}
+                            </button>
+                            <button type="button" class="wrap-select-option" data-value="hospital" aria-selected="{{ 'true' if category == 'hospital' else 'false' }}">
+                                {{ translations['forecast_cat_hospital'] }}
+                            </button>
+                            <button type="button" class="wrap-select-option" data-value="health_board" aria-selected="{{ 'true' if category == 'health_board' else 'false' }}">
+                                {{ translations['forecast_cat_health_board'] }}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dropdown 2A: Scan Type -> Scan Type & Health Board -->
+                <div class="control-group sub-filter" id="group-scan-type" style="display: {{ 'flex' if category == 'scan_type' else 'none' }};">
+                    <span class="field-label" id="lbl-scan-sub">{{ translations['forecast_label_scan_type'] }}</span>
+                    <div class="wrap-select" data-target="scan_sub">
+                        <button type="button" class="wrap-select-trigger" aria-labelledby="lbl-scan-sub" aria-expanded="false" id="trigger-scan-sub">
+                            {{ scan_choices[0].label if scan_choices else '' }}
+                        </button>
+                        <div class="wrap-select-menu" role="listbox">
+                            {% for item in scan_choices %}
+                                <button type="button" class="wrap-select-option" data-value="{{ item.value }}">
+                                    {{ item.label }}
+                                </button>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <span class="field-label" id="lbl-hb-sub" style="margin-top: 10px;">{{ translations['forecast_label_health_board'] }}</span>
+                    <div class="wrap-select" data-target="hb_sub">
+                        <button type="button" class="wrap-select-trigger" aria-labelledby="lbl-hb-sub" aria-expanded="false" id="trigger-hb-sub">
+                            {{ health_board_choices[0].label if health_board_choices else '' }}
+                        </button>
+                        <div class="wrap-select-menu" role="listbox">
+                            {% for item in health_board_choices %}
+                                <button type="button" class="wrap-select-option" data-value="{{ item.value }}">
+                                    {{ item.label }}
+                                </button>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dropdown 2B: Hospital -> Site -->
+                <div class="control-group sub-filter" id="group-hospital" style="display: {{ 'flex' if category == 'hospital' else 'none' }};">
+                    <span class="field-label" id="lbl-site">{{ translations['forecast_label_site'] }}</span>
+                    <div class="wrap-select" data-target="hospital_site">
+                        <button type="button" class="wrap-select-trigger" aria-labelledby="lbl-site" aria-expanded="false" id="trigger-hospital-site">
+                            {{ hospital_choices[0].label if hospital_choices else '' }}
+                        </button>
+                        <div class="wrap-select-menu" role="listbox">
+                            {% for item in hospital_choices %}
+                                <button type="button" class="wrap-select-option" data-value="{{ item.value }}">
+                                    {{ item.label }}
+                                </button>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dropdown 2C: Health Board -> Scan Type -->
+                <div class="control-group sub-filter" id="group-health-board" style="display: {{ 'flex' if category == 'health_board' else 'none' }};">
+                    <span class="field-label" id="lbl-hb-scan">{{ translations['forecast_label_scan_type'] }}</span>
+                    <div class="wrap-select" data-target="hb_scan">
+                        <button type="button" class="wrap-select-trigger" aria-labelledby="lbl-hb-scan" aria-expanded="false" id="trigger-hb-scan">
+                            {{ scan_choices[0].label if scan_choices else '' }}
+                        </button>
+                        <div class="wrap-select-menu" role="listbox">
+                            {% for item in scan_choices %}
+                                <button type="button" class="wrap-select-option" data-value="{{ item.value }}">
+                                    {{ item.label }}
+                                </button>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Button -->
+                <button type="submit" id="btn-visualise" class="visualise-submit-btn" {% if not category %}disabled{% endif %}>
+                    {{ translations['forecast_btn_visualise'] }}
+                </button>
+
+                <!-- Dropdown 3: (Optional) Data Metric in: -->
+                <div class="control-group">
+                    <span class="field-label" id="lbl-metric">{{ translations['forecast_label_metric'] }}</span>
+                    <div class="wrap-select" data-target="metric">
+                        <button type="button" class="wrap-select-trigger" aria-labelledby="lbl-metric" aria-expanded="false" id="trigger-metric">
+                            {% if metric == 'total_waiting' %}
+                                {{ translations['forecast_metric_waiting'] }}
+                            {% elif metric == 'incoming_referrals' %}
+                                {{ translations['forecast_metric_referrals'] }}
+                            {% else %}
+                                {{ translations['forecast_metric_pct'] }}
+                            {% endif %}
+                        </button>
+                        <div class="wrap-select-menu" role="listbox">
+                            <button type="button" class="wrap-select-option" data-value="percentage_change" aria-selected="{{ 'true' if metric == 'percentage_change' else 'false' }}">
+                                {{ translations['forecast_metric_pct'] }}
+                            </button>
+                            <button type="button" class="wrap-select-option" data-value="total_waiting" aria-selected="{{ 'true' if metric == 'total_waiting' else 'false' }}">
+                                {{ translations['forecast_metric_waiting'] }}
+                            </button>
+                            <button type="button" class="wrap-select-option" data-value="incoming_referrals" aria-selected="{{ 'true' if metric == 'incoming_referrals' else 'false' }}">
+                                {{ translations['forecast_metric_referrals'] }}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <!-- Static v0.3 Plot Cards Grid -->
+            {% set valid_cards = cards | selectattr('image_rel') | list %}
+            {% if valid_cards %}
+                <div class="forecast-cards-grid">
+                    {% for card in valid_cards %}
+                        <article class="forecast-plot-card">
+                            <img
+                                src="{{ url_for('static', filename=card['image_rel']) }}"
+                                alt="{{ card['title'] }}"
+                                loading="lazy"
+                            >
+                        </article>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p>{{ translations['forecast_empty_state'] }}</p>
+            {% endif %}
+
+            <!-- Bottom 3 Two-Line Regenerate Buttons (Default View Only) -->
+            {% if is_default %}
+                <form method="GET" action="{{ url_for('forecast_page') }}" class="default-regen-bar">
+                    <input type="hidden" name="lang" value="{{ lang }}">
+
+                    <button
+                        type="submit"
+                        name="metric"
+                        value="percentage_change"
+                        class="regen-two-line-btn {{ 'active-metric' if metric == 'percentage_change' else '' }}"
+                    >
+                        <span>{{ translations['forecast_regen_prefix'] }}</span>
+                        <strong>{{ translations['forecast_metric_pct'] }}</strong>
+                    </button>
+
+                    <button
+                        type="submit"
+                        name="metric"
+                        value="total_waiting"
+                        class="regen-two-line-btn {{ 'active-metric' if metric == 'total_waiting' else '' }}"
+                    >
+                        <span>{{ translations['forecast_regen_prefix'] }}</span>
+                        <strong>{{ translations['forecast_metric_waiting'] }}</strong>
+                    </button>
+
+                    <button
+                        type="submit"
+                        name="metric"
+                        value="incoming_referrals"
+                        class="regen-two-line-btn {{ 'active-metric' if metric == 'incoming_referrals' else '' }}"
+                    >
+                        <span>{{ translations['forecast_regen_prefix'] }}</span>
+                        <strong>{{ translations['forecast_metric_referrals'] }}</strong>
+                    </button>
+                </form>
+            {% endif %}
+        </section>
+    </main>
+
+    <script>
+        (function () {
+            const form = document.getElementById("forecast-form");
+            const inputCategory = document.getElementById("input-category");
+            const inputSelection = document.getElementById("input-selection");
+            const inputMetric = document.getElementById("input-metric");
+            const btnVisualise = document.getElementById("btn-visualise");
+
+            const state = {
+                category: inputCategory.value || "",
+                scanSub: "{{ scan_choices[0].value if scan_choices else '' }}",
+                hbSub: "{{ health_board_choices[0].value if health_board_choices else '' }}",
+                hospitalSite: "{{ hospital_choices[0].value if hospital_choices else '' }}",
+                hbScan: "{{ scan_choices[0].value if scan_choices else '' }}"
+            };
+
+            // Hydrate existing selection on page reload
+            if (state.category === "scan_type" && inputSelection.value.includes("||")) {
+                const parts = inputSelection.value.split("||");
+                state.scanSub = parts[0];
+                state.hbSub = parts[1];
+            } else if (state.category === "hospital" && inputSelection.value) {
+                state.hospitalSite = inputSelection.value;
+            } else if (state.category === "health_board" && inputSelection.value) {
+                state.hbScan = inputSelection.value;
+            }
+
+            function syncSelectionInput() {
+                if (state.category === "scan_type") {
+                    inputSelection.value = state.scanSub + "||" + state.hbSub;
+                } else if (state.category === "hospital") {
+                    inputSelection.value = state.hospitalSite;
+                } else if (state.category === "health_board") {
+                    inputSelection.value = state.hbScan;
+                } else {
+                    inputSelection.value = "";
+                }
+                btnVisualise.disabled = !state.category;
+            }
+
+            function syncCustomLabel(targetName, val) {
+                const container = document.querySelector('.wrap-select[data-target="' + targetName + '"]');
+                if (!container) return;
+                const trigger = container.querySelector(".wrap-select-trigger");
+                const opts = container.querySelectorAll(".wrap-select-option");
+                opts.forEach(function (opt) {
+                    const match = opt.getAttribute("data-value") === val;
+                    opt.setAttribute("aria-selected", match ? "true" : "false");
+                    if (match) {
+                        trigger.textContent = opt.textContent.trim();
+                    }
+                });
+            }
+
+            syncCustomLabel("scan_sub", state.scanSub);
+            syncCustomLabel("hb_sub", state.hbSub);
+            syncCustomLabel("hospital_site", state.hospitalSite);
+            syncCustomLabel("hb_scan", state.hbScan);
+            syncSelectionInput();
+
+            // Open/close accessible two-line dropdowns
+            document.querySelectorAll(".wrap-select").forEach(function (wrapper) {
+                const trigger = wrapper.querySelector(".wrap-select-trigger");
+                const target = wrapper.getAttribute("data-target");
+
+                trigger.addEventListener("click", function (e) {
+                    e.stopPropagation();
+                    const wasOpen = wrapper.classList.contains("open");
+                    document.querySelectorAll(".wrap-select.open").forEach(function (other) {
+                        other.classList.remove("open");
+                        other.querySelector(".wrap-select-trigger").setAttribute("aria-expanded", "false");
+                    });
+                    if (!wasOpen) {
+                        wrapper.classList.add("open");
+                        trigger.setAttribute("aria-expanded", "true");
+                    }
+                });
+
+                wrapper.querySelectorAll(".wrap-select-option").forEach(function (opt) {
+                    opt.addEventListener("click", function () {
+                        const val = opt.getAttribute("data-value");
+                        syncCustomLabel(target, val);
+                        wrapper.classList.remove("open");
+                        trigger.setAttribute("aria-expanded", "false");
+
+                        if (target === "category") {
+                            state.category = val;
+                            inputCategory.value = val;
+                            document.getElementById("group-scan-type").style.display = val === "scan_type" ? "flex" : "none";
+                            document.getElementById("group-hospital").style.display = val === "hospital" ? "flex" : "none";
+                            document.getElementById("group-health-board").style.display = val === "health_board" ? "flex" : "none";
+                            syncSelectionInput();
+                        } else if (target === "scan_sub") {
+                            state.scanSub = val;
+                            syncSelectionInput();
+                        } else if (target === "hb_sub") {
+                            state.hbSub = val;
+                            syncSelectionInput();
+                        } else if (target === "hospital_site") {
+                            state.hospitalSite = val;
+                            syncSelectionInput();
+                        } else if (target === "hb_scan") {
+                            state.hbScan = val;
+                            syncSelectionInput();
+                        } else if (target === "metric") {
+                            inputMetric.value = val;
+                            syncSelectionInput();
+                            form.submit();
+                        }
+                    });
+                });
+            });
+
+            document.addEventListener("click", function () {
+                document.querySelectorAll(".wrap-select.open").forEach(function (openEl) {
+                    openEl.classList.remove("open");
+                    openEl.querySelector(".wrap-select-trigger").setAttribute("aria-expanded", "false");
+                });
+            });
+        })();
+    </script>
+</body>
+</html>

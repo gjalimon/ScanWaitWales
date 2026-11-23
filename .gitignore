@@ -17,6 +17,10 @@ Thumbs.db
 .vscode/
 .idea/
 
+# Forecast restart folder (all raw files, restart CSVs, and restart logs)
+forecasts_restart_datasets/*
+!forecasts_restart_datasets/.gitkeep
+
 # Raw, archived, and log files (keep folder structure via .gitkeep)
 raw_datasets/*
 !raw_datasets/.gitkeep
