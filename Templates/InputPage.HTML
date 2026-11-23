@@ -36,9 +36,9 @@
 
         #hospital-search .calculate-button {
             display: inline-block;
-            width: 500px;
+            width: min(100%, 400px);
             min-height: 100px;       /* Makes the buttons taller */
-            padding: 40px 40px;     /* Adds top/bottom and left/right breathing room */
+            padding: 5px 40px;     /* Adds top/bottom and left/right breathing room */
             margin: 10px 14px;      /* Adds horizontal space (28px total gap) and vertical spacing */
             vertical-align: middle;
         }
@@ -183,7 +183,7 @@
                     value="all"
                     class="calculate-button"
                 >
-                    {{ translations['input_all_hospitals'] }}
+                    {{ translations['input_all_hospitals'] | safe }}
                 </button>
             </div>
         </form>
