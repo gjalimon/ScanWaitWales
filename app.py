@@ -516,7 +516,7 @@ def forecast_page():
     ]
 
     return render_template(
-        "Forecasts.html",
+        "Forecasts.HTML",
         lang=lang,
         translations=translations,
         category=view_data["category"],
@@ -530,7 +530,7 @@ def forecast_page():
     )
 
     return render_template(
-        "Forecasts.html",
+        "Forecasts.HTML",
         lang=lang,
         translations=translations,
         category=view_data["category"],
