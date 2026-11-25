@@ -63,6 +63,34 @@
 
         <p style="font-size: 14px;">
         <p>
+        {% if typical_wait is not none %}
+        <div class="wait-distribution-summary">
+            <p>
+                {{ translations['output_wait_50pct'].format(
+                    weeks=typical_wait,
+                    unit=(translations['output_week_singular'] if typical_wait == 1 else translations['output_weeks'])
+                ) }}
+            </p>
+            {% if wait_weeks_25pct is not none %}
+            <p>
+                {{ translations['output_wait_25pct'].format(
+                    weeks=wait_weeks_25pct,
+                    unit=(translations['output_week_singular'] if wait_weeks_25pct == 1 else translations['output_weeks'])
+                ) }}
+            </p>
+            {% endif %}
+            {% if wait_weeks_75pct is not none %}
+            <p>
+                {{ translations['output_wait_75pct'].format(
+                    weeks=wait_weeks_75pct,
+                    unit=(translations['output_week_singular'] if wait_weeks_75pct == 1 else translations['output_weeks'])
+                ) }}
+            </p>
+            {% endif %}
+        </div>
+        {% endif %}
+
+        <p>
             <strong>{{ translations['output_age_group_label'] }}</strong>
             {{ translations['age_group_child'] if adult|string == '0' else translations['age_group_adult'] }}
         </p>

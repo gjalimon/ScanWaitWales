@@ -169,3 +169,32 @@ def compute_stock_and_flow_metrics(
         entry["wait_trend"] = trend
 
     return monthly_series
+
+####--- Waiting Percentiles calculator (50%) (25%) (25%) ---###
+
+def compute_wait_percentiles(
+    week_totals: dict[int, float],
+) -> tuple[int | None, int | None, int | None]:
+    """Return (p25_weeks, p50_weeks, p75_weeks) upper bounds from week_totals."""
+    if not week_totals:
+        return None, None, None
+    total_waiting = sum(week_totals.values())
+    if total_waiting <= 0:
+        return None, None, None
+
+    sorted_weeks = sorted(week_totals)
+
+    def _band_for_quantile(q: float) -> int | None:
+        target = total_waiting * q
+        running_total = 0.0
+        for week in sorted_weeks:
+            running_total += week_totals[week]
+            if running_total >= target:
+                return 40 if week >= 40 else int(week) + 1
+        return None
+
+    return (
+        _band_for_quantile(0.25),
+        _band_for_quantile(0.50),
+        _band_for_quantile(0.75),
+    )

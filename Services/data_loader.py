@@ -13,9 +13,6 @@ Workflow when run manually (``python -B Services/data_loader.py``):
 6. Writes the slimmed, fast-loading output CSV:
    ``published_dataset/[HHMMSS]_[DDMMYYYY].csv``
 """
-
-from __future__ import annotations
-
 from datetime import datetime
 import io
 from pathlib import Path
@@ -37,6 +34,7 @@ from Services.waiting_math import (
     calculate_needle_angle,
     classify_wait_time,
     compute_stock_and_flow_metrics,
+    compute_wait_percentiles,
     get_week_number,
     median_band_from_week_totals,
 )
@@ -61,6 +59,8 @@ REQUIRED_PUBLISHED_COLUMNS = [
     "adult",
     "latest_date",
     "typical_wait_weeks",
+    "wait_weeks_25pct",
+    "wait_weeks_75pct",
     "predicted_wait_weeks",
     "wait_trend",
     "clearance_rate_pct",
@@ -139,7 +139,9 @@ def _build_published_table(raw_df: pd.DataFrame) -> pd.DataFrame:
                         grp.groupby("week_num")["Data values"].sum().to_dict()
                     )
                     total_waiting = float(sum(week_totals.values()))
-                    typical_wait = median_band_from_week_totals(week_totals)
+                    wait_25pct, typical_wait, wait_75pct = compute_wait_percentiles(
+                        week_totals
+                    )
                     monthly_series.append(
                         {
                             "date_ref": date_ref,
@@ -147,6 +149,8 @@ def _build_published_table(raw_df: pd.DataFrame) -> pd.DataFrame:
                             "week_totals": week_totals,
                             "total_waiting": total_waiting,
                             "typical_wait_weeks": typical_wait,
+                            "wait_weeks_25pct": wait_25pct,
+                            "wait_weeks_75pct": wait_75pct,
                         }
                     )
 
@@ -158,11 +162,15 @@ def _build_published_table(raw_df: pd.DataFrame) -> pd.DataFrame:
                 if latest_entries:
                     latest_item = latest_entries[0]
                     typical_wait = latest_item["typical_wait_weeks"]
+                    wait_25pct = latest_item["wait_weeks_25pct"]
+                    wait_75pct = latest_item["wait_weeks_75pct"]
                     predicted_wait = latest_item["predicted_wait_weeks"]
                     wait_trend = latest_item["wait_trend"]
                     clearance_rate = latest_item["clearance_rate_pct"]
                 else:
                     typical_wait = None
+                    wait_25pct = None
+                    wait_75pct = None
                     predicted_wait = None
                     wait_trend = "stable"
                     clearance_rate = None
@@ -174,6 +182,8 @@ def _build_published_table(raw_df: pd.DataFrame) -> pd.DataFrame:
                         "adult": int(adult_flag),
                         "latest_date": latest_date_label,
                         "typical_wait_weeks": typical_wait,
+                        "wait_weeks_25pct": wait_25pct,
+                        "wait_weeks_75pct": wait_75pct,
                         "predicted_wait_weeks": predicted_wait,
                         "wait_trend": wait_trend,
                         "clearance_rate_pct": clearance_rate,

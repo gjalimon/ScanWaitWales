@@ -190,10 +190,10 @@ li a{
     align-items: center;
     justify-content: center;
     color: #F1F5F0;
-    padding: 12px 20px;
+    padding: 9px 15px;
     text-decoration: none;
     font-family: Verdana;
-    font-size: 23px;
+    font-size: 18px;
     font-weight: normal;
     line-height: 1.2;
     white-space: nowrap;
@@ -211,9 +211,29 @@ ul li a.active{
     font-weight: bold;
 }
 
+/* For the ScanWait Wales logo in the navigation bar (50% size) */
+
+li a.nav-logo-link {
+    display: flex;
+    align-items: center;
+    padding: 5px 12px;
+}
+
+li a.nav-logo-link:hover {
+    background-color: transparent;
+}
+
+.nav-logo {
+    height: 27px;
+    width: auto;
+    max-width: 158px;
+    object-fit: contain;
+    display: block;
+}
+
 /* For the ScanWait Wales text in the navigation bar*/
 li a.brand-link {
-    padding: 10px 19px;
+    padding: 8px 15px;
     font-weight: bold;
 }
 
@@ -252,21 +272,22 @@ ul.more_info_nav {
     width: auto;
 }
 
-.language-button{ 
-    border: 2px solid #F1F5F0; 
+.language-button {
+    border: 2px solid #F1F5F0;
     background-color: #A70626;
-    color:#F1F5F0;
-    font-size: 18px;
+    color: #F1F5F0;
+    font-size: 15px;
     font-family: Verdana;
     font-style: italic;
     font-weight: bold;
     border-radius: 0px;
     cursor: pointer;
     text-decoration: none;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 0 19px;
+    padding: 6px 12px;
+    line-height: 1.2;
 }
 
 .back-viz-button{

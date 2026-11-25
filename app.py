@@ -317,6 +317,8 @@ def run_calculation():
 
     if record is not None:
         typical_wait = record["typical_wait_weeks"]
+        wait_weeks_25pct = record.get("wait_weeks_25pct")
+        wait_weeks_75pct = record.get("wait_weeks_75pct")
         predicted_wait = record["predicted_wait_weeks"]
         wait_trend = record["wait_trend"]
         colour_zone = record["colour_zone"]
@@ -324,6 +326,8 @@ def run_calculation():
         latest_date_en = record["latest_date"]
     else:
         typical_wait = None
+        wait_weeks_25pct = None
+        wait_weeks_75pct = None
         predicted_wait = None
         wait_trend = "stable"
         colour_zone = "green"
@@ -348,6 +352,8 @@ def run_calculation():
         lang=lang,
         adult=adult,
         typical_wait=typical_wait,
+        wait_weeks_25pct=wait_weeks_25pct,
+        wait_weeks_75pct=wait_weeks_75pct,
         predicted_wait=predicted_wait,
         wait_trend=wait_trend,
         scan_choice=scan_choice,

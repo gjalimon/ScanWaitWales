@@ -93,7 +93,19 @@ def get_wait_record(
 
     row = matched.iloc[0]
     typical_wait = (
-        None if pd.isna(row["typical_wait_weeks"]) else int(round(float(row["typical_wait_weeks"])))
+        None
+        if pd.isna(row["typical_wait_weeks"])
+        else int(round(float(row["typical_wait_weeks"])))
+    )
+    wait_weeks_25pct = (
+        None
+        if pd.isna(row.get("wait_weeks_25pct"))
+        else int(round(float(row["wait_weeks_25pct"])))
+    )
+    wait_weeks_75pct = (
+        None
+        if pd.isna(row.get("wait_weeks_75pct"))
+        else int(round(float(row["wait_weeks_75pct"])))
     )
     predicted_wait = (
         None
@@ -108,6 +120,8 @@ def get_wait_record(
 
     return {
         "typical_wait_weeks": typical_wait,
+        "wait_weeks_25pct": wait_weeks_25pct,
+        "wait_weeks_75pct": wait_weeks_75pct,
         "predicted_wait_weeks": predicted_wait,
         "wait_trend": str(row.get("wait_trend", "stable")),
         "clearance_rate_pct": clearance_rate,
@@ -115,7 +129,6 @@ def get_wait_record(
         "needle_angle": float(row.get("needle_angle", calculate_needle_angle(typical_wait))),
         "latest_date": str(row.get("latest_date", "latest month")),
     }
-
 
 def get_typical_wait_weeks(
     data: pd.DataFrame,

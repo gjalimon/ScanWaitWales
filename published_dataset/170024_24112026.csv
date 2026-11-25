@@ -1,0 +1,235 @@
+hospital_name,scan_choice,adult,latest_date,typical_wait_weeks,wait_weeks_25pct,wait_weeks_75pct,predicted_wait_weeks,wait_trend,clearance_rate_pct,colour_zone,needle_angle
+Bridgend,CT,1,September 2026,2.0,1.0,3.0,2.0,stable,96.7,green,-66.0
+Bridgend,CT,0,September 2026,,,,,stable,,green,-90.0
+Bridgend,CT [Cardiac only],1,September 2026,8.0,3.0,14.0,6.0,falling,28.7,green,6.0
+Bridgend,CT [Cardiac only],0,September 2026,,,,,stable,,green,-90.0
+Bridgend,MRI,1,September 2026,3.0,2.0,6.0,4.0,rising,59.9,green,-54.0
+Bridgend,MRI,0,September 2026,,,,,stable,,green,-90.0
+Bridgend,Ultrasound [Not pregnancy related],1,September 2026,6.0,3.0,11.0,6.0,stable,42.2,green,-18.0
+Bridgend,Ultrasound [Not pregnancy related],0,September 2026,,,,,stable,,green,-90.0
+Bridgend,Nuclear Medicine,1,September 2026,3.0,1.0,4.0,3.0,stable,78.6,green,-54.0
+Bridgend,Nuclear Medicine,0,September 2026,,,,,stable,,green,-90.0
+Bridgend,Fluoroscopy,1,September 2026,5.0,2.0,8.0,5.0,stable,56.7,green,-30.0
+Bridgend,Fluoroscopy,0,September 2026,,,,,stable,,green,-90.0
+Bronglais General Hospital,CT,1,September 2026,1.0,1.0,2.0,1.0,stable,93.9,green,-78.0
+Bronglais General Hospital,CT,0,September 2026,,,,,stable,,green,-90.0
+Bronglais General Hospital,MRI,1,September 2026,8.0,3.0,16.0,7.0,falling,42.8,green,6.0
+Bronglais General Hospital,MRI,0,September 2026,,,,,stable,,green,-90.0
+Bronglais General Hospital,Ultrasound [Not pregnancy related],1,September 2026,7.0,2.0,13.0,6.0,falling,43.9,green,-6.0
+Bronglais General Hospital,Ultrasound [Not pregnancy related],0,September 2026,,,,,stable,,green,-90.0
+Bronglais General Hospital,Fluoroscopy,1,September 2026,3.0,2.0,7.0,3.0,stable,44.4,green,-54.0
+Bronglais General Hospital,Fluoroscopy,0,September 2026,,,,,stable,,green,-90.0
+Glangwili General Hospital,CT,1,September 2026,2.0,1.0,3.0,2.0,stable,94.0,green,-66.0
+Glangwili General Hospital,CT,0,September 2026,,,,,stable,,green,-90.0
+Glangwili General Hospital,MRI,1,September 2026,9.0,3.0,14.0,9.0,stable,25.6,orange,18.0
+Glangwili General Hospital,MRI,0,September 2026,,,,,stable,,green,-90.0
+Glangwili General Hospital,Ultrasound [Not pregnancy related],1,September 2026,12.0,3.0,22.0,12.0,stable,27.8,orange,54.0
+Glangwili General Hospital,Ultrasound [Not pregnancy related],0,September 2026,,,,,stable,,green,-90.0
+Glangwili General Hospital,Fluoroscopy,1,September 2026,5.0,3.0,10.0,5.0,stable,42.4,green,-30.0
+Glangwili General Hospital,Fluoroscopy,0,September 2026,,,,,stable,,green,-90.0
+Grange University,CT,1,September 2026,3.0,2.0,4.0,3.0,stable,77.8,green,-54.0
+Grange University,CT,0,September 2026,,,,,stable,,green,-90.0
+Grange University,CT [Cardiac only],1,September 2026,1.0,1.0,1.0,1.0,stable,100.0,green,-78.0
+Grange University,CT [Cardiac only],0,September 2026,,,,,stable,,green,-90.0
+Grange University,MRI,1,September 2026,4.0,2.0,6.0,5.0,rising,36.1,green,-42.0
+Grange University,MRI,0,September 2026,,,,,stable,,green,-90.0
+Grange University,Ultrasound [Not pregnancy related],1,September 2026,2.0,1.0,6.0,1.0,falling,73.0,green,-66.0
+Grange University,Ultrasound [Not pregnancy related],0,September 2026,,,,,stable,,green,-90.0
+Grange University,Diagnostic Angiography,1,September 2026,6.0,3.0,9.0,5.0,falling,39.0,green,-18.0
+Grange University,Diagnostic Angiography,0,September 2026,,,,,stable,,green,-90.0
+Llandough,CT,1,September 2026,6.0,3.0,16.0,5.0,falling,48.9,green,-18.0
+Llandough,CT,0,September 2026,,,,,stable,,green,-90.0
+Llandough,CT [Cardiac only],1,September 2026,28.0,23.0,30.0,28.0,stable,0.0,red,90.0
+Llandough,CT [Cardiac only],0,September 2026,,,,,stable,,green,-90.0
+Llandough,MRI,1,September 2026,11.0,4.0,18.0,9.0,falling,27.2,orange,42.0
+Llandough,MRI,0,September 2026,,,,,stable,,green,-90.0
+Llandough,MRI [Cardiac only],1,September 2026,,,,,stable,,green,-90.0
+Llandough,MRI [Cardiac only],0,September 2026,,,,,stable,,green,-90.0
+Llandough,Ultrasound [Not pregnancy related],1,September 2026,15.0,5.0,21.0,10.0,falling,24.3,red,90.0
+Llandough,Ultrasound [Not pregnancy related],0,September 2026,,,,,stable,,green,-90.0
+Llandough,Nuclear Medicine,1,September 2026,5.0,3.0,18.0,4.0,falling,51.6,green,-30.0
+Llandough,Nuclear Medicine,0,September 2026,,,,,stable,,green,-90.0
+Llandough,Fluoroscopy,1,September 2026,11.0,5.0,20.0,8.0,falling,4.3,orange,42.0
+Llandough,Fluoroscopy,0,September 2026,,,,,stable,,green,-90.0
+Morriston,CT,1,September 2026,3.0,2.0,8.0,4.0,rising,62.7,green,-54.0
+Morriston,CT,0,September 2026,,,,,stable,,green,-90.0
+Morriston,MRI,1,September 2026,3.0,2.0,5.0,4.0,rising,70.6,green,-54.0
+Morriston,MRI,0,September 2026,,,,,stable,,green,-90.0
+Morriston,Ultrasound [Not pregnancy related],1,September 2026,5.0,2.0,10.0,5.0,stable,48.6,green,-30.0
+Morriston,Ultrasound [Not pregnancy related],0,September 2026,,,,,stable,,green,-90.0
+Morriston,Nuclear Medicine,1,September 2026,1.0,1.0,2.0,1.0,stable,93.8,green,-78.0
+Morriston,Nuclear Medicine,0,September 2026,,,,,stable,,green,-90.0
+Morriston,Fluoroscopy,1,September 2026,3.0,1.0,4.0,3.0,stable,87.2,green,-54.0
+Morriston,Fluoroscopy,0,September 2026,,,,,stable,,green,-90.0
+Morriston,Diagnostic Angiography,1,September 2026,7.0,1.0,17.0,1.0,falling,0.0,green,-6.0
+Morriston,Diagnostic Angiography,0,September 2026,,,,,stable,,green,-90.0
+NW Cancer Treament Centre,CT,1,September 2026,1.0,1.0,2.0,1.0,stable,81.6,green,-78.0
+NW Cancer Treament Centre,CT,0,September 2026,,,,,stable,,green,-90.0
+Neath/Port Talbot,CT,1,September 2026,4.0,2.0,8.0,4.0,stable,62.1,green,-42.0
+Neath/Port Talbot,CT,0,September 2026,,,,,stable,,green,-90.0
+Neath/Port Talbot,CT [Cardiac only],1,September 2026,7.0,4.0,11.0,7.0,stable,30.1,green,-6.0
+Neath/Port Talbot,CT [Cardiac only],0,September 2026,,,,,stable,,green,-90.0
+Neath/Port Talbot,MRI,1,September 2026,3.0,1.0,5.0,3.0,stable,75.3,green,-54.0
+Neath/Port Talbot,MRI,0,September 2026,,,,,stable,,green,-90.0
+Neath/Port Talbot,MRI [Cardiac only],1,September 2026,12.0,10.0,16.0,15.0,rising,15.2,orange,54.0
+Neath/Port Talbot,MRI [Cardiac only],0,September 2026,,,,,stable,,green,-90.0
+Neath/Port Talbot,Ultrasound [Not pregnancy related],1,September 2026,4.0,2.0,9.0,5.0,rising,51.9,green,-42.0
+Neath/Port Talbot,Ultrasound [Not pregnancy related],0,September 2026,,,,,stable,,green,-90.0
+Nevill Hall,CT,1,September 2026,4.0,2.0,6.0,4.0,stable,64.6,green,-42.0
+Nevill Hall,CT,0,September 2026,,,,,stable,,green,-90.0
+Nevill Hall,CT [Cardiac only],1,September 2026,1.0,1.0,1.0,1.0,stable,85.7,green,-78.0
+Nevill Hall,CT [Cardiac only],0,September 2026,,,,,stable,,green,-90.0
+Nevill Hall,MRI,1,September 2026,4.0,2.0,6.0,4.0,stable,44.7,green,-42.0
+Nevill Hall,MRI,0,September 2026,,,,,stable,,green,-90.0
+Nevill Hall,Ultrasound [Not pregnancy related],1,September 2026,4.0,2.0,7.0,4.0,stable,62.1,green,-42.0
+Nevill Hall,Ultrasound [Not pregnancy related],0,September 2026,,,,,stable,,green,-90.0
+Nevill Hall,Nuclear Medicine,1,September 2026,2.0,2.0,4.0,3.0,rising,68.3,green,-66.0
+Nevill Hall,Nuclear Medicine,0,September 2026,,,,,stable,,green,-90.0
+Nevill Hall,Nuclear Medicine [Cardiac / Myocardial Perfusion],1,September 2026,13.0,7.0,18.0,11.0,falling,27.4,red,66.0
+Nevill Hall,Nuclear Medicine [Cardiac / Myocardial Perfusion],0,September 2026,,,,,stable,,green,-90.0
+Prince Charles Hospital,CT,1,September 2026,2.0,1.0,3.0,2.0,stable,95.8,green,-66.0
+Prince Charles Hospital,CT,0,September 2026,,,,,stable,,green,-90.0
+Prince Charles Hospital,CT [Cardiac only],1,September 2026,1.0,1.0,3.0,1.0,stable,100.0,green,-78.0
+Prince Charles Hospital,CT [Cardiac only],0,September 2026,,,,,stable,,green,-90.0
+Prince Charles Hospital,MRI,1,September 2026,3.0,2.0,6.0,4.0,rising,65.3,green,-54.0
+Prince Charles Hospital,MRI,0,September 2026,,,,,stable,,green,-90.0
+Prince Charles Hospital,MRI [Cardiac only],1,September 2026,10.0,6.0,10.0,12.0,rising,22.6,orange,30.0
+Prince Charles Hospital,MRI [Cardiac only],0,September 2026,,,,,stable,,green,-90.0
+Prince Charles Hospital,Ultrasound [Not pregnancy related],1,September 2026,6.0,3.0,10.0,6.0,stable,37.7,green,-18.0
+Prince Charles Hospital,Ultrasound [Not pregnancy related],0,September 2026,,,,,stable,,green,-90.0
+Prince Charles Hospital,Fluoroscopy,1,September 2026,5.0,3.0,7.0,5.0,stable,41.7,green,-30.0
+Prince Charles Hospital,Fluoroscopy,0,September 2026,,,,,stable,,green,-90.0
+Prince Philip Hospital,CT,1,September 2026,2.0,1.0,3.0,2.0,stable,83.6,green,-66.0
+Prince Philip Hospital,CT,0,September 2026,,,,,stable,,green,-90.0
+Prince Philip Hospital,MRI,1,September 2026,7.0,3.0,13.0,7.0,stable,33.4,green,-6.0
+Prince Philip Hospital,MRI,0,September 2026,,,,,stable,,green,-90.0
+Prince Philip Hospital,Ultrasound [Not pregnancy related],1,September 2026,11.0,4.0,18.0,10.0,falling,22.9,orange,42.0
+Prince Philip Hospital,Ultrasound [Not pregnancy related],0,September 2026,,,,,stable,,green,-90.0
+Prince Philip Hospital,Fluoroscopy,1,September 2026,7.0,2.0,20.0,4.0,falling,35.7,green,-6.0
+Prince Philip Hospital,Fluoroscopy,0,September 2026,,,,,stable,,green,-90.0
+Royal Glamorgan,CT,1,September 2026,2.0,1.0,3.0,3.0,rising,94.4,green,-66.0
+Royal Glamorgan,CT,0,September 2026,,,,,stable,,green,-90.0
+Royal Glamorgan,CT [Cardiac only],1,September 2026,5.0,3.0,11.0,6.0,rising,22.1,green,-30.0
+Royal Glamorgan,CT [Cardiac only],0,September 2026,,,,,stable,,green,-90.0
+Royal Glamorgan,MRI,1,September 2026,4.0,2.0,6.0,4.0,stable,70.1,green,-42.0
+Royal Glamorgan,MRI,0,September 2026,,,,,stable,,green,-90.0
+Royal Glamorgan,MRI [Cardiac only],1,September 2026,6.0,1.0,6.0,6.0,stable,70.6,green,-18.0
+Royal Glamorgan,MRI [Cardiac only],0,September 2026,,,,,stable,,green,-90.0
+Royal Glamorgan,Ultrasound [Not pregnancy related],1,September 2026,7.0,3.0,11.0,6.0,falling,40.3,green,-6.0
+Royal Glamorgan,Ultrasound [Not pregnancy related],0,September 2026,,,,,stable,,green,-90.0
+Royal Glamorgan,Nuclear Medicine,1,September 2026,1.0,1.0,1.0,1.0,stable,100.0,green,-78.0
+Royal Glamorgan,Nuclear Medicine,0,September 2026,,,,,stable,,green,-90.0
+Royal Glamorgan,Fluoroscopy,1,September 2026,3.0,2.0,5.0,2.0,falling,80.8,green,-54.0
+Royal Glamorgan,Fluoroscopy,0,September 2026,,,,,stable,,green,-90.0
+Royal Glamorgan,Diagnostic Angiography,1,September 2026,10.0,8.0,16.0,12.0,rising,25.7,orange,30.0
+Royal Glamorgan,Diagnostic Angiography,0,September 2026,,,,,stable,,green,-90.0
+Royal Gwent,CT,1,September 2026,3.0,1.0,6.0,4.0,rising,62.2,green,-54.0
+Royal Gwent,CT,0,September 2026,,,,,stable,,green,-90.0
+Royal Gwent,CT [Cardiac only],1,September 2026,5.0,3.0,8.0,6.0,rising,43.4,green,-30.0
+Royal Gwent,CT [Cardiac only],0,September 2026,,,,,stable,,green,-90.0
+Royal Gwent,MRI,1,September 2026,3.0,1.0,6.0,4.0,rising,68.0,green,-54.0
+Royal Gwent,MRI,0,September 2026,,,,,stable,,green,-90.0
+Royal Gwent,Ultrasound [Not pregnancy related],1,September 2026,4.0,2.0,7.0,5.0,rising,57.4,green,-42.0
+Royal Gwent,Ultrasound [Not pregnancy related],0,September 2026,,,,,stable,,green,-90.0
+Royal Gwent,Nuclear Medicine,1,September 2026,2.0,1.0,3.0,2.0,stable,92.3,green,-66.0
+Royal Gwent,Nuclear Medicine,0,September 2026,,,,,stable,,green,-90.0
+Royal Gwent,Fluoroscopy,1,September 2026,5.0,3.0,7.0,6.0,rising,57.9,green,-30.0
+Royal Gwent,Fluoroscopy,0,September 2026,,,,,stable,,green,-90.0
+Singleton,CT,1,September 2026,3.0,2.0,6.0,4.0,rising,64.7,green,-54.0
+Singleton,CT,0,September 2026,,,,,stable,,green,-90.0
+Singleton,MRI,1,September 2026,2.0,1.0,4.0,2.0,stable,84.3,green,-66.0
+Singleton,MRI,0,September 2026,,,,,stable,,green,-90.0
+Singleton,Ultrasound [Not pregnancy related],1,September 2026,5.0,2.0,8.0,5.0,stable,58.2,green,-30.0
+Singleton,Ultrasound [Not pregnancy related],0,September 2026,,,,,stable,,green,-90.0
+Singleton,Nuclear Medicine,1,September 2026,4.0,2.0,6.0,4.0,stable,41.7,green,-42.0
+Singleton,Nuclear Medicine,0,September 2026,,,,,stable,,green,-90.0
+Singleton,Nuclear Medicine [Cardiac / Myocardial Perfusion],1,September 2026,1.0,1.0,3.0,1.0,stable,91.3,green,-78.0
+Singleton,Nuclear Medicine [Cardiac / Myocardial Perfusion],0,September 2026,,,,,stable,,green,-90.0
+Singleton,Fluoroscopy,1,September 2026,4.0,2.0,6.0,4.0,stable,62.6,green,-42.0
+Singleton,Fluoroscopy,0,September 2026,,,,,stable,,green,-90.0
+University Hospital Wales,CT,1,September 2026,6.0,2.0,12.0,6.0,stable,31.3,green,-18.0
+University Hospital Wales,CT,0,September 2026,,,,,stable,,green,-90.0
+University Hospital Wales,CT [Cardiac only],1,September 2026,14.0,6.0,24.0,11.0,falling,29.7,red,78.0
+University Hospital Wales,CT [Cardiac only],0,September 2026,,,,,stable,,green,-90.0
+University Hospital Wales,MRI,1,September 2026,7.0,3.0,14.0,7.0,stable,28.0,green,-6.0
+University Hospital Wales,MRI,0,September 2026,,,,,stable,,green,-90.0
+University Hospital Wales,MRI [Cardiac only],1,September 2026,7.0,4.0,12.0,7.0,stable,51.5,green,-6.0
+University Hospital Wales,MRI [Cardiac only],0,September 2026,,,,,stable,,green,-90.0
+University Hospital Wales,Ultrasound [Not pregnancy related],1,September 2026,7.0,3.0,13.0,7.0,stable,39.9,green,-6.0
+University Hospital Wales,Ultrasound [Not pregnancy related],0,September 2026,,,,,stable,,green,-90.0
+University Hospital Wales,Nuclear Medicine,1,September 2026,9.0,2.0,22.0,5.0,falling,0.0,orange,18.0
+University Hospital Wales,Nuclear Medicine,0,September 2026,,,,,stable,,green,-90.0
+University Hospital Wales,Nuclear Medicine [Cardiac / Myocardial Perfusion],1,September 2026,13.0,6.0,16.0,14.0,rising,9.1,red,66.0
+University Hospital Wales,Nuclear Medicine [Cardiac / Myocardial Perfusion],0,September 2026,,,,,stable,,green,-90.0
+University Hospital Wales,Fluoroscopy,1,September 2026,10.0,3.0,22.0,7.0,falling,12.0,orange,30.0
+University Hospital Wales,Fluoroscopy,0,September 2026,,,,,stable,,green,-90.0
+University Hospital Wales,Diagnostic Angiography,1,September 2026,9.0,4.0,14.0,8.0,falling,25.6,orange,18.0
+University Hospital Wales,Diagnostic Angiography,0,September 2026,,,,,stable,,green,-90.0
+Withybush General Hospital,CT,1,September 2026,2.0,1.0,3.0,2.0,stable,89.8,green,-66.0
+Withybush General Hospital,CT,0,September 2026,,,,,stable,,green,-90.0
+Withybush General Hospital,MRI,1,September 2026,9.0,3.0,14.0,8.0,falling,32.6,orange,18.0
+Withybush General Hospital,MRI,0,September 2026,,,,,stable,,green,-90.0
+Withybush General Hospital,Ultrasound [Not pregnancy related],1,September 2026,5.0,2.0,9.0,6.0,rising,47.9,green,-30.0
+Withybush General Hospital,Ultrasound [Not pregnancy related],0,September 2026,,,,,stable,,green,-90.0
+Withybush General Hospital,Nuclear Medicine,1,September 2026,4.0,2.0,9.0,4.0,stable,54.3,green,-42.0
+Withybush General Hospital,Nuclear Medicine,0,September 2026,,,,,stable,,green,-90.0
+Withybush General Hospital,Nuclear Medicine [Cardiac / Myocardial Perfusion],1,September 2026,12.0,5.0,18.0,11.0,falling,34.6,orange,54.0
+Withybush General Hospital,Nuclear Medicine [Cardiac / Myocardial Perfusion],0,September 2026,,,,,stable,,green,-90.0
+Withybush General Hospital,Fluoroscopy,1,September 2026,3.0,2.0,9.0,3.0,stable,47.1,green,-54.0
+Withybush General Hospital,Fluoroscopy,0,September 2026,,,,,stable,,green,-90.0
+Ysbyty Glan Clwyd,CT,1,September 2026,2.0,1.0,4.0,2.0,stable,74.1,green,-66.0
+Ysbyty Glan Clwyd,CT,0,September 2026,,,,,stable,,green,-90.0
+Ysbyty Glan Clwyd,CT [Cardiac only],1,September 2026,8.0,4.0,12.0,8.0,stable,37.3,green,6.0
+Ysbyty Glan Clwyd,CT [Cardiac only],0,September 2026,,,,,stable,,green,-90.0
+Ysbyty Glan Clwyd,MRI,1,September 2026,2.0,1.0,4.0,2.0,stable,79.4,green,-66.0
+Ysbyty Glan Clwyd,MRI,0,September 2026,,,,,stable,,green,-90.0
+Ysbyty Glan Clwyd,MRI [Cardiac only],1,September 2026,4.0,3.0,11.0,2.0,falling,64.5,green,-42.0
+Ysbyty Glan Clwyd,MRI [Cardiac only],0,September 2026,,,,,stable,,green,-90.0
+Ysbyty Glan Clwyd,Ultrasound [Not pregnancy related],1,September 2026,3.0,1.0,4.0,3.0,stable,78.1,green,-54.0
+Ysbyty Glan Clwyd,Ultrasound [Not pregnancy related],0,September 2026,,,,,stable,,green,-90.0
+Ysbyty Glan Clwyd,Nuclear Medicine,1,September 2026,2.0,2.0,4.0,2.0,stable,83.6,green,-66.0
+Ysbyty Glan Clwyd,Nuclear Medicine,0,September 2026,,,,,stable,,green,-90.0
+Ysbyty Glan Clwyd,Nuclear Medicine [Cardiac / Myocardial Perfusion],1,September 2026,6.0,2.0,12.0,5.0,falling,35.7,green,-18.0
+Ysbyty Glan Clwyd,Nuclear Medicine [Cardiac / Myocardial Perfusion],0,September 2026,,,,,stable,,green,-90.0
+Ysbyty Glan Clwyd,Fluoroscopy,1,September 2026,2.0,1.0,3.0,2.0,stable,91.3,green,-66.0
+Ysbyty Glan Clwyd,Fluoroscopy,0,September 2026,,,,,stable,,green,-90.0
+Ysbyty Glan Clwyd,Diagnostic Angiography,1,September 2026,3.0,1.0,4.0,3.0,stable,89.1,green,-54.0
+Ysbyty Glan Clwyd,Diagnostic Angiography,0,September 2026,,,,,stable,,green,-90.0
+Ysbyty Gwynedd,CT,1,September 2026,1.0,1.0,3.0,1.0,stable,91.4,green,-78.0
+Ysbyty Gwynedd,CT,0,September 2026,,,,,stable,,green,-90.0
+Ysbyty Gwynedd,CT [Cardiac only],1,September 2026,9.0,4.0,12.0,8.0,falling,54.0,orange,18.0
+Ysbyty Gwynedd,CT [Cardiac only],0,September 2026,,,,,stable,,green,-90.0
+Ysbyty Gwynedd,MRI,1,September 2026,1.0,1.0,2.0,1.0,stable,89.5,green,-78.0
+Ysbyty Gwynedd,MRI,0,September 2026,,,,,stable,,green,-90.0
+Ysbyty Gwynedd,MRI [Cardiac only],1,September 2026,8.0,5.0,12.0,9.0,rising,37.7,green,6.0
+Ysbyty Gwynedd,MRI [Cardiac only],0,September 2026,,,,,stable,,green,-90.0
+Ysbyty Gwynedd,Ultrasound [Not pregnancy related],1,September 2026,4.0,2.0,9.0,5.0,rising,63.1,green,-42.0
+Ysbyty Gwynedd,Ultrasound [Not pregnancy related],0,September 2026,,,,,stable,,green,-90.0
+Ysbyty Gwynedd,Nuclear Medicine,1,September 2026,2.0,1.0,5.0,3.0,rising,74.4,green,-66.0
+Ysbyty Gwynedd,Nuclear Medicine,0,September 2026,,,,,stable,,green,-90.0
+Ysbyty Gwynedd,Fluoroscopy,1,September 2026,1.0,1.0,3.0,1.0,stable,89.5,green,-78.0
+Ysbyty Gwynedd,Fluoroscopy,0,September 2026,,,,,stable,,green,-90.0
+Ysbyty Maelor,CT,1,September 2026,2.0,1.0,3.0,2.0,stable,90.7,green,-66.0
+Ysbyty Maelor,CT,0,September 2026,,,,,stable,,green,-90.0
+Ysbyty Maelor,CT [Cardiac only],1,September 2026,8.0,3.0,11.0,7.0,falling,46.9,green,6.0
+Ysbyty Maelor,CT [Cardiac only],0,September 2026,,,,,stable,,green,-90.0
+Ysbyty Maelor,MRI,1,September 2026,2.0,1.0,3.0,2.0,stable,89.7,green,-66.0
+Ysbyty Maelor,MRI,0,September 2026,,,,,stable,,green,-90.0
+Ysbyty Maelor,MRI [Cardiac only],1,September 2026,10.0,6.0,16.0,11.0,rising,45.5,orange,30.0
+Ysbyty Maelor,MRI [Cardiac only],0,September 2026,,,,,stable,,green,-90.0
+Ysbyty Maelor,Ultrasound [Not pregnancy related],1,September 2026,4.0,2.0,6.0,4.0,stable,68.3,green,-42.0
+Ysbyty Maelor,Ultrasound [Not pregnancy related],0,September 2026,,,,,stable,,green,-90.0
+Ysbyty Maelor,Nuclear Medicine,1,September 2026,2.0,1.0,6.0,2.0,stable,77.7,green,-66.0
+Ysbyty Maelor,Nuclear Medicine,0,September 2026,,,,,stable,,green,-90.0
+Ysbyty Maelor,Nuclear Medicine [Cardiac / Myocardial Perfusion],1,September 2026,9.0,6.0,16.0,9.0,stable,31.2,orange,18.0
+Ysbyty Maelor,Nuclear Medicine [Cardiac / Myocardial Perfusion],0,September 2026,,,,,stable,,green,-90.0
+Ysbyty Maelor,Fluoroscopy,1,September 2026,2.0,1.0,3.0,2.0,stable,92.3,green,-66.0
+Ysbyty Maelor,Fluoroscopy,0,September 2026,,,,,stable,,green,-90.0
+Ysbyty Ystrad Fawr,CT,1,September 2026,4.0,2.0,7.0,5.0,rising,50.3,green,-42.0
+Ysbyty Ystrad Fawr,CT,0,September 2026,,,,,stable,,green,-90.0
+Ysbyty Ystrad Fawr,CT [Cardiac only],1,September 2026,5.0,2.0,5.0,4.0,falling,54.5,green,-30.0
+Ysbyty Ystrad Fawr,CT [Cardiac only],0,September 2026,,,,,stable,,green,-90.0
+Ysbyty Ystrad Fawr,MRI,1,September 2026,4.0,2.0,6.0,5.0,rising,42.6,green,-42.0
+Ysbyty Ystrad Fawr,MRI,0,September 2026,,,,,stable,,green,-90.0
+Ysbyty Ystrad Fawr,Ultrasound [Not pregnancy related],1,September 2026,4.0,2.0,7.0,4.0,stable,65.6,green,-42.0
+Ysbyty Ystrad Fawr,Ultrasound [Not pregnancy related],0,September 2026,,,,,stable,,green,-90.0
