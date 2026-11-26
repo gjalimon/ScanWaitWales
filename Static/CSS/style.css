@@ -815,3 +815,252 @@ body.home-page {
         padding: 12px 30px;
     }
 }
+
+/* ==============================================
+   More Information Page (50% Frosted Section Cards, Green-Tinted Team Cards & Center Align)
+============================================== */
+body.more-info-page {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.more-info-hero-bg {
+    align-items: flex-start;
+    background-attachment: fixed;
+    padding: 36px 24px 64px 24px;
+}
+
+.more-info-container {
+    max-width: 1220px;
+    width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+    color: #003816;
+    font-family: Verdana, sans-serif;
+    text-align: center;
+}
+
+/* Separate frosted card per section at 50% opacity */
+.more-info-frosted-card {
+    width: 100%;
+    background-color: rgba(230, 242, 232, 0.50);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 92, 34, 0.28);
+    border-radius: 26px;
+    padding: 32px 38px;
+    margin-bottom: 28px;
+    box-shadow: 0 14px 36px rgba(0, 35, 14, 0.22);
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.more-info-frosted-card h3 {
+    color: #003816;
+    font-size: 25px;
+    margin: 0 0 14px 0;
+    text-align: center;
+}
+
+.more-info-frosted-card > p {
+    font-size: 17px;
+    line-height: 1.65;
+    color: #003816;
+    margin: 0 auto;
+    max-width: 900px;
+    text-align: center;
+}
+
+.more-info-section-subtitle {
+    margin-bottom: 24px !important;
+    font-style: italic;
+    text-align: center;
+}
+
+/* Center-aligned rich Markdown body inside each section frosted card */
+.more-info-rich-body {
+    max-width: 900px;
+    margin: 0 auto;
+    font-size: 17px;
+    line-height: 1.65;
+    color: #003816;
+    text-align: center;
+}
+
+.more-info-rich-body p {
+    font-size: 17px;
+    line-height: 1.65;
+    color: #003816;
+    margin: 0 0 14px 0;
+    text-align: center;
+}
+
+.more-info-rich-body p:last-child {
+    margin-bottom: 0;
+}
+
+.more-info-rich-body h4 {
+    color: #003816;
+    font-size: 19px;
+    margin: 22px 0 8px 0;
+    text-align: center;
+}
+
+/* Center-aligned bullet lists (overriding sticky top-navbar <ul> styles) */
+.more-info-rich-body ul {
+    display: inline-block;
+    position: static;
+    background-color: transparent;
+    list-style-type: disc;
+    list-style-position: inside;
+    padding-left: 0;
+    margin: 10px auto 14px auto;
+    overflow: visible;
+    z-index: auto;
+    text-align: center;
+}
+
+.more-info-rich-body li {
+    display: list-item;
+    color: #003816;
+    font-family: Verdana, sans-serif;
+    font-size: 17px;
+    line-height: 1.6;
+    margin-bottom: 6px;
+    text-align: center;
+}
+
+.more-info-rich-body a {
+    color: #003816;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.more-info-rich-body a:hover {
+    color: #A70626;
+}
+
+/* Team cards grid: 25% wider cards centered inside the Meet the Team frosted card */
+.team-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(338px, 1fr));
+    justify-content: center;
+    gap: 26px;
+    margin-top: 22px;
+}
+
+/* Individual member cards with a distinct green tint */
+.team-card {
+    background-color: rgba(196, 224, 201, 0.78);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    border: 2px solid #005C22;
+    border-radius: 20px;
+    padding: 26px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    box-shadow: 0 6px 16px rgba(0, 56, 22, 0.14);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.team-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0, 56, 22, 0.22);
+}
+
+/* Always-circular member avatar */
+.team-avatar-wrapper {
+    width: 128px;
+    height: 128px;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid #005C22;
+    background-color: #005C22;
+    margin: 0 auto 16px auto;
+    flex-shrink: 0;
+}
+
+.team-avatar {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+}
+
+.team-member-name {
+    color: #003816;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0 0 6px 0;
+    text-align: center;
+}
+
+.team-member-role {
+    color: #005C22;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1.4;
+    margin: 0 0 12px 0;
+    text-align: center;
+}
+
+.team-member-bio {
+    color: #003816;
+    font-size: 15px;
+    line-height: 1.55;
+    margin: 0 0 18px 0;
+    flex-grow: 1;
+    text-align: center;
+}
+
+.team-card-footer {
+    margin-top: auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.team-linkedin-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #005C22;
+    color: #F1F5F0;
+    font-family: Verdana, sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 9px 26px;
+    border-radius: 999px;
+    border: 2px solid #005C22;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.team-linkedin-btn:hover {
+    background-color: #F1F5F0;
+    color: #005C22;
+}
+
+@media (max-width: 760px) {
+    .more-info-hero-bg {
+        background-attachment: scroll;
+        padding: 24px 14px 44px 14px;
+    }
+
+    .more-info-frosted-card {
+        padding: 22px 18px;
+        border-radius: 20px;
+    }
+
+    .team-cards-grid {
+        grid-template-columns: 1fr;
+    }
+}

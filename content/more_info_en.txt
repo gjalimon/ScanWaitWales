@@ -1,0 +1,104 @@
+=== ABOUT ===
+HEADING: About ScanWait Wales
+BODY: ScanWait Wales is an independent, volunteer-led project created by a dedicated team of data scientists. Our goal is to make NHS Wales diagnostic imaging and radiology waiting time data accessible, clear, and easy to explore for patients, decision-makers, and the public. Please note that ScanWait Wales is an independent tech initiative and is not officially affiliated with, endorsed by, or operated by NHS Wales or the Welsh Government.
+
+=== TEAM ===
+HEADING: Meet The Team
+SUBTITLE: The Cardiff University data science students behind ScanWait Wales.
+
+---
+NAME: Gerald Alimon
+ROLE: Project Lead & Full-Stack Developer
+BIO: HCPC Registered CT & Nuclear Medicine Radiographer with 6 years NHS experience. MSc Data Science and Analytics student at Cardiff University. Focused on data engineering, interactive visualization, and public health technology.
+PHOTO: gerald.png
+LINKEDIN: https://www.linkedin.com/in/gerald-alimon/
+
+---
+NAME: Eleri Hayman
+ROLE: Data Ingestion Lead, Data Analyst & Welsh Language Lead
+BIO: MSc Data Science and Analytics student at Cardiff University. Specializing in data analysis, Python API data ingestion, Welsh translation and bilingual accessibility.
+PHOTO: eleri.png
+LINKEDIN: https://www.linkedin.com/in/eleri-hayman-90a165341/
+
+---
+NAME: Charlie Hastings
+ROLE: Interactive Visualisation Developer, Web and Accessibility Lead
+BIO: MSc Data Science and Analytics student at Cardiff University. Focused on inclusive digital design, WCAG accessibility standards, and building clear, interactive data visualisations for public health information.
+PHOTO: charlie.png
+LINKEDIN: https://www.linkedin.com/in/charlie-hastings-985212445/
+
+---
+NAME: Revée O’Neal-Allamby
+ROLE: UX/UI Lead and Data Visualisation Developer
+BIO: MSc Data Science and Analytics student at Cardiff University. Specializing in user-centred interface design, healthcare operational research, and quantitative visual storytelling to improve patient pathways.
+PHOTO: revee.png
+LINKEDIN: https://www.linkedin.com/in/reveeoa/
+
+---
+NAME: Faith
+ROLE: Data Analyst, Geomapping and Routing Developer
+BIO: MSc Data Science and Analytics student at Cardiff University. Focused on data analytics, service evaluation, and supporting service accessibility using geomapping tools.
+PHOTO: faith.png
+LINKEDIN: https://www.linkedin.com/in/faith-hamelin/
+
+=== SECTIONS ===
+
+---
+HEADING: Contact Us
+BODY:
+If you have any concerns, questions or just want a general chat about this project, please contact us via [haymane@cardiff.ac.uk](mailto:haymane@cardiff.ac.uk).
+
+---
+HEADING: Data Privacy
+BODY:
+The application only asks for the information necessary to perform the search: selected scan and, for the nearest hospital function, postcode. Nothing is stored.
+
+---
+HEADING: Fairness and Inclusion
+BODY:
+Ranking by straight-line distance does not always identify the hospital that is easiest to reach. Rural roads, public transport, mobility requirements and whether a user has access to a car may affect the real journey. Providing a nearest-three option with travel routing and an all-hospitals option helps users define what they think are their 'nearest' hospitals.
+
+---
+HEADING: Accessibility
+BODY:
+The ScanWait Wales website has been designed and developed with the needs of individuals with visual and colour impairments or difficulty reading in mind.
+
+#### Visual and Colour Impairment
+The website's main font is Verdana - which was selected for its clarity. No text is smaller than 12pt, and the majority of it is a dark colour on a light (but not white) background to help with readability. The main site colours of white, red, and green were inspired by the Welsh flag. These colours have been adjusted in accordance with WCAG guidelines to provide sufficient contrast between text and the background. The primary background of the site is an off-white, which was selected to improve readability and reduce glare.
+
+Colours outside the main scheme (used in visualisations) were chosen as they are visually distinct from the main theme, but still maintain a minimum contrast to comply with WCAG AA standards.
+
+In addition to the above, we have chosen to avoid conveying important information exclusively through the use of colour. Hover text and varied opacity have been used in the visualisations where this is not possible.
+
+#### Screen Readers
+For visitors using screen readers, the number of links per page have been kept to a minimum and are sufficiently descriptive without requiring the additional context of the surrounding text. We have also chosen to avoid using emojis throughout the website. These decisions have been made to comply with the Equality Act 2010.
+
+Colour contrasts were checked using the WebAIM contrast checker. Please note, our website has not been tested by blind or partially sighted users.
+
+---
+HEADING: Language Options
+BODY:
+Our application is available in both Welsh and English in line with the Welsh Language Measure 2011. We have provided Welsh and English versions that contain equivalent information.
+
+Please note, there may be fewer errors in the Welsh. Cysill Ar-Lein was used to proof check the spelling and grammar but some errors may still have been missed. We are happy to take any feedback about improvements from users.
+
+---
+HEADING: What the Wait Time Gauge Means
+BODY:
+To make the wait times easy to read at a glance, we classify them into colour zones and use a visual speedometer: According to the Welsh government you should not be waiting more than 8 weeks for your scan.
+
+* **Green:** A wait of 8 weeks or less. (Within government targets)
+* **Orange:** A wait between 9 and 12 weeks.
+* **Red:** A wait of 13 weeks or longer.
+
+---
+HEADING: Validation
+BODY:
+New data is released towards the end of each month. Before we use that data, we inspect the data for any changes in its presentation and we calculate all possible outputs using a much slower but auditable method. These numbers are then checked against the output of our main calculator. We only use this new data when it passes all our checks.
+
+---
+HEADING: Licence
+BODY:
+This webapp is licensed under the Government Licence v3.0.
+
+The underlying git repository is under a MIT Licence.

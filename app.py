@@ -563,15 +563,91 @@ def forecast_page():
 # ============================================================
 # Information page
 # ============================================================
+
+def _parse_more_info_txt(txt_path: Path) -> dict:
+    raw = txt_path.read_text(encoding="utf-8")
+    data = {
+        "ABOUT": {},
+        "TEAM": {},
+        "TEAM_MEMBERS": [],
+        "SECTIONS": [],
+    }
+    current_section = None
+    current_item = None
+    in_body = False
+
+    def _flush_item():
+        nonlocal current_item, in_body
+        if not current_item:
+            return
+        if current_section == "TEAM":
+            data["TEAM_MEMBERS"].append(current_item)
+        elif current_section == "SECTIONS":
+            body_md = "\n".join(current_item.pop("_body_lines", [])).strip()
+            current_item["BODY_HTML"] = markdown.markdown(body_md)
+            data["SECTIONS"].append(current_item)
+        current_item = None
+        in_body = False
+
+    for raw_line in raw.splitlines():
+        stripped = raw_line.strip()
+
+        if stripped.startswith("===") and stripped.endswith("==="):
+            _flush_item()
+            current_section = stripped.strip("= ").strip()
+            continue
+
+        if stripped == "---" and current_section in ("TEAM", "SECTIONS"):
+            _flush_item()
+            current_item = {"_body_lines": []} if current_section == "SECTIONS" else {}
+            continue
+
+        if current_section == "SECTIONS" and current_item is not None:
+            if not in_body and stripped.startswith("HEADING:"):
+                current_item["HEADING"] = stripped.split(":", 1)[1].strip()
+                continue
+            if not in_body and stripped.startswith("BODY:"):
+                in_body = True
+                first_line = stripped.split(":", 1)[1].strip()
+                if first_line:
+                    current_item["_body_lines"].append(first_line)
+                continue
+            if in_body:
+                current_item["_body_lines"].append(raw_line)
+                continue
+
+        if not stripped:
+            continue
+
+        if ":" in stripped:
+            key, val = stripped.split(":", 1)
+            key = key.strip().upper()
+            val = val.strip()
+            if current_section == "TEAM" and current_item is not None:
+                current_item[key] = val
+            elif current_section in ("ABOUT", "TEAM"):
+                data[current_section][key] = val
+
+    _flush_item()
+    return data
+
+
 @app.route("/information")
 def information_page():
     lang = request.args.get("lang", "en")
     translations = get_translations(lang)
+
+    txt_filename = "more_info_cy.txt" if lang == "cy" else "more_info_en.txt"
+    txt_path = BASE_DIR / "content" / txt_filename
+    info_data = _parse_more_info_txt(txt_path)
+
     return render_template(
         "InformationPage.HTML",
         translations=translations,
         lang=lang,
+        info_data=info_data,
     )
+
 
 
 # ============================================================

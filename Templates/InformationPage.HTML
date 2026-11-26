@@ -1,172 +1,96 @@
 <!DOCTYPE html>
 <html lang="{{ lang }}">
-<!--this is how you add comments in HTML-->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/style.css') }}">
-    <title>{{ translations['page_title'] }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/style.css', v='info3') }}">
+    <title>{{ translations['nav_information'] }} - {{ translations['nav_brand'] }}</title>
 </head>
 
-<body>
-<ul>
-    <li>
-        <a href="{{ url_for('home', lang=lang) }}" class="nav-logo-link">
-        <img
-            src="{{ url_for('static', filename='Images/ScanWaitWales_Logo.png') }}"
-            alt="{{ translations['nav_brand'] }}"
-            class="nav-logo"
-        >
+<body class="more-info-page">
+    <!-- Main Navigation Bar -->
+    <ul>
+        <li>
+            <a href="{{ url_for('home', lang=lang) }}" class="nav-logo-link">
+                <img
+                    src="{{ url_for('static', filename='Images/ScanWaitWales_Logo.png') }}"
+                    alt="{{ translations['nav_brand'] }}"
+                    class="nav-logo"
+                >
             </a>
         </li>
-<!--Language switch button-->
-    <li class="left"><a href="{{ url_for('information_page', lang='cy' if lang == 'en' else 'en') }}" class="language-button">{{ translations['language_switch_to'] }}</a></li>
-<!--Update # to link to the current page-->
-    <li><a href ="{{ url_for('home', lang=lang) }}">{{ translations['nav_home'] }}</a></li>
-    <li><a href ="{{ url_for('input_page', lang=lang) }}">{{ translations['nav_input'] }}</a></li>
-    <li><a href ="{{ url_for('visualisations_page', lang=lang) }}">{{ translations['nav_visualisations'] }}</a></li>
-    <li><a href ="#more_information" class="active">{{ translations['nav_information'] }}</a></li>
-</ul>
+        <li class="left">
+            <a href="{{ url_for('information_page', lang='cy' if lang == 'en' else 'en') }}" class="language-button">
+                {{ translations['language_switch_to'] }}
+            </a>
+        </li>
+        <li><a href="{{ url_for('home', lang=lang) }}">{{ translations['nav_home'] }}</a></li>
+        <li><a href="{{ url_for('input_page', lang=lang) }}">{{ translations['nav_input'] }}</a></li>
+        <li><a href="{{ url_for('visualisations_page', lang=lang) }}">{{ translations['nav_visualisations'] }}</a></li>
+        <li><a href="{{ url_for('information_page', lang=lang) }}" class="active">{{ translations['nav_information'] }}</a></li>
+    </ul>
 
-{% set active_subtab = 'general' %}
-{% include '_more_info_nav.HTML' %}
+    <!-- Secondary More Information Navigation Bar -->
+    {% set active_subtab = 'general' %}
+    {% include '_more_info_nav.HTML' %}
 
-    <section>
-        <section style="max-width: 900px; margin: 0 auto; text-align: center;">
-        <h2>{{ translations['heading1'] }}</h2> 
-        <p>
-            {{ translations['about_text'] }}
-        </p>
-        <p>
-            {{ translations['about_text2'] }}
-        </p>
-        <p>
-            {{ translations['about_text3'] }}
-        </p>
+    <!-- Full-bleed instant background image + fading 50%-opacity frosted section cards -->
+    <main
+        class="home-hero-bg more-info-hero-bg"
+        style="background-image: url('{{ url_for('static', filename='Images/Wales_Photo.JPG') }}');"
+    >
+        <div class="more-info-container home-fade-in">
+            <!-- 1. About Section (50% Opacity Frosted Card) -->
+            <section class="more-info-frosted-card">
+                <h3>{{ info_data['ABOUT']['HEADING'] }}</h3>
+                <p>{{ info_data['ABOUT']['BODY'] }}</p>
+            </section>
 
-        <h2>{{ translations['heading2'] }}</h2>
-        <p>
-            {{ translations['team_text'] |safe }}
-            
-            <b>{{ translations['team_sub'] |safe }}</b>
-            {{ translations['team_text2'] |safe }}
-        </p>
+            <!-- 2. Meet The Team Section (50% Opacity Frosted Card with Green-Tinted Member Cards) -->
+            <section class="more-info-frosted-card">
+                <h3>{{ info_data['TEAM']['HEADING'] }}</h3>
+                <p class="more-info-section-subtitle">{{ info_data['TEAM']['SUBTITLE'] }}</p>
 
-        <h2>{{ translations['heading3'] }}</h2>
-        <p>
-            {{ translations['privacy_text'] }}
-        </p>
-        <p>
-            {{ translations['privacy_text2'] }}
-            <a href="https://www.gov.uk/data-protection">{{ translations['privacy_text_link'] }}</a>
-        </p>
+                <div class="team-cards-grid">
+                    {% for member in info_data['TEAM_MEMBERS'] %}
+                        <article class="team-card">
+                            <div class="team-avatar-wrapper">
+                                <img
+                                    src="{{ url_for('static', filename='Images/team/' + member['PHOTO']) }}"
+                                    alt="{{ member['NAME'] }}"
+                                    class="team-avatar"
+                                >
+                            </div>
+                            <h4 class="team-member-name">{{ member['NAME'] }}</h4>
+                            <p class="team-member-role">{{ member['ROLE'] }}</p>
+                            <p class="team-member-bio">{{ member['BIO'] }}</p>
+                            {% if member['LINKEDIN'] and member['LINKEDIN'] != '#' %}
+                                <div class="team-card-footer">
+                                    <a
+                                        href="{{ member['LINKEDIN'] }}"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="team-linkedin-btn"
+                                    >
+                                        LinkedIn
+                                    </a>
+                                </div>
+                            {% endif %}
+                        </article>
+                    {% endfor %}
+                </div>
+            </section>
 
-        <h2>{{ translations['heading4'] }}</h2>
-        <p>
-            {{ translations['external_text'] }}
-            <a href="https://uksa.statisticsauthority.gov.uk/wp-content/uploads/2021/05/Ethics-checklist-for-use-of-geospatial-data-for-analysis-and-statistics.pdf">{{ translations['external_text_link'] }}</a>
-            {{ translations['external_text2'] }}
-        </p>
-
-        <h2>{{ translations['heading5'] }}</h2>
-        <p>
-            {{ translations['fairness_text'] }}
-        </p>
-
-        <h2>{{ translations['heading6'] }}</h2>
-        <p>
-            {{ translations['access_text'] }}<br><br>
-
-            <b>{{ translations['access_sub'] }}</b><br>
-
-            {{ translations['access_text2'] }}
-            <a href="https://www.w3.org/WAI/standards-guidelines/wcag/">{{ translations['access_link'] }}</a>
-            {{ translations['access_text3'] }}<br>
-
-            {{ translations['access_text4'] }}<br>
-
-            {{ translations['access_text5'] }}<br><br>
-
-            <b>{{ translations['access_sub2'] }}</b><br>
-
-            {{ translations['access_text6'] }}
-            <a href="https://www.gov.uk/guidance/equality-act-2010-guidance">{{ translations['access_link2'] }}</a><br>
-
-            {{ translations['access_text7'] }}
-            <a href="https://webaim.org/resources/contrastchecker/">{{ translations['access_link3'] }}</a>
-            {{ translations['access_text8'] }}<br>
-        </p>
-
-        <h2>{{ translations['heading7'] }}</h2>
-        <p>
-            {{ translations['language_text'] }}
-            <a href="https://law.gov.wales/culture/welsh-language/welsh-language-wales-measure-2011">{{ translations['language_link'] }}</a>
-            {{ translations['language_text2'] }}
-        </p>
-        <p>
-            {{ translations['language_text3'] }}
-            <a href="https://www.cysgliad.com/cysill/arlein/?locale=cy">{{ translations['language_link2'] }}</a>
-            {{ translations['language_text4'] }}
-        </p>
-
-        <h2>{{ translations['heading8'] }}</h2>
-        <p>
-            {{ translations['licence_text'] }}
-            <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/">{{ translations['licence_link'] }}</a><br>
-            {{ translations['licence_text2'] }}
-            <a href="https://choosealicense.com/licenses/mit/">{{ translations['licence_link2'] }}</a>
-        </p>
-
-        <h2>{{ translations['heading9'] }}</h2>
-        <p>
-            <b>{{ translations['method_sub'] |safe }}</b>
-            {{ translations['method_text'] }}
-            <a href="https://stats.gov.wales/en-GB/3c2720e6-95ae-4eeb-9e88-ed74bb40c6b9/start">{{ translations['method_link'] }}</a>
-            {{ translations['method_text2'] }}
-        </p>
-        <p>
-            <b>{{ translations['method_sub2'] |safe }}</b>
-            {{ translations['method_text3'] }}
-        </p>
-        <p>
-            {{ translations['method_text4'] |safe }}
-        </p>
-        <p>
-            {{ translations['method_text5'] |safe }}
-            <a href="https://bmjopenquality.bmj.com/content/10/4/e001550">{{ translations['method_link2'] }}</a>
-            {{ translations['method_text6'] | safe }}
-        </p>
-
-        <h2>{{ translations['heading10'] }}</h2>
-        <p>
-            {{ translations['gauge_text'] }}
-            <a href="https://www.gov.wales/nhs-activity-and-performance-summary-april-and-may-2026-html">{{ translations['gauge_link'] }}</a>
-            {{ translations['gauge_text2'] }}
-        </p>
-        <p>
-            {{ translations['guage_text3'] |safe }}
-        </p>
-
-        <h2>{{ translations['heading11'] }}</h2>
-        <p>
-            {{ translations['validation_text'] }}
-        </p>
-
-        <h2>{{ translations['heading12'] }}</h2>
-        <p>
-            {{ translations['limit_text'] }}<br><br>
-            <b>{{ translations['limit_sub'] }}</b><br>
-            {{ translations['limit_text2'] }}
-        </p>
-        <p>
-            <b>{{ translations['limit_sub2'] }}</b><br>
-            {{ translations['limit_text3'] }}
-        </p>
-        <p>
-            <b>{{ translations['limit_sub3'] }}</b><br>
-            {{ translations['limit_text4'] }}
-        </p>
-
-    </section>
+            <!-- 3. Each Additional Section in Its Own 50%-Opacity Frosted Card (All Center-Aligned) -->
+            {% for sec in info_data['SECTIONS'] %}
+                <section class="more-info-frosted-card">
+                    <h3>{{ sec['HEADING'] }}</h3>
+                    <div class="more-info-rich-body">
+                        {{ sec['BODY_HTML'] | safe }}
+                    </div>
+                </section>
+            {% endfor %}
+        </div>
+    </main>
 </body>
 </html>

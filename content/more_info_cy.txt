@@ -1,0 +1,104 @@
+=== ABOUT ===
+HEADING: Ynglŷn â ScanWait Wales
+BODY: Mae ScanWait Wales yn brosiect annibynnol dan arweiniad gwirfoddolwyr a grëwyd gan dîm ymroddedig o wyddonwyr data. Ein nod yw gwneud data amseroedd aros delweddu diagnostig a radioleg GIG Cymru yn hygyrch, yn glir, ac yn hawdd i'w archwilio i gleifion, penderfynwyr, a'r cyhoedd. Sylwch fod ScanWait Wales yn fenter dechnoleg annibynnol ac nad yw'n gysylltiedig yn swyddogol â GIG Cymru na Llywodraeth Cymru, nac yn cael ei chymeradwyo na'i gweithredu ganddynt.
+
+=== TEAM ===
+HEADING: Cwrdd â'r Tîm
+SUBTITLE: Y myfyrwyr gwyddor data o Brifysgol Caerdydd y tu ôl i ScanWait Wales.
+
+---
+NAME: Gerald Alimon
+ROLE: Arweinydd y Prosiect a Datblygwr Llawn-Stac
+BIO: Radiograffydd CT a Meddygaeth Niwclear Cofrestredig HCPC gyda 6 mlynedd o brofiad yn y GIG. Myfyriwr MSc Gwyddor Data a Dadansoddeg ym Mhrifysgol Caerdydd. Yn canolbwyntio ar beirianneg data, delweddu rhyngweithiol, a thechnoleg iechyd y cyhoedd.
+PHOTO: gerald.png
+LINKEDIN: https://www.linkedin.com/in/gerald-alimon/
+
+---
+NAME: Eleri Hayman
+ROLE: Arweinydd Mewnforio Data, Dadansoddwr Data ac Arweinydd y Gymraeg
+BIO: Myfyriwr MSc Gwyddor Data a Dadansoddeg ym Mhrifysgol Caerdydd. Yn arbenigo mewn dadansoddi data, mewnforio data API Python, cyfieithu Cymraeg a hygyrchedd dwyieithog.
+PHOTO: eleri.png
+LINKEDIN: https://www.linkedin.com/in/eleri-hayman-90a165341/
+
+---
+NAME: Charlie Hastings
+ROLE: Datblygwr Delweddu Rhyngweithiol, Arweinydd Gwe a Hygyrchedd
+BIO: Myfyriwr MSc Gwyddor Data a Dadansoddeg ym Mhrifysgol Caerdydd. Yn canolbwyntio ar ddylunio digidol cynhwysol, safonau hygyrchedd WCAG, ac adeiladu delweddiadau data rhyngweithiol clir ar gyfer gwybodaeth iechyd y cyhoedd.
+PHOTO: charlie.png
+LINKEDIN: https://www.linkedin.com/in/charlie-hastings-985212445/
+
+---
+NAME: Revée O’Neal-Allamby
+ROLE: Arweinydd UX/UI a Datblygwr Delweddu Data
+BIO: Myfyriwr MSc Gwyddor Data a Dadansoddeg ym Mhrifysgol Caerdydd. Yn arbenigo mewn dylunio rhyngwynebau sy'n canolbwyntio ar y defnyddiwr, ymchwil weithredol gofal iechyd, ac adrodd straeon gweledol meintiol i wella llwybrau cleifion.
+PHOTO: revee.png
+LINKEDIN: https://www.linkedin.com/in/reveeoa/
+
+---
+NAME: Faith
+ROLE: Dadansoddwr Data, Datblygwr Geomapio a Llwybro
+BIO: Myfyriwr MSc Gwyddor Data a Dadansoddeg ym Mhrifysgol Caerdydd. Yn canolbwyntio ar ddadansoddeg data, gwerthuso gwasanaethau, a chefnogi hygyrchedd gwasanaethau gan ddefnyddio offer geomapio.
+PHOTO: faith.png
+LINKEDIN: https://www.linkedin.com/in/faith-hamelin/
+
+=== SECTIONS ===
+
+---
+HEADING: Cysylltu â Ni
+BODY:
+Os oes gennych unrhyw bryderon, cwestiynau neu os hoffech sgwrs gyffredinol am y prosiect hwn, cysylltwch â ni drwy [haymane@cardiff.ac.uk](mailto:haymane@cardiff.ac.uk).
+
+---
+HEADING: Preifatrwydd Data
+BODY:
+Dim ond yr wybodaeth sy'n angenrheidiol i gynnal y chwiliad y mae'r cymhwysiad yn gofyn amdani: y sgan a ddewiswyd ac, ar gyfer y swyddogaeth ysbyty agosaf, y cod post. Ni chaiff dim ei storio.
+
+---
+HEADING: Tegwch a Chynhwysiant
+BODY:
+Nid yw graddio yn ôl pellter llinell syth bob amser yn nodi'r ysbyty sydd hawsaf ei gyrraedd. Gall ffyrdd gwledig, trafnidiaeth gyhoeddus, gofynion symudedd ac a oes gan ddefnyddiwr fynediad at gar effeithio ar y daith go iawn. Mae darparu opsiwn tri-agosaf gyda llwybro teithio ac opsiwn pob-ysbyty yn helpu defnyddwyr i ddiffinio beth maent yn ei ystyried yn ysbytai 'agosaf' iddynt.
+
+---
+HEADING: Hygyrchedd
+BODY:
+Mae gwefan ScanWait Wales wedi'i dylunio a'i datblygu gan ystyried anghenion unigolion â namau ar y golwg a lliw neu anhawster darllen.
+
+#### Nam ar y Golwg a Lliw
+Prif ffont y wefan yw Verdana - a ddewiswyd am ei heglurder. Nid oes unrhyw destun yn llai na 12pt, ac mae'r rhan fwyaf ohono mewn lliw tywyll ar gefndir golau (ond nid gwyn) i helpu gyda darllenadwyedd. Ysbrydolwyd prif liwiau'r safle sef gwyn, coch, a gwyrdd gan faner Cymru. Mae'r lliwiau hyn wedi'u haddasu yn unol â chanllawiau WCAG i ddarparu digon o gyferbyniad rhwng y testun a'r cefndir. Cefndir sylfaenol y safle yw lliw llaethog, a ddewiswyd i wella darllenadwyedd a lleihau llacharedd.
+
+Dewiswyd lliwiau y tu allan i'r prif gynllun (a ddefnyddir mewn delweddiadau) gan eu bod yn weledol wahanol i'r prif thema, ond maent yn dal i gynnal isafswm cyferbyniad i gydymffurfio â safonau WCAG AA.
+
+Yn ogystal â'r uchod, rydym wedi dewis osgoi cyfleu gwybodaeth bwysig yn gyfan gwbl drwy ddefnyddio lliw. Defnyddiwyd testun hofran ac didreiddedd amrywiol yn y delweddiadau lle nad yw hyn yn bosibl.
+
+#### Darllenwyr Sgrin
+Ar gyfer ymwelwyr sy'n defnyddio darllenwyr sgrin, cadwyd nifer y dolenni ar bob tudalen mor isel â phosibl ac maent yn ddigon disgrifiadol heb fod angen cyd-destun ychwanegol y testun o'u cwmpas. Rydym hefyd wedi dewis osgoi defnyddio emojis ledled y wefan. Gwnaed y penderfyniadau hyn i gydymffurfio â Deddf Cydraddoldeb 2010.
+
+Gwiriwyd cyferbyniadau lliw gan ddefnyddio gwiriwr cyferbyniad WebAIM. Sylwch nad yw ein gwefan wedi'i phrofi gan ddefnyddwyr dall neu â golwg rhannol.
+
+---
+HEADING: Opsiynau Iaith
+BODY:
+Mae ein cymhwysiad ar gael yn Gymraeg ac yn Saesneg yn unol â Mesur y Gymraeg 2011. Rydym wedi darparu fersiynau Cymraeg a Saesneg sy'n cynnwys gwybodaeth gyfatebol.
+
+Sylwch y gallai fod llai o wallau yn y Gymraeg. Defnyddiwyd Cysill Ar-Lein i wirio'r sillafu a'r gramadeg ond efallai fod rhai gwallau wedi'u methu o hyd. Rydym yn hapus i dderbyn unrhyw adborth am welliannau gan ddefnyddwyr.
+
+---
+HEADING: Beth Mae'r Mesurydd Amser Aros yn ei Olygu
+BODY:
+Er mwyn gwneud yr amseroedd aros yn hawdd i'w darllen ar unwaith, rydym yn eu dosbarthu i barthau lliw ac yn defnyddio mesurydd cyflymder gweledol: Yn ôl Llywodraeth Cymru ni ddylech fod yn aros mwy na 8 wythnos am eich sgan.
+
+* **Gwyrdd:** Aros o 8 wythnos neu lai. (O fewn targedau'r llywodraeth)
+* **Oren:** Aros rhwng 9 a 12 wythnos.
+* **Coch:** Aros o 13 wythnos neu fwy.
+
+---
+HEADING: Dilysu
+BODY:
+Rhyddheir data newydd tua diwedd pob mis. Cyn i ni ddefnyddio'r data hwnnw, rydym yn archwilio'r data am unrhyw newidiadau yn ei gyflwyniad ac rydym yn cyfrifo pob allbwn posibl gan ddefnyddio dull llawer arafach ond archwiliadwy. Caiff y rhifau hyn eu gwirio wedyn yn erbyn allbwn ein prif gyfrifiannell. Dim ond pan fydd yn pasio ein holl wiriadau y byddwn yn defnyddio'r data newydd hwn.
+
+---
+HEADING: Trwydded
+BODY:
+Mae'r ap gwe hwn wedi'i drwyddedu o dan y Drwydded Llywodraeth v3.0.
+
+Mae'r storfa git waelodol o dan Drwydded MIT.
