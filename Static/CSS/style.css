@@ -43,7 +43,7 @@ section{
     padding: 15px;
 }
 .left{
-    margin-right: auto;
+    margin-right: 0;
 }
 
 /*
@@ -158,6 +158,7 @@ ul {
     background-color:#005C22;
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     align-items: stretch;
     position: sticky;
     top:0;
