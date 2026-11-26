@@ -121,8 +121,19 @@ def _translate_health_board(english_name, translations):
 def home():
     lang = request.args.get("lang", "en")
     translations = get_translations(lang)
-    return render_template("WelcomePage.HTML", translations=translations, lang=lang)
 
+    txt_filename = "home_cy.txt" if lang == "cy" else "home_en.txt"
+    txt_path = BASE_DIR / "content" / txt_filename
+    raw_txt = txt_path.read_text(encoding="utf-8")
+
+    home_content_html = markdown.markdown(raw_txt)
+
+    return render_template(
+        "WelcomePage.HTML",
+        translations=translations,
+        lang=lang,
+        home_content_html=home_content_html,
+    )
 
 # ============================================================
 # Calculation page (input)

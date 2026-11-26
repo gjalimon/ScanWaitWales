@@ -1,0 +1,5 @@
+Mae ScanWaitWales yn adnodd annibynnol a redir gan wirfoddolwyr ac nid yw'n gysylltiedig â'r GIG. Rydym yn defnyddio data amseroedd aros diagnostig sydd ar gael yn gyhoeddus, wedi'i gyhoeddi gan [StatsWales](https://stats.gov.wales/en-GB/3c2720e6-95ae-4eeb-9e88-ed74bb40c6b9/start#about) a'i gasglu gan Iechyd a Gofal Digidol Cymru (DHCW). Nid oes gennym fynediad at gofnodion cleifion unigol ac nid ydym yn storio unrhyw wybodaeth a roddwch i ni.
+
+Mae gan ystadegau swyddogol amseroedd aros gyfyngiadau a materion adrodd sylweddol, yr ydym yn gweithio'n ddiwyd i'w glanhau a'u rheoli, fel y gwelir ar ein tudalen [Materion Data](/data-quality?lang=cy). Yn benodol, nid yw'r set ddata gyhoeddus yn gwahanu atgyfeiriadau yn ôl blaenoriaeth glinigol (megis Brys neu Arferol), sy'n effeithio'n fawr ar pa mor hir y mae claf unigol yn aros.
+
+Oherwydd hyn, mae'r ffigurau a ddangosir yma yn amcangyfrif o'r amseroedd aros cyffredinol yn hytrach na rhagfynegiad ar gyfer eich apwyntiad unigol. Mae ScanWaitWales orau i'w ddefnyddio i archwilio tueddiadau cyffredinol a chymharu perfformiad ar draws ysbytai a byrddau iechyd.

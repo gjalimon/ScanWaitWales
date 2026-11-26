@@ -1,0 +1,5 @@
+ScanWaitWales is an independent, volunteer-run tool and is not affiliated with the NHS. We use publicly available diagnostic waiting-time data published by [StatsWales](https://stats.gov.wales/en-GB/3c2720e6-95ae-4eeb-9e88-ed74bb40c6b9/start#about) and compiled by Digital Health and Care Wales (DHCW). We do not have access to individual patient records nor do we store any information you provide us.
+
+Official waiting-time statistics have significant reporting limitations and issues, which we actively work to clean and manage, as seen in our [Data Issues page](/data-quality). In particular, the public dataset does not separate referrals by clinical priority (such as Urgent or Routine), which heavily affects how long an individual patient waits.
+
+Because of this, the figures shown here represent an estimate of overall waiting times rather than a prediction for your individual appointment. ScanWaitWales is best used to explore general trends and compare performance across hospitals and health boards.

@@ -665,3 +665,153 @@ Queue Trend Line & Mini Graph
     align-items: center;
     margin: 6px auto 18px auto;
 }
+
+/* ==============================================
+   Home Page Full-Bleed Background & Frosted Card
+============================================== */
+body.home-page {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Background appears instantly (no opacity fade) */
+.home-hero-bg {
+    flex: 1;
+    width: 100%;
+    min-height: calc(100vh - 54px);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 36px 20px;
+    box-sizing: border-box;
+    opacity: 1;
+}
+
+/* Smooth fade-in for the frosted card, logo, text, and button */
+@keyframes homeCardFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.home-fade-in {
+    opacity: 0;
+    animation: homeCardFadeIn 0.9s ease-out 0.9s forwards;
+}
+
+/* Light green-tinted semi-transparent frosted card */
+.home-frosted-card {
+    max-width: 780px;
+    width: 100%;
+    background-color: rgba(230, 242, 232, 0.40);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 92, 34, 0.22);
+    border-radius: 26px;
+    padding: 36px 42px;
+    box-shadow: 0 14px 36px rgba(0, 35, 14, 0.24);
+    text-align: center;
+    box-sizing: border-box;
+}
+
+/* Centered top logo inside the frosted card */
+.home-logo-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 22px;
+}
+
+.home-large-logo {
+    max-width: 340px;
+    width: 80%;
+    height: auto;
+    display: block;
+}
+
+/* Body copy loaded from content/home_en.txt or content/home_cy.txt */
+.home-txt-content {
+    color: #003816;
+    font-family: Verdana, sans-serif;
+    font-size: 17px;
+    line-height: 1.65;
+    text-align: center;
+}
+
+.home-txt-content p {
+    margin: 0 0 16px 0;
+    color: #003816;
+}
+
+.home-txt-content a {
+    color: #005C22;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.home-txt-content a:hover {
+    color: #A70626;
+}
+
+/* Bottom two-line CTA button */
+.home-cta-wrapper {
+    margin-top: 26px;
+    display: flex;
+    justify-content: center;
+}
+
+.home-cta-button {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #005C22;
+    color: #F1F5F0;
+    font-family: Verdana, sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 1.25;
+    text-decoration: none;
+    padding: 14px 40px;
+    border-radius: 999px;
+    border: 2px solid #005C22;
+    box-shadow: 0 6px 16px rgba(0, 56, 22, 0.25);
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.home-cta-button:hover {
+    background-color: #F1F5F0;
+    color: #005C22;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 640px) {
+    .home-frosted-card {
+        padding: 26px 20px;
+        border-radius: 20px;
+    }
+
+    .home-large-logo {
+        max-width: 260px;
+    }
+
+    .home-txt-content {
+        font-size: 15px;
+    }
+
+    .home-cta-button {
+        font-size: 18px;
+        padding: 12px 30px;
+    }
+}
